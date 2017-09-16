@@ -3,6 +3,9 @@ Xft font binding for VisualWorks
 
 ## Packages
 
+Choose the branch matching the version of VisualWorks.
+If the version of VisualWorks is newer than the most recent branch, then loading Xft might not work or crash due to the deep integration into VisualWorks.
+
 Load `Xft-All` to load all packages.
 Make sure that VW does not load outdated Xft parcels from the `contributed` directory of VW (`Xft-All` tries to avoid loading these versions).
 
