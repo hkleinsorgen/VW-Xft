@@ -1,1 +1,44 @@
-<?xml version="1.0"?><st-source><!-- Name: Xft-AllNotice: Licensed under the MIT licenseCopyright (c) 2012 Holger KleinsorgenPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.Comment: Loads all Xft packagesContact: h . kleinsorgen - at - gmail . comGithub repo: https://github.com/hkleinsorgen/VW-Xft.gitLicensed under the MIT license (see Copyright)DbIdentifier: psql_public_cst_2007DbTrace: 96226DbUsername: klnsrgnDbVersion: (8.0).4DevelopmentPrerequisites: #(#(#package 'Xft' '') #(#package 'Xft-Integration' '') #(#package 'Xft-DesktopIntegration' '') #(#package 'Xft-Performance' ''))PackageName: Xft-AllParcel: #('Xft-All')ParcelDirectory: /mnt/e/develop/git/xft/8.0/parcels/Xft-AllPrerequisiteDescriptions: #(#(#name 'Xft' #componentType #package #loadResolution #store) #(#name 'Xft-Integration' #componentType #package #loadResolution #store) #(#name 'Xft-DesktopIntegration' #componentType #package #loadResolution #store) #(#name 'Xft-Performance' #componentType #package #loadResolution #store))PrerequisiteParcels: #(#('Xft' '') #('Xft-Integration' '') #('Xft-DesktopIntegration' '') #('Xft-Performance' ''))PrintStringCache: ((8.0).4,klnsrgn)Version: (8.0).4Date: 11:16:54 PM September 25, 2017 --><time-stamp>From VisualWorks®, 8.1.1 of March 10, 2016 on September 25, 2017 at 11:16:54 PM</time-stamp><do-it>(Dialog confirm: 'You are filing-in a Parcel source file!\\While this is possible it will not have\the same effect as loading the parcel.\None of the Parcel''s prerequisites will\be loaded and none of its load actions\will be performed.\\Are you sure you want to file-in?' withCRs) ifFalse: [self error: 'Parcel file-in abandoned.  Choose terminate or close.']</do-it><do-it>"Imported Classes:"</do-it><do-it>self error: 'Attempting to file-in parcel imports.  Choose terminate or close'</do-it></st-source>
+<?xml version="1.0"?>
+
+<st-source>
+<!-- 
+Name: Xft-All
+Notice: Licensed under the MIT license
+
+Copyright (c) 2012 Holger Kleinsorgen
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+Comment: Loads all Xft packages
+
+Contact: h . kleinsorgen - at - gmail . com
+Github repo: https://github.com/hkleinsorgen/VW-Xft.git
+
+Licensed under the MIT license (see Copyright)
+DbIdentifier: psql_public_cst_2007
+DbTrace: 96226
+DbUsername: klnsrgn
+DbVersion: (8.0).4
+DevelopmentPrerequisites: #(#(#package 'Xft' '') #(#package 'Xft-Integration' '') #(#package 'Xft-DesktopIntegration' '') #(#package 'Xft-Performance' ''))
+PackageName: Xft-All
+Parcel: #('Xft-All')
+ParcelDirectory: /mnt/e/develop/git/xft/8.0/parcels/Xft-All
+PrerequisiteDescriptions: #(#(#name 'Xft' #componentType #package #loadResolution #store) #(#name 'Xft-Integration' #componentType #package #loadResolution #store) #(#name 'Xft-DesktopIntegration' #componentType #package #loadResolution #store) #(#name 'Xft-Performance' #componentType #package #loadResolution #store))
+PrerequisiteParcels: #(#('Xft' '') #('Xft-Integration' '') #('Xft-DesktopIntegration' '') #('Xft-Performance' ''))
+PrintStringCache: ((8.0).4,klnsrgn)
+Version: (8.0).4
+Date: 11:28:29 PM September 25, 2017
+ -->
+<time-stamp>From VisualWorks®, 8.1.1 of March 10, 2016 on September 25, 2017 at 11:28:29 PM</time-stamp>
+
+
+<do-it>(Dialog confirm: 'You are filing-in a Parcel source file!\\While this is possible it will not have\the same effect as loading the parcel.\None of the Parcel''s prerequisites will\be loaded and none of its load actions\will be performed.\\Are you sure you want to file-in?' withCRs) ifFalse: [self error: 'Parcel file-in abandoned.  Choose terminate or close.']</do-it>
+
+<do-it>"Imported Classes:"</do-it>
+
+<do-it>self error: 'Attempting to file-in parcel imports.  Choose terminate or close'</do-it>
+
+</st-source>
