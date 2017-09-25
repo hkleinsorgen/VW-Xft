@@ -21,48 +21,22 @@ Github repo: https://github.com/hkleinsorgen/Xft
 
 Licensed under the MIT license (see Copyright)
 
-DevelopmentPrerequisites: #(#(#package 'Xft' '(7.7).*') #(#package 'Xft-Integration' '(8.3).*') #(#any 'Tools-Settings-VW' '') #(#any 'Tools-Settings' ''))
+DbIdentifier: psql_public_cst_2007
+DbTrace: 96233
+DbUsername: klnsrgn
+DbVersion: (8.3).7
+DevelopmentPrerequisites: #(#(#package 'Xft' '') #(#package 'Xft-Integration' '') #(#any 'Tools-Settings-VW' '') #(#any 'Tools-Settings' ''))
 PackageName: Xft-DesktopIntegration
 Parcel: #('Xft-DesktopIntegration')
-ParcelDirectory: /mnt/e/develop/git/xft/8.3/Xft-DesktopIntegration
-PrerequisiteDescriptions: #(#(#name 'Xft' #componentType #package #versionFilter '(7.7).*' #loadResolution #store) #(#name 'Xft-Integration' #componentType #package #versionFilter '(8.3).*' #loadResolution #store) #(#name 'Tools-Settings-VW' #componentType #package) #(#name 'Tools-Settings' #componentType #package))
-PrerequisiteParcels: #(#('Xft' '(7.7).*') #('Xft-Integration' '(8.3).*') #('Tools-Settings-VW' '') #('Tools-Settings' ''))
+ParcelDirectory: /mnt/e/develop/git/xft/8.3/parcels/Xft-DesktopIntegration
+PrerequisiteDescriptions: #(#(#name 'Xft' #componentType #package #loadResolution #store) #(#name 'Xft-Integration' #componentType #package #loadResolution #store) #(#name 'Tools-Settings-VW' #componentType #package) #(#name 'Tools-Settings' #componentType #package))
+PrerequisiteParcels: #(#('Xft' '') #('Xft-Integration' '') #('Tools-Settings-VW' '') #('Tools-Settings' ''))
+PrintStringCache: ((8.3).7,klnsrgn)
 SkipSignature: true
-Version: (8.3).6
-VersionSelectionBlock: [:parcelName :versionString :requiredVersionString |
-	| load |
-	" do not load outdated versions from the VW installation "
-	load := true.	
-	(parcelName = 'Xft' and: [ versionString = '(7.7).74' ])
-		ifTrue: [ load := false ].
-	(parcelName = 'Xft-DesktopIntegration' and: [ versionString = '(8.0).2' ])
-		ifTrue: [ load := false ].
-	(parcelName = 'Xft-Integration' and: [ versionString = '(8.0).2' ])
-		ifTrue: [ load := false ].
-	" check required version pattern - if VW happens to provide a version "
-	(requiredVersionString size > 0 and: [ versionString size > 0 and: [ (requiredVersionString match: versionString) not ]])
-		ifTrue: [ load := false ].
-	load
-]
-Version Selection Block: 
-	[:parcelName :versionString :requiredVersionString |
-	| load |
-	'' do not load outdated versions from the VW installation ''
-	load := true.	
-	(parcelName = 'Xft' and: [ versionString = '(7.7).74' ])
-		ifTrue: [ load := false ].
-	(parcelName = 'Xft-DesktopIntegration' and: [ versionString = '(8.0).2' ])
-		ifTrue: [ load := false ].
-	(parcelName = 'Xft-Integration' and: [ versionString = '(8.0).2' ])
-		ifTrue: [ load := false ].
-	'' check required version pattern - if VW happens to provide a version ''
-	(requiredVersionString size > 0 and: [ versionString size > 0 and: [ (requiredVersionString match: versionString) not ]])
-		ifTrue: [ load := false ].
-	load
-]
-Date: 1:41:34 PM September 16, 2017
+Version: (8.3).7
+Date: 11:31:27 PM September 25, 2017
  -->
-<time-stamp>From VisualWorks®, 8.3 of July 28, 2017 on September 16, 2017 at 1:41:34 PM</time-stamp>
+<time-stamp>From VisualWorks®, 8.3 of July 28, 2017 on September 25, 2017 at 11:31:27 PM</time-stamp>
 
 
 <do-it>(Dialog confirm: 'You are filing-in a Parcel source file!\\While this is possible it will not have\the same effect as loading the parcel.\None of the Parcel''s prerequisites will\be loaded and none of its load actions\will be performed.\\Are you sure you want to file-in?' withCRs) ifFalse: [self error: 'Parcel file-in abandoned.  Choose terminate or close.']</do-it>
@@ -291,6 +265,18 @@ Date: 1:41:34 PM September 16, 2017
 </shared-variable>
 
 <shared-variable>
+<name>FontPointSize</name>
+<environment>Xft.XDesktop</environment>
+<private>false</private>
+<constant>false</constant>
+<category>accessing</category>
+<initializer>nil</initializer>
+<attributes>
+<package>Xft-DesktopIntegration</package>
+</attributes>
+</shared-variable>
+
+<shared-variable>
 <name>CurrentDesktop</name>
 <environment>Xft.XDesktop</environment>
 <private>false</private>
@@ -339,18 +325,6 @@ Date: 1:41:34 PM September 16, 2017
 </shared-variable>
 
 <shared-variable>
-<name>SettingsChanged</name>
-<environment>Xft.XDesktop</environment>
-<private>false</private>
-<constant>false</constant>
-<category>accessing</category>
-<initializer>nil</initializer>
-<attributes>
-<package>Xft-DesktopIntegration</package>
-</attributes>
-</shared-variable>
-
-<shared-variable>
 <name>FontFamilyString</name>
 <environment>Xft.XDesktop</environment>
 <private>false</private>
@@ -363,7 +337,7 @@ Date: 1:41:34 PM September 16, 2017
 </shared-variable>
 
 <shared-variable>
-<name>FontPointSize</name>
+<name>SettingsChanged</name>
 <environment>Xft.XDesktop</environment>
 <private>false</private>
 <constant>false</constant>
