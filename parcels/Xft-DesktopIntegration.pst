@@ -28,10 +28,10 @@ ParcelDirectory: Xft-DesktopIntegration
 PrerequisiteDescriptions: #(#(#name 'Xft' #componentType #package #loadResolution #store) #(#name 'Xft-Integration' #componentType #package #loadResolution #store))
 PrerequisiteParcels: #(#('Xft' '') #('Xft-Integration' ''))
 SkipSignature: true
-Version: (8.3).3
-Date: 6:11:33 PM January 22, 2021
+Version: (8.3).6
+Date: 6:13:31 PM January 22, 2021
  -->
-<time-stamp>From VisualWorks®, 8.3.2 of 16. November 2018 on 22. Januar 2021 at 18:11:33</time-stamp>
+<time-stamp>From VisualWorks®, 8.3.2 of 16. November 2018 on 22. Januar 2021 at 18:13:31</time-stamp>
 
 
 <do-it>(Dialog confirm: 'You are filing-in a Parcel source file!\\While this is possible it will not have\the same effect as loading the parcel.\None of the Parcel''s prerequisites will\be loaded and none of its load actions\will be performed.\\Are you sure you want to file-in?' withCRs) ifFalse: [self error: 'Parcel file-in abandoned.  Choose terminate or close.']</do-it>
@@ -676,7 +676,7 @@ Date: 6:11:33 PM January 22, 2021
 <methods>
 <class-id>UI.Skins.Default.DefaultSkin</class-id> <category>private - text styles</category>
 
-<body package="Xft-DesktopIntegration">platformFontDescriptionForLists	"Even with platform agnostic skin support, we still use platform native fonts."		| nativeSkinClass |		" &gt;&gt;&gt; Xft patch "	 Screen default defaultFontPolicy fontClass = Xft.XftFont		ifTrue: [ ^  Xft.XftSettings current preferredFontDescription].	" &lt;&lt;&lt; "		(nativeSkinClass := SkinRegistry nativeSkinClassOrNil) == nil ifFalse: [		^nativeSkinClass current fontDescriptionForLists].		^self fontDescriptionForLists</body>
+<body package="Xft-DesktopIntegration">platformFontDescriptionForLists	"Even with platform agnostic skin support, we still use platform native fonts."		| nativeSkinClass |		" &gt;&gt;&gt; Xft patch "	(HeadlessImage isHeadless not and: [  Screen default defaultFontPolicy fontClass = Xft.XftFont ])		ifTrue: [ ^  Xft.XftSettings current preferredFontDescription].	" &lt;&lt;&lt; "		(nativeSkinClass := SkinRegistry nativeSkinClassOrNil) == nil ifFalse: [		^nativeSkinClass current fontDescriptionForLists].		^self fontDescriptionForLists</body>
 </methods>
 
 <methods>
@@ -688,9 +688,9 @@ Date: 6:11:33 PM January 22, 2021
 <methods>
 <class-id>UI.Skins.Default.DefaultSkin</class-id> <category>private - text styles</category>
 
-<body package="Xft-DesktopIntegration">platformStandardVariableWidthFont	"Even with platform agnostic skin support, we still use platform native fonts."		| nativeSkinClass |	" &gt;&gt;&gt; Xft patch "	 Screen default defaultFontPolicy fontClass = Xft.XftFont		ifTrue: [ ^  Xft.XftSettings current preferredFontDescription].	" &lt;&lt;&lt; "		(nativeSkinClass := SkinRegistry nativeSkinClassOrNil) == nil ifFalse: [		^nativeSkinClass current standardVariableWidthFont].		^self standardVariableWidthFont</body>
+<body package="Xft-DesktopIntegration">platformStandardVariableWidthFont	"Even with platform agnostic skin support, we still use platform native fonts."		| nativeSkinClass |	" &gt;&gt;&gt; Xft patch "	(HeadlessImage isHeadless not and: [  Screen default defaultFontPolicy fontClass = Xft.XftFont ])		ifTrue: [ ^  Xft.XftSettings current preferredFontDescription].	" &lt;&lt;&lt; "		(nativeSkinClass := SkinRegistry nativeSkinClassOrNil) == nil ifFalse: [		^nativeSkinClass current standardVariableWidthFont].		^self standardVariableWidthFont</body>
 
-<body package="Xft-DesktopIntegration">standardFixedWidthFont	" &gt;&gt;&gt; Xft patch "	 Screen default defaultFontPolicy fontClass = Xft.XftFont		ifTrue: [ ^  Xft.XftSettings current preferredMonoFontDescription].	" &lt;&lt;&lt; "		^FontDescription new			family: #('courier*' 'nimbus mono*' '*mono*' '*');			manufacturer: #('adobe' '*');			fixedWidth: true;			italic: false;			boldness: 0.5;			pixelSize: 12</body>
+<body package="Xft-DesktopIntegration">standardFixedWidthFont	" &gt;&gt;&gt; Xft patch "	 (HeadlessImage isHeadless not and: [ Screen default defaultFontPolicy fontClass = Xft.XftFont ])		ifTrue: [ ^ Xft.XftSettings current preferredMonoFontDescription].	" &lt;&lt;&lt; "		^FontDescription new			family: #('courier*' 'nimbus mono*' '*mono*' '*');			manufacturer: #('adobe' '*');			fixedWidth: true;			italic: false;			boldness: 0.5;			pixelSize: 12</body>
 </methods>
 
 <methods>
