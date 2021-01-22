@@ -6,8 +6,7 @@ Xft font binding for VisualWorks
 Choose the branch matching the version of VisualWorks.
 If the version of VisualWorks is newer than the most recent branch, then loading Xft might not work or crash due to the deep integration into VisualWorks.
 
-Load `Xft-All` to load all packages.
-Make sure that VW does not load outdated Xft parcels from the `contributed` directory of VW (`Xft-All` tries to avoid loading these versions).
+Make sure that VW does not load outdated Xft parcels from the `contributed` directory of VW.
 
 ### Xft
 
@@ -24,6 +23,10 @@ Requires a restart once the package is loaded.
 Gathers font information from the desktop configuration. 
 The default text attributes will be resetted according to the default font of the desktop.
 Also provides additional settings (Look and Feel > Xft)
+
+### Xft-Development
+
+Settings and tweaks for the IDE
 
 ### Xft-Performance
 
