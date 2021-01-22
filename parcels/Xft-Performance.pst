@@ -23,9 +23,9 @@ Parcel: #('Xft-Performance')
 ParcelDirectory: Xft-Performance
 SkipSignature: true
 Version: (7.7).3
-Date: 6:45:30 PM January 22, 2021
+Date: 6:54:05 PM January 22, 2021
  -->
-<time-stamp>From VisualWorks®, 8.3.2 of 16. November 2018 on 22. Januar 2021 at 18:45:30</time-stamp>
+<time-stamp>From VisualWorks®, 8.3.2 of 16. November 2018 on 22. Januar 2021 at 18:54:05</time-stamp>
 
 
 <do-it>(Dialog confirm: 'You are filing-in a Parcel source file!\\While this is possible it will not have\the same effect as loading the parcel.\None of the Parcel''s prerequisites will\be loaded and none of its load actions\will be performed.\\Are you sure you want to file-in?' withCRs) ifFalse: [self error: 'Parcel file-in abandoned.  Choose terminate or close.']</do-it>
