@@ -21,45 +21,20 @@ Github repo: https://github.com/hkleinsorgen/Xft
 
 Licensed under the MIT license (see Copyright)
 
-DbIdentifier: psql_public_cst_2007
-DbTrace: 96233
-DbUsername: klnsrgn
-DbVersion: (8.3).7
-DevelopmentPrerequisites: #(#(#package 'Xft' '') #(#package 'Xft-Integration' '') #(#any 'Tools-Settings-VW' '') #(#any 'Tools-Settings' ''))
+DevelopmentPrerequisites: #(#(#package 'Xft' '') #(#package 'Xft-Integration' ''))
 PackageName: Xft-DesktopIntegration
 Parcel: #('Xft-DesktopIntegration')
-ParcelDirectory: /mnt/e/develop/git/xft/8.3/parcels/Xft-DesktopIntegration
-PrerequisiteDescriptions: #(#(#name 'Xft' #componentType #package #loadResolution #store) #(#name 'Xft-Integration' #componentType #package #loadResolution #store) #(#name 'Tools-Settings-VW' #componentType #package) #(#name 'Tools-Settings' #componentType #package))
-PrerequisiteParcels: #(#('Xft' '') #('Xft-Integration' '') #('Tools-Settings-VW' '') #('Tools-Settings' ''))
-PrintStringCache: ((8.3).7,klnsrgn)
+ParcelDirectory: Xft-DesktopIntegration
+PrerequisiteDescriptions: #(#(#name 'Xft' #componentType #package #loadResolution #store) #(#name 'Xft-Integration' #componentType #package #loadResolution #store))
+PrerequisiteParcels: #(#('Xft' '') #('Xft-Integration' ''))
 SkipSignature: true
-Version: (8.3).7
-Date: 11:31:27 PM September 25, 2017
+Version: (8.3).3
+Date: 6:11:33 PM January 22, 2021
  -->
-<time-stamp>From VisualWorks®, 8.3 of July 28, 2017 on September 25, 2017 at 11:31:27 PM</time-stamp>
+<time-stamp>From VisualWorks®, 8.3.2 of 16. November 2018 on 22. Januar 2021 at 18:11:33</time-stamp>
 
 
 <do-it>(Dialog confirm: 'You are filing-in a Parcel source file!\\While this is possible it will not have\the same effect as loading the parcel.\None of the Parcel''s prerequisites will\be loaded and none of its load actions\will be performed.\\Are you sure you want to file-in?' withCRs) ifFalse: [self error: 'Parcel file-in abandoned.  Choose terminate or close.']</do-it>
-
-<class>
-<name>XDesktopSystem</name>
-<environment>Xft</environment>
-<super>Core.Subsystem</super>
-<private>false</private>
-<indexed-type>none</indexed-type>
-<inst-vars></inst-vars>
-<class-inst-vars></class-inst-vars>
-<imports></imports>
-<category></category>
-<attributes>
-<package>Xft-DesktopIntegration</package>
-</attributes>
-</class>
-
-<comment>
-<class-id>Xft.XDesktopSystem</class-id>
-<body>Initializes desktop-specific information on startup</body>
-</comment>
 
 <class>
 <name>XDesktop</name>
@@ -82,33 +57,13 @@ Date: 11:31:27 PM September 25, 2017
 </comment>
 
 <class>
-<name>XSettingClient</name>
+<name>KDEDesktop</name>
 <environment>Xft</environment>
-<super>Core.Object</super>
-<private>false</private>
-<indexed-type>none</indexed-type>
-<inst-vars>selectionAtom settingsAtom settingsOwner bigEndian </inst-vars>
-<class-inst-vars></class-inst-vars>
-<imports></imports>
-<category></category>
-<attributes>
-<package>Xft-DesktopIntegration</package>
-</attributes>
-</class>
-
-<comment>
-<class-id>Xft.XSettingClient</class-id>
-<body>XSettings client interfaceSee http://www.freedesktop.org/wiki/Specifications/xsettings-spec</body>
-</comment>
-
-<class>
-<name>FontSettingsPage</name>
-<environment>Xft</environment>
-<super>Tools.ModularSettingsPage</super>
+<super>Xft.XDesktop</super>
 <private>false</private>
 <indexed-type>none</indexed-type>
 <inst-vars></inst-vars>
-<class-inst-vars></class-inst-vars>
+<class-inst-vars>generalSettings </class-inst-vars>
 <imports></imports>
 <category></category>
 <attributes>
@@ -117,28 +72,8 @@ Date: 11:31:27 PM September 25, 2017
 </class>
 
 <comment>
-<class-id>Xft.FontSettingsPage</class-id>
-<body>Settings page for Xft font settings. The only purpose of this subclass is to update the fonts after the settings have been changed.</body>
-</comment>
-
-<class>
-<name>NativeGUIPolicyForXft</name>
-<environment>Xft</environment>
-<super>Graphics.NativeGUIPolicyForX11</super>
-<private>false</private>
-<indexed-type>none</indexed-type>
-<inst-vars></inst-vars>
-<class-inst-vars></class-inst-vars>
-<imports></imports>
-<category></category>
-<attributes>
-<package>Xft-DesktopIntegration</package>
-</attributes>
-</class>
-
-<comment>
-<class-id>Xft.NativeGUIPolicyForXft</class-id>
-<body>Fixes font sizes when using Xft &amp; skins </body>
+<class-id>Xft.KDEDesktop</class-id>
+<body>KDE desktop</body>
 </comment>
 
 <class>
@@ -170,13 +105,13 @@ Date: 11:31:27 PM September 25, 2017
 </comment>
 
 <class>
-<name>XSettingsCompatibleDesktop</name>
+<name>XSettingClient</name>
 <environment>Xft</environment>
-<super>Xft.XDesktop</super>
+<super>Core.Object</super>
 <private>false</private>
 <indexed-type>none</indexed-type>
-<inst-vars></inst-vars>
-<class-inst-vars>xSettings </class-inst-vars>
+<inst-vars>selectionAtom settingsAtom settingsOwner bigEndian </inst-vars>
+<class-inst-vars></class-inst-vars>
 <imports></imports>
 <category></category>
 <attributes>
@@ -185,18 +120,18 @@ Date: 11:31:27 PM September 25, 2017
 </class>
 
 <comment>
-<class-id>Xft.XSettingsCompatibleDesktop</class-id>
-<body>Accesses the XSettings for font configuratione.See http://www.freedesktop.org/wiki/Specifications/xsettings-spec</body>
+<class-id>Xft.XSettingClient</class-id>
+<body>XSettings client interfaceSee http://www.freedesktop.org/wiki/Specifications/xsettings-spec</body>
 </comment>
 
 <class>
-<name>KDEDesktop</name>
+<name>NativeGUIPolicyForXft</name>
 <environment>Xft</environment>
-<super>Xft.XDesktop</super>
+<super>Graphics.NativeGUIPolicyForX11</super>
 <private>false</private>
 <indexed-type>none</indexed-type>
 <inst-vars></inst-vars>
-<class-inst-vars>generalSettings </class-inst-vars>
+<class-inst-vars></class-inst-vars>
 <imports></imports>
 <category></category>
 <attributes>
@@ -205,8 +140,28 @@ Date: 11:31:27 PM September 25, 2017
 </class>
 
 <comment>
-<class-id>Xft.KDEDesktop</class-id>
-<body>KDE desktop</body>
+<class-id>Xft.NativeGUIPolicyForXft</class-id>
+<body>Fixes font sizes when using Xft &amp; skins </body>
+</comment>
+
+<class>
+<name>XDesktopSystem</name>
+<environment>Xft</environment>
+<super>Core.Subsystem</super>
+<private>false</private>
+<indexed-type>none</indexed-type>
+<inst-vars></inst-vars>
+<class-inst-vars></class-inst-vars>
+<imports></imports>
+<category></category>
+<attributes>
+<package>Xft-DesktopIntegration</package>
+</attributes>
+</class>
+
+<comment>
+<class-id>Xft.XDesktopSystem</class-id>
+<body>Initializes desktop-specific information on startup</body>
 </comment>
 
 <class>
@@ -227,6 +182,26 @@ Date: 11:31:27 PM September 25, 2017
 <comment>
 <class-id>Xft.UnknownDesktop</class-id>
 <body>Represents an unknown desktop environment</body>
+</comment>
+
+<class>
+<name>XSettingsCompatibleDesktop</name>
+<environment>Xft</environment>
+<super>Xft.XDesktop</super>
+<private>false</private>
+<indexed-type>none</indexed-type>
+<inst-vars></inst-vars>
+<class-inst-vars>xSettings </class-inst-vars>
+<imports></imports>
+<category></category>
+<attributes>
+<package>Xft-DesktopIntegration</package>
+</attributes>
+</class>
+
+<comment>
+<class-id>Xft.XSettingsCompatibleDesktop</class-id>
+<body>Accesses the XSettings for font configuratione.See http://www.freedesktop.org/wiki/Specifications/xsettings-spec</body>
 </comment>
 
 <shared-variable>
@@ -265,42 +240,6 @@ Date: 11:31:27 PM September 25, 2017
 </shared-variable>
 
 <shared-variable>
-<name>FontPointSize</name>
-<environment>Xft.XDesktop</environment>
-<private>false</private>
-<constant>false</constant>
-<category>accessing</category>
-<initializer>nil</initializer>
-<attributes>
-<package>Xft-DesktopIntegration</package>
-</attributes>
-</shared-variable>
-
-<shared-variable>
-<name>CurrentDesktop</name>
-<environment>Xft.XDesktop</environment>
-<private>false</private>
-<constant>false</constant>
-<category>accessing</category>
-<initializer>nil</initializer>
-<attributes>
-<package>Xft-DesktopIntegration</package>
-</attributes>
-</shared-variable>
-
-<shared-variable>
-<name>OverrideFontFamily</name>
-<environment>Xft.XDesktop</environment>
-<private>false</private>
-<constant>false</constant>
-<category>accessing</category>
-<initializer>nil</initializer>
-<attributes>
-<package>Xft-DesktopIntegration</package>
-</attributes>
-</shared-variable>
-
-<shared-variable>
 <name>StyleBlocks</name>
 <environment>Xft.XDesktop</environment>
 <private>false</private>
@@ -313,7 +252,7 @@ Date: 11:31:27 PM September 25, 2017
 </shared-variable>
 
 <shared-variable>
-<name>OverrideFontPointSize</name>
+<name>FontPointSize</name>
 <environment>Xft.XDesktop</environment>
 <private>false</private>
 <constant>false</constant>
@@ -348,26 +287,68 @@ Date: 11:31:27 PM September 25, 2017
 </attributes>
 </shared-variable>
 
-<methods>
-<class-id>Xft.XDesktopSystem</class-id> <category>prerequisites</category>
+<shared-variable>
+<name>CurrentDesktop</name>
+<environment>Xft.XDesktop</environment>
+<private>false</private>
+<constant>false</constant>
+<category>accessing</category>
+<initializer>nil</initializer>
+<attributes>
+<package>Xft-DesktopIntegration</package>
+</attributes>
+</shared-variable>
 
-<body package="Xft-DesktopIntegration">prerequisiteSystems	^ Array with: XftSystem</body>
+<shared-variable>
+<name>OverrideFontPointSize</name>
+<environment>Xft.XDesktop</environment>
+<private>false</private>
+<constant>false</constant>
+<category>accessing</category>
+<initializer>nil</initializer>
+<attributes>
+<package>Xft-DesktopIntegration</package>
+</attributes>
+</shared-variable>
+
+<shared-variable>
+<name>OverrideFontFamily</name>
+<environment>Xft.XDesktop</environment>
+<private>false</private>
+<constant>false</constant>
+<category>accessing</category>
+<initializer>nil</initializer>
+<attributes>
+<package>Xft-DesktopIntegration</package>
+</attributes>
+</shared-variable>
+
+<methods>
+<class-id>Xft.XSettingInterface</class-id> <category>procedures</category>
+
+<body package="Xft-DesktopIntegration">XGetSelectionOwner: display with: selection	&lt;C: Window XGetSelectionOwner(Display *display,   Atom selection)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft-DesktopIntegration">XGrabServer: display	&lt;C: int XGrabServer(Display *display)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft-DesktopIntegration">XUngrabServer: display	&lt;C: int XUngrabServer(Display *display)&gt;	^self externalAccessFailedWith: _errorCode</body>
 </methods>
 
 <methods>
-<class-id>Xft.XDesktopSystem</class-id> <category>default actions</category>
+<class-id>Xft.XSettingInterface</class-id> <category>types</category>
 
-<body package="Xft-DesktopIntegration">setUp	super setUp.	self initializeForCurrentDesktop</body>
+<body package="Xft-DesktopIntegration">Atom	&lt;C: typedef unsigned long Atom&gt;</body>
+
+<body package="Xft-DesktopIntegration">Display	&lt;C: typedef unsigned long Display&gt;</body>
+
+<body package="Xft-DesktopIntegration">Time	&lt;C: typedef unsigned long Time&gt;</body>
+
+<body package="Xft-DesktopIntegration">Window	&lt;C: typedef unsigned long Window&gt;</body>
 </methods>
 
 <methods>
-<class-id>Xft.XDesktopSystem</class-id> <category>private</category>
+<class-id>Graphics.WindowingSystem</class-id> <category>prerequisites</category>
 
-<body package="Xft-DesktopIntegration">fontSettingsInstalled	" true if font settings were installed "	^ FontSettingsInstalled ifNil: [ false ]</body>
-
-<body package="Xft-DesktopIntegration">fontSettingsInstalled: aBoolean	" true if font settings were installed "	FontSettingsInstalled := aBoolean</body>
-
-<body package="Xft-DesktopIntegration">initializeForCurrentDesktop	" Update or reset fonts, depending on the current desktop environment "	WindowingSystem canActivate		ifTrue: 		[	Screen default defaultFontPolicy fontClass = XftFont				ifTrue: 				[	self fontSettingsInstalled: true.					XDesktop detectAndUpdateCurrentDesktop				]				ifFalse: 				[	self fontSettingsInstalled						ifTrue: 						[	" Restore the original settings of VisualWorks "							Locale current preferredPixelSize: nil.							XDesktop updateFonts .							self fontSettingsInstalled: false 						].				] 		]</body>
+<body package="Xft-DesktopIntegration">desktopSystemPrerequisite	&lt;prerequisites&gt;	^Array with: Xft.XDesktopSystem</body>
 </methods>
 
 <methods>
@@ -423,11 +404,11 @@ Date: 11:31:27 PM September 25, 2017
 </methods>
 
 <methods>
-<class-id>Xft.XDesktop class</class-id> <category>desktop accessing</category>
+<class-id>Xft.XDesktop class</class-id> <category>private - environment</category>
 
-<body package="Xft-DesktopIntegration">initializeForCurrentDesktop	" sent by the desktop system on startup "	self flushCaches.</body>
+<body package="Xft-DesktopIntegration">desktopSessionName	^ CEnvironment getenv: 'DESKTOP_SESSION'</body>
 
-<body package="Xft-DesktopIntegration">label	" For presentation in the settings " 	^ self name asString copyReplaceAll: 'Desktop' with: ''</body>
+<body package="Xft-DesktopIntegration">gdmSessionName	^ CEnvironment getenv: 'GDMSESSION'</body>
 </methods>
 
 <methods>
@@ -459,14 +440,6 @@ Date: 11:31:27 PM September 25, 2017
 </methods>
 
 <methods>
-<class-id>Xft.XDesktop class</class-id> <category>private - environment</category>
-
-<body package="Xft-DesktopIntegration">desktopSessionName	^ CEnvironment getenv: 'DESKTOP_SESSION'</body>
-
-<body package="Xft-DesktopIntegration">gdmSessionName	^ CEnvironment getenv: 'GDMSESSION'</body>
-</methods>
-
-<methods>
 <class-id>Xft.XDesktop class</class-id> <category>private - font description</category>
 
 <body package="Xft-DesktopIntegration">createFontPatternFromConfigurationValue: fontName		self subclassResponsibility</body>
@@ -485,17 +458,11 @@ Date: 11:31:27 PM September 25, 2017
 </methods>
 
 <methods>
-<class-id>Xft.XDesktop class</class-id> <category>private</category>
+<class-id>Xft.XDesktop class</class-id> <category>desktop accessing</category>
 
-<body package="Xft-DesktopIntegration">detectDesktop	" Returns the desktop class matching the current desktop "	| allMatching |	allMatching := XDesktop allSubclasses				select: [: desktopClass | desktopClass isAbstract not and: [ desktopClass matchesCurrentDesktop ] ].	^ allMatching notEmpty		ifTrue: 		[	" choose the best one "			(allMatching				asSortedCollection: [: desktopClass1 : desktopClass2 | desktopClass1 priority &gt;= desktopClass2 priority ])					first 		]		ifFalse: [ UnknownDesktop ]</body>
+<body package="Xft-DesktopIntegration">initializeForCurrentDesktop	" sent by the desktop system on startup "	self flushCaches.</body>
 
-<body package="Xft-DesktopIntegration">install	Screen default defaultFontPolicy fontClass = XftFont 		ifTrue: 		[	self initializeForCurrentDesktop.			self installSettings.			self updateFonts		].</body>
-
-<body package="Xft-DesktopIntegration">priority	" if more than one desktop class matches the current environment, the one with the highes priority will be chosen "	^ self isAbstract		ifTrue: [ 0 ]		ifFalse: [ self superclass priority + 1 ]</body>
-
-<body package="Xft-DesktopIntegration">styleBlocks	StyleBlocks isNil ifTrue: [ self initializeStyleBlocks ].	^ StyleBlocks</body>
-
-<body package="Xft-DesktopIntegration">updateFonts	UI.Skins.SkinRegistry reinitializeTextStyles.</body>
+<body package="Xft-DesktopIntegration">label	" For presentation in the settings " 	^ self name asString copyReplaceAll: 'Desktop' with: ''</body>
 </methods>
 
 <methods>
@@ -511,117 +478,17 @@ Date: 11:31:27 PM September 25, 2017
 </methods>
 
 <methods>
-<class-id>Xft.XSettingClient</class-id> <category>private - parsing</category>
+<class-id>Xft.XDesktop class</class-id> <category>private</category>
 
-<body package="Xft-DesktopIntegration">parseColorSetting: name from: data at: bodyOffset into: settings	| red blue green |	red := data shortAt: bodyOffset bigEndian: bigEndian.	blue:= data shortAt: bodyOffset + 2 bigEndian: bigEndian.	green := data shortAt: bodyOffset + 4 bigEndian: bigEndian.	" VW does not provide a color class with alpha values ""	alpha := data shortAt: bodyOffset + 6."	settings at: name put: (ColorValue red: red green: green blue: blue range: 65535).	^ bodyOffset + 8</body>
+<body package="Xft-DesktopIntegration">detectDesktop	" Returns the desktop class matching the current desktop "	| allMatching |	allMatching := XDesktop allSubclasses				select: [: desktopClass | desktopClass isAbstract not and: [ desktopClass matchesCurrentDesktop ] ].	^ allMatching notEmpty		ifTrue: 		[	" choose the best one "			(allMatching				asSortedCollection: [: desktopClass1 : desktopClass2 | desktopClass1 priority &gt;= desktopClass2 priority ])					first 		]		ifFalse: [ UnknownDesktop ]</body>
 
-<body package="Xft-DesktopIntegration">parseIntegerSetting: name from: data at: bodyOffset into: settings	| integer |	integer := data longAt: bodyOffset bigEndian: bigEndian.	settings at: name put: integer.	^ bodyOffset + 4</body>
+<body package="Xft-DesktopIntegration">install	Screen default defaultFontPolicy fontClass = XftFont 		ifTrue: 		[	self initializeForCurrentDesktop.			self installSettings.			self updateFonts		].</body>
 
-<body package="Xft-DesktopIntegration">parseSettingFrom: data at: settingOffset into: settings 	" parse a single record "	| type nameLength name paddedLength bodyOffset |	type := data byteAt: settingOffset.	nameLength := data shortAt: settingOffset + 2 bigEndian: bigEndian.	name := data stringAt: settingOffset + 4 length: nameLength.	paddedLength := self pad: nameLength.	bodyOffset := settingOffset + paddedLength + 8.	type = 0 		ifTrue: [ ^ self parseIntegerSetting: name from: data at: bodyOffset into: settings ].	type = 1 		ifTrue: [ ^ self parseStringSetting: name from: data at: bodyOffset into: settings ].	type = 2 		ifTrue: [ ^ self parseColorSetting: name from: data at: bodyOffset into: settings ].	" can't skip the record, body size is unknown "	self error: 'Unknown XSetting type: ' , type printString.</body>
+<body package="Xft-DesktopIntegration">priority	" if more than one desktop class matches the current environment, the one with the highes priority will be chosen "	^ self isAbstract		ifTrue: [ 0 ]		ifFalse: [ self superclass priority + 1 ]</body>
 
-<body package="Xft-DesktopIntegration">parseSettings: dataPointer length: length	" see http://standards.freedesktop.org/xsettings-spec/xsettings-spec-0.5.html "	| data  numberOfSettings settingOffset settings |	data  :=  UninterpretedBytes new: length.	dataPointer copyAt: 0 to: data size: length startingAt: 1.	bigEndian := (data byteAt: 1) = 1.  " 0 = LSB / little endian, 1 = MSB = big endian"	numberOfSettings := data longAt:  9 bigEndian: bigEndian.	settingOffset := 13.	settings := Dictionary new.	1 to: numberOfSettings do: [ : i |		settingOffset  := self parseSettingFrom: data at: settingOffset into: settings	].	^ settings</body>
+<body package="Xft-DesktopIntegration">styleBlocks	StyleBlocks isNil ifTrue: [ self initializeStyleBlocks ].	^ StyleBlocks</body>
 
-<body package="Xft-DesktopIntegration">parseStringSetting: name from: data at: bodyOffset into: settings 	| length string |	length := data longAt: bodyOffset bigEndian: bigEndian.	string := data stringAt: bodyOffset + 4 length: length.	settings at: name put: string.	^ bodyOffset + ( self pad: length ) + 4</body>
-</methods>
-
-<methods>
-<class-id>Xft.XSettingClient</class-id> <category>private</category>
-
-<body package="Xft-DesktopIntegration">checkSettingsOwner	| selectionInterface display |	selectionInterface := self settingInterface.	display := self display.	selectionInterface XGrabServer: display.	settingsOwner := [			[ selectionInterface XGetSelectionOwner: display with: selectionAtom ]			ensure: [ selectionInterface XUngrabServer: display ] 		] on: Error do: [: ex | 0 ].	settingsOwner = 0		ifTrue: [ self error: 'Could not get selection owner' ]</body>
-
-<body package="Xft-DesktopIntegration">pad: aNumber 	" pad to 4 bytes "	^ (aNumber + 3) bitAnd: -4</body>
-
-<body package="Xft-DesktopIntegration">readSettings	" Parse the XSettings property .	Returns a dictionary with all settings "	| actualTypePointer actualFormatPointer lengthPointer bytesReturnedPointer dataPointer result |	actualTypePointer := self settingInterface Atom gcMalloc.	actualFormatPointer := CIntegerType int gcMalloc.	lengthPointer := CIntegerType unsignedLong gcMalloc.	bytesReturnedPointer := CIntegerType unsignedLong gcMalloc.	dataPointer := CIntegerType char pointerType gcMalloc.	result := self systemInterface 		XGetWindowProperty: self display		with: settingsOwner		with: settingsAtom		with: 0		with: SmallInteger maxVal		with: 0		with: settingsAtom		with: actualTypePointer		with: actualFormatPointer		with: lengthPointer		with: bytesReturnedPointer		with: dataPointer.	result &gt; 0 ifTrue: [ self error: 'Could not read XSettings property' ].	^ self parseSettings: dataPointer contents length: lengthPointer contents</body>
-
-<body package="Xft-DesktopIntegration">settingInterface	^ XSettingInterface new</body>
-
-<body package="Xft-DesktopIntegration">systemInterface	^ OSSystemSupport concreteClass new</body>
-</methods>
-
-<methods>
-<class-id>Xft.XSettingClient</class-id> <category>accessing</category>
-
-<body package="Xft-DesktopIntegration">display	^ Screen default xftDisplay</body>
-
-<body package="Xft-DesktopIntegration">screen	^ Screen default xftScreen</body>
-</methods>
-
-<methods>
-<class-id>Xft.XSettingClient</class-id> <category>initialize-release</category>
-
-<body package="Xft-DesktopIntegration">initialize	bigEndian := UninterpretedBytes isBigEndian.	self initializeAtoms.	self checkSettingsOwner.</body>
-
-<body package="Xft-DesktopIntegration">initializeAtoms	| selectionName |	selectionName := ( '_XSETTINGS_S' , self screen printString ) .	selectionAtom := self systemInterface XInternAtom: self display with: selectionName with: 0.	settingsAtom := self systemInterface XInternAtom: self display with: '_XSETTINGS_SETTINGS' with: 0.</body>
-</methods>
-
-<methods>
-<class-id>Xft.XSettingClient class</class-id> <category>instance creation</category>
-
-<body package="Xft-DesktopIntegration">new	^ super new initialize</body>
-</methods>
-
-<methods>
-<class-id>Xft.FontSettingsPage</class-id> <category>initialize-release</category>
-
-<body package="Xft-DesktopIntegration">manager: aSettingsManager	super manager: aSettingsManager.	manager triggerChannel		onChangeSend: #triggered		to: self</body>
-</methods>
-
-<methods>
-<class-id>Xft.FontSettingsPage</class-id> <category>notifications</category>
-
-<body package="Xft-DesktopIntegration">triggered	DeferrableAction new block: 			[	XDesktop settingsChanged 					ifTrue: [ XDesktop detectAndUpdateCurrentDesktop ].				XDesktop settingsChanged: false			];		window: self mainWindow;		activate.</body>
-</methods>
-
-<methods>
-<class-id>Xft.NativeGUIPolicyForXft</class-id> <category>accessing - metrics</category>
-
-<body package="Xft-DesktopIntegration">globalDPIScaleFactor	^ XftSettings current globalDPIScaleFactor ifNil: [ super globalDPIScaleFactor ]</body>
-</methods>
-
-<methods>
-<class-id>Xft.XSettingsCompatibleDesktop class</class-id> <category>private - font description</category>
-
-<body package="Xft-DesktopIntegration">createFontPatternFromConfigurationValue: fontName		^ self createFontPatternFromPangoFontName: fontName</body>
-
-<body package="Xft-DesktopIntegration">defaultFontDescription	" Get the default font "	^ self getFontDescription: self fontSettingsName</body>
-</methods>
-
-<methods>
-<class-id>Xft.XSettingsCompatibleDesktop class</class-id> <category>private - settings</category>
-
-<body package="Xft-DesktopIntegration">booleanValueOfSetting: settingsName	| number |	number := (self valueOfSetting: settingsName).	number = 1 ifTrue: [ ^ true ].	number = 0 ifTrue: [ ^ false ].	"  default "	^ nil</body>
-
-<body package="Xft-DesktopIntegration">fontSettingsName	^ 'Gtk/FontName'</body>
-
-<body package="Xft-DesktopIntegration">initializeAppearanceSettings: settings	| dpi |	super initializeAppearanceSettings: settings.	dpi := (self valueOfSetting: 'Xft/DPI').	(dpi notNil and: [ dpi &gt; 0 ])		ifTrue: [ settings dpi: (dpi / 1024) rounded ].	settings antialias: (self booleanValueOfSetting: 'Xft/Antialias').	settings hintStyle: (self convertHintStyleString: (self valueOfSetting: 'Xft/HintStyle')).	settings subPixelRendering: (self convertSubPixelString: (self valueOfSetting: 'Xft/RGBA')).	settings lcdFilter: (self convertLcdFilterString: (self valueOfSetting: 'Xft/Lcdfilter')).</body>
-
-<body package="Xft-DesktopIntegration">numberValueOfSetting: settingsName	^ self valueOfSetting: settingsName</body>
-
-<body package="Xft-DesktopIntegration">stringValueOfSetting: settingsName	^ self valueOfSetting: settingsName</body>
-
-<body package="Xft-DesktopIntegration">valueOfSetting: settingsName	" Get the settings value "	^ xSettings notNil		ifTrue: [ xSettings at: settingsName ifAbsent: [ nil ] ]		ifFalse: [ nil ]</body>
-</methods>
-
-<methods>
-<class-id>Xft.XSettingsCompatibleDesktop class</class-id> <category>desktop accessing</category>
-
-<body package="Xft-DesktopIntegration">initializeForCurrentDesktop	super initializeForCurrentDesktop.	self initializeXSettings</body>
-
-<body package="Xft-DesktopIntegration">initializeXSettings	xSettings := [		XSettingClient new readSettings	] on: Error do: [ : ex |		Dictionary new	].</body>
-
-<body package="Xft-DesktopIntegration">label	^ 'XSettings compatible'</body>
-</methods>
-
-<methods>
-<class-id>Xft.XSettingsCompatibleDesktop class</class-id> <category>private</category>
-
-<body package="Xft-DesktopIntegration">priority	^ self superclass priority -1</body>
-</methods>
-
-<methods>
-<class-id>Xft.XSettingsCompatibleDesktop class</class-id> <category>testing</category>
-
-<body package="Xft-DesktopIntegration">matchesCurrentDesktop	^ [	XSettingClient new readSettings.		true	] on: Error do: [: ex | false ]</body>
+<body package="Xft-DesktopIntegration">updateFonts	UI.Skins.SkinRegistry reinitializeTextStyles.</body>
 </methods>
 
 <methods>
@@ -641,6 +508,20 @@ Date: 11:31:27 PM September 25, 2017
 </methods>
 
 <methods>
+<class-id>Xft.KDEDesktop class</class-id> <category>class initialization</category>
+
+<body package="Xft-DesktopIntegration">flushCaches	super flushCaches.	generalSettings := nil.</body>
+</methods>
+
+<methods>
+<class-id>Xft.KDEDesktop class</class-id> <category>private - font description</category>
+
+<body package="Xft-DesktopIntegration">createFontPatternFromConfigurationValue: fontName	" Font name: '&lt;Family&gt;,&lt;Size&gt;,&lt;other stuff that is ignored&gt;' "	| stream  family pointSize |	stream := fontName readStream.	family := stream upTo: $,.	pointSize := self overrideFontPointSize				ifTrue: [ self defaultFontPointSize ]				ifFalse: [ Integer readFromString: (stream upTo: $,) ].	^ self createPatternFromName: family pointSize: pointSize</body>
+
+<body package="Xft-DesktopIntegration">defaultFontDescription	" Get the default font "	^ self getFontDescription: self fontSettingsName</body>
+</methods>
+
+<methods>
 <class-id>Xft.KDEDesktop class</class-id> <category>private - settings</category>
 
 <body package="Xft-DesktopIntegration">fontSettingsName	^ 'font'</body>
@@ -655,23 +536,87 @@ Date: 11:31:27 PM September 25, 2017
 </methods>
 
 <methods>
-<class-id>Xft.KDEDesktop class</class-id> <category>private - font description</category>
-
-<body package="Xft-DesktopIntegration">createFontPatternFromConfigurationValue: fontName	" Font name: '&lt;Family&gt;,&lt;Size&gt;,&lt;other stuff that is ignored&gt;' "	| stream  family pointSize |	stream := fontName readStream.	family := stream upTo: $,.	pointSize := self overrideFontPointSize				ifTrue: [ self defaultFontPointSize ]				ifFalse: [ Integer readFromString: (stream upTo: $,) ].	^ self createPatternFromName: family pointSize: pointSize</body>
-
-<body package="Xft-DesktopIntegration">defaultFontDescription	" Get the default font "	^ self getFontDescription: self fontSettingsName</body>
-</methods>
-
-<methods>
 <class-id>Xft.KDEDesktop class</class-id> <category>testing</category>
 
 <body package="Xft-DesktopIntegration">matchesCurrentDesktop	^ self desktopSessionName = 'kde'		or: [ self gdmSessionName = 'kde' 		or: [ (CEnvironment getenv: 'KDE_FULL_SESSION') = 'true' ] ]</body>
 </methods>
 
 <methods>
-<class-id>Xft.KDEDesktop class</class-id> <category>class initialization</category>
+<class-id>Xft.XSettingClient</class-id> <category>private - parsing</category>
 
-<body package="Xft-DesktopIntegration">flushCaches	super flushCaches.	generalSettings := nil.</body>
+<body package="Xft-DesktopIntegration">parseColorSetting: name from: data at: bodyOffset into: settings	| red blue green |	red := data shortAt: bodyOffset bigEndian: bigEndian.	blue:= data shortAt: bodyOffset + 2 bigEndian: bigEndian.	green := data shortAt: bodyOffset + 4 bigEndian: bigEndian.	" VW does not provide a color class with alpha values ""	alpha := data shortAt: bodyOffset + 6."	settings at: name put: (ColorValue red: red green: green blue: blue range: 65535).	^ bodyOffset + 8</body>
+
+<body package="Xft-DesktopIntegration">parseIntegerSetting: name from: data at: bodyOffset into: settings	| integer |	integer := data longAt: bodyOffset bigEndian: bigEndian.	settings at: name put: integer.	^ bodyOffset + 4</body>
+
+<body package="Xft-DesktopIntegration">parseSettingFrom: data at: settingOffset into: settings 	" parse a single record "	| type nameLength name paddedLength bodyOffset |	type := data byteAt: settingOffset.	nameLength := data shortAt: settingOffset + 2 bigEndian: bigEndian.	name := data stringAt: settingOffset + 4 length: nameLength.	paddedLength := self pad: nameLength.	bodyOffset := settingOffset + paddedLength + 8.	type = 0 		ifTrue: [ ^ self parseIntegerSetting: name from: data at: bodyOffset into: settings ].	type = 1 		ifTrue: [ ^ self parseStringSetting: name from: data at: bodyOffset into: settings ].	type = 2 		ifTrue: [ ^ self parseColorSetting: name from: data at: bodyOffset into: settings ].	" can't skip the record, body size is unknown "	self error: 'Unknown XSetting type: ' , type printString.</body>
+
+<body package="Xft-DesktopIntegration">parseSettings: dataPointer length: length	" see http://standards.freedesktop.org/xsettings-spec/xsettings-spec-0.5.html "	| data  numberOfSettings settingOffset settings |	data  :=  UninterpretedBytes new: length.	dataPointer copyAt: 0 to: data size: length startingAt: 1.	bigEndian := (data byteAt: 1) = 1.  " 0 = LSB / little endian, 1 = MSB = big endian"	numberOfSettings := data longAt:  9 bigEndian: bigEndian.	settingOffset := 13.	settings := Dictionary new.	1 to: numberOfSettings do: [ : i |		settingOffset  := self parseSettingFrom: data at: settingOffset into: settings	].	^ settings</body>
+
+<body package="Xft-DesktopIntegration">parseStringSetting: name from: data at: bodyOffset into: settings 	| length string |	length := data longAt: bodyOffset bigEndian: bigEndian.	string := data stringAt: bodyOffset + 4 length: length.	settings at: name put: string.	^ bodyOffset + ( self pad: length ) + 4</body>
+</methods>
+
+<methods>
+<class-id>Xft.XSettingClient</class-id> <category>accessing</category>
+
+<body package="Xft-DesktopIntegration">display	^ Screen default xftDisplay</body>
+
+<body package="Xft-DesktopIntegration">screen	^ Screen default xftScreen</body>
+</methods>
+
+<methods>
+<class-id>Xft.XSettingClient</class-id> <category>private</category>
+
+<body package="Xft-DesktopIntegration">checkSettingsOwner	| selectionInterface display |	selectionInterface := self settingInterface.	display := self display.	selectionInterface XGrabServer: display.	settingsOwner := [			[ selectionInterface XGetSelectionOwner: display with: selectionAtom ]			ensure: [ selectionInterface XUngrabServer: display ] 		] on: Error do: [: ex | 0 ].	settingsOwner = 0		ifTrue: [ self error: 'Could not get selection owner' ]</body>
+
+<body package="Xft-DesktopIntegration">pad: aNumber 	" pad to 4 bytes "	^ (aNumber + 3) bitAnd: -4</body>
+
+<body package="Xft-DesktopIntegration">readSettings	" Parse the XSettings property .	Returns a dictionary with all settings "	| actualTypePointer actualFormatPointer lengthPointer bytesReturnedPointer dataPointer result |	actualTypePointer := self settingInterface Atom gcMalloc.	actualFormatPointer := CIntegerType int gcMalloc.	lengthPointer := CIntegerType unsignedLong gcMalloc.	bytesReturnedPointer := CIntegerType unsignedLong gcMalloc.	dataPointer := CIntegerType char pointerType gcMalloc.	result := self systemInterface 		XGetWindowProperty: self display		with: settingsOwner		with: settingsAtom		with: 0		with: SmallInteger maxVal		with: 0		with: settingsAtom		with: actualTypePointer		with: actualFormatPointer		with: lengthPointer		with: bytesReturnedPointer		with: dataPointer.	result &gt; 0 ifTrue: [ self error: 'Could not read XSettings property' ].	^ self parseSettings: dataPointer contents length: lengthPointer contents</body>
+
+<body package="Xft-DesktopIntegration">settingInterface	^ XSettingInterface new</body>
+
+<body package="Xft-DesktopIntegration">systemInterface	^ OSSystemSupport concreteClass new</body>
+</methods>
+
+<methods>
+<class-id>Xft.XSettingClient</class-id> <category>initialize-release</category>
+
+<body package="Xft-DesktopIntegration">initialize	bigEndian := UninterpretedBytes isBigEndian.	self initializeAtoms.	self checkSettingsOwner.</body>
+
+<body package="Xft-DesktopIntegration">initializeAtoms	| selectionName |	selectionName := ( '_XSETTINGS_S' , self screen printString ) .	selectionAtom := self systemInterface XInternAtom: self display with: selectionName with: 0.	settingsAtom := self systemInterface XInternAtom: self display with: '_XSETTINGS_SETTINGS' with: 0.</body>
+</methods>
+
+<methods>
+<class-id>Xft.XSettingClient class</class-id> <category>instance creation</category>
+
+<body package="Xft-DesktopIntegration">new	^ super new initialize</body>
+</methods>
+
+<methods>
+<class-id>Xft.NativeGUIPolicyForXft</class-id> <category>accessing - metrics</category>
+
+<body package="Xft-DesktopIntegration">globalDPIScaleFactor	^ XftSettings current globalDPIScaleFactor ifNil: [ super globalDPIScaleFactor ]</body>
+</methods>
+
+<methods>
+<class-id>Xft.XDesktopSystem</class-id> <category>prerequisites</category>
+
+<body package="Xft-DesktopIntegration">prerequisiteSystems	^ Array with: XftSystem</body>
+</methods>
+
+<methods>
+<class-id>Xft.XDesktopSystem</class-id> <category>default actions</category>
+
+<body package="Xft-DesktopIntegration">setUp	super setUp.	self initializeForCurrentDesktop</body>
+</methods>
+
+<methods>
+<class-id>Xft.XDesktopSystem</class-id> <category>private</category>
+
+<body package="Xft-DesktopIntegration">fontSettingsInstalled	" true if font settings were installed "	^ FontSettingsInstalled ifNil: [ false ]</body>
+
+<body package="Xft-DesktopIntegration">fontSettingsInstalled: aBoolean	" true if font settings were installed "	FontSettingsInstalled := aBoolean</body>
+
+<body package="Xft-DesktopIntegration">initializeForCurrentDesktop	" Update or reset fonts, depending on the current desktop environment "	WindowingSystem canActivate		ifTrue: 		[	Screen default defaultFontPolicy fontClass = XftFont				ifTrue: 				[	self fontSettingsInstalled: true.					XDesktop detectAndUpdateCurrentDesktop				]				ifFalse: 				[	self fontSettingsInstalled						ifTrue: 						[	" Restore the original settings of VisualWorks "							Locale current preferredPixelSize: nil.							XDesktop updateFonts .							self fontSettingsInstalled: false 						].				] 		]</body>
 </methods>
 
 <methods>
@@ -680,6 +625,52 @@ Date: 11:31:27 PM September 25, 2017
 <body package="Xft-DesktopIntegration">createFontPatternFromConfigurationValue: fontName	^ self createPatternFromName: fontName pointSize: self defaultFontPointSize</body>
 
 <body package="Xft-DesktopIntegration">defaultFontDescription	| pattern |	pattern := self createFontPatternFromFamilies: self defaultFontFamilyNames pointSize: self defaultFontPointSize.	^  pattern createFontDescriptionForMatching</body>
+</methods>
+
+<methods>
+<class-id>Xft.XSettingsCompatibleDesktop class</class-id> <category>desktop accessing</category>
+
+<body package="Xft-DesktopIntegration">initializeForCurrentDesktop	super initializeForCurrentDesktop.	self initializeXSettings</body>
+
+<body package="Xft-DesktopIntegration">initializeXSettings	xSettings := [		XSettingClient new readSettings	] on: Error do: [ : ex |		Dictionary new	].</body>
+
+<body package="Xft-DesktopIntegration">label	^ 'XSettings compatible'</body>
+</methods>
+
+<methods>
+<class-id>Xft.XSettingsCompatibleDesktop class</class-id> <category>private</category>
+
+<body package="Xft-DesktopIntegration">priority	^ self superclass priority -1</body>
+</methods>
+
+<methods>
+<class-id>Xft.XSettingsCompatibleDesktop class</class-id> <category>private - settings</category>
+
+<body package="Xft-DesktopIntegration">booleanValueOfSetting: settingsName	| number |	number := (self valueOfSetting: settingsName).	number = 1 ifTrue: [ ^ true ].	number = 0 ifTrue: [ ^ false ].	"  default "	^ nil</body>
+
+<body package="Xft-DesktopIntegration">fontSettingsName	^ 'Gtk/FontName'</body>
+
+<body package="Xft-DesktopIntegration">initializeAppearanceSettings: settings	| dpi |	super initializeAppearanceSettings: settings.	dpi := (self valueOfSetting: 'Xft/DPI').	(dpi notNil and: [ dpi &gt; 0 ])		ifTrue: [ settings dpi: (dpi / 1024) rounded ].	settings antialias: (self booleanValueOfSetting: 'Xft/Antialias').	settings hintStyle: (self convertHintStyleString: (self valueOfSetting: 'Xft/HintStyle')).	settings subPixelRendering: (self convertSubPixelString: (self valueOfSetting: 'Xft/RGBA')).	settings lcdFilter: (self convertLcdFilterString: (self valueOfSetting: 'Xft/Lcdfilter')).</body>
+
+<body package="Xft-DesktopIntegration">numberValueOfSetting: settingsName	^ self valueOfSetting: settingsName</body>
+
+<body package="Xft-DesktopIntegration">stringValueOfSetting: settingsName	^ self valueOfSetting: settingsName</body>
+
+<body package="Xft-DesktopIntegration">valueOfSetting: settingsName	" Get the settings value "	^ xSettings notNil		ifTrue: [ xSettings at: settingsName ifAbsent: [ nil ] ]		ifFalse: [ nil ]</body>
+</methods>
+
+<methods>
+<class-id>Xft.XSettingsCompatibleDesktop class</class-id> <category>private - font description</category>
+
+<body package="Xft-DesktopIntegration">createFontPatternFromConfigurationValue: fontName		^ self createFontPatternFromPangoFontName: fontName</body>
+
+<body package="Xft-DesktopIntegration">defaultFontDescription	" Get the default font "	^ self getFontDescription: self fontSettingsName</body>
+</methods>
+
+<methods>
+<class-id>Xft.XSettingsCompatibleDesktop class</class-id> <category>testing</category>
+
+<body package="Xft-DesktopIntegration">matchesCurrentDesktop	^ [	XSettingClient new readSettings.		true	] on: Error do: [: ex | false ]</body>
 </methods>
 
 <methods>
@@ -709,12 +700,6 @@ Date: 11:31:27 PM September 25, 2017
 </methods>
 
 <methods>
-<class-id>Tools.VisualWorksSettings class</class-id> <category>private</category>
-
-<body package="Xft-DesktopIntegration">xftShowFonts	| report fontPolicy fonts |	report := String new writeStream.	fontPolicy := Screen default defaultFontPolicy.	fonts := OrderedCollection new.	fonts add: 'Default text' -&gt; TextAttributes default currentFont.	fonts add: 'Widgets' -&gt; (fontPolicy findFont: Xft.XftSettings current preferredFontDescription).	fonts add: 'Monospace' -&gt; (fontPolicy findFont: Xft.XftSettings current preferredMonoFontDescription).	fonts		do: 		[: nameAndFont | | reportedFont |			reportedFont := nameAndFont value getFontFor: $a.			report				nextPutAll: nameAndFont key;				nextPutAll: ':';				cr;				nextPutAll: reportedFont  actualFontPattern patternString;				cr 		]		separatedBy: [ report cr ].	Dialog warn: report contents</body>
-</methods>
-
-<methods>
 <class-id>Core.UninterpretedBytes</class-id> <category>accessing</category>
 
 <body package="Xft-DesktopIntegration">stringAt: byteIndex length: byteLength	"Answer a string starting at the given index with the given length"	| bytes |	bytes := (ByteArray new: byteLength).	1 to: byteLength do: [ : i |		bytes at: i put: (self byteAt: i + byteIndex - 1).	].	^IOAccessor convertSimpleStringFromPlatform: bytes</body>
@@ -727,67 +712,9 @@ Date: 11:31:27 PM September 25, 2017
 </methods>
 
 <methods>
-<class-id>Refactory.Browser.SourceCodeTheme class</class-id> <category>settings</category>
-
-<body package="Xft-DesktopIntegration">defaultFontDescription	"A default font description used by most themes and sized dynamically, using the Editor's font size setting,	 relative to the standard font description for source code editing.		 Until we get to virtual FontDescriptions we need to refresh all themes during image startup,	 applying a platform specific base pixel size."	" &gt;&gt;&gt; Xft patch "	| pixelSize |	pixelSize := 	 Screen default defaultFontPolicy fontClass = Xft.XftFont		ifTrue: [  ((Xft.XftSettings current preferredFontDescription pixelSize rounded + self fontSize ) max: 4)  * NativeGUIPolicy current globalDPIScaleFactor ]		ifFalse: [ ((UI.Skins.SkinRegistry current platformBasePixelSize + self fontSize) max: 4) min: 24 ].	" &lt;&lt;&lt; "	^FontDescription new		family: ((self fontName tokensBasedOn: $,) collect: #trimBlanks);		pixelSize: pixelSize;		boldness: 0.5;		italic: false;		setDefaultEncodings;		yourself</body>
-</methods>
-
-<methods>
 <class-id>UI.UILookPolicy class</class-id> <category>accessing</category>
 
 <body package="Xft-DesktopIntegration">flushTextAttributes	" Hook for subclasses that want to adjust their text attributes based on the desktop, too "</body>
-</methods>
-
-<methods>
-<class-id>Xft.XSettingInterface</class-id> <category>types</category>
-
-<body package="Xft-DesktopIntegration">Atom	&lt;C: typedef unsigned long Atom&gt;</body>
-
-<body package="Xft-DesktopIntegration">Display	&lt;C: typedef unsigned long Display&gt;</body>
-
-<body package="Xft-DesktopIntegration">Time	&lt;C: typedef unsigned long Time&gt;</body>
-
-<body package="Xft-DesktopIntegration">Window	&lt;C: typedef unsigned long Window&gt;</body>
-</methods>
-
-<methods>
-<class-id>Graphics.WindowingSystem</class-id> <category>prerequisites</category>
-
-<body package="Xft-DesktopIntegration">desktopSystemPrerequisite	&lt;prerequisites&gt;	^Array with: Xft.XDesktopSystem</body>
-</methods>
-
-<methods>
-<class-id>Tools.VisualWorksSettings class</class-id> <category>pages</category>
-
-<body package="Xft-DesktopIntegration">xft_10_OverrideFontPointSize	&lt;setting: #(#xft #overrideFontPointSize)&gt;	^ (BooleanSetting on: Xft.XDesktop aspect: #overrideFontPointSize)		default: false;		label: 'Ignore desktop font size';		helpText: 'Always use the specified font size instead of  the size of default desktop font.'</body>
-
-<body package="Xft-DesktopIntegration">xft_11_FontPointSize	&lt;setting: #(#xft #defaultFontPointSize)&gt;	^ ((NumberSetting min: 1  max: 100) on: Xft.XDesktop aspect: #defaultFontPointSize)		label: 'Font size';		helpText: 'Font size in points. Used when either the desktop font could not be detected, or when the desktop font size is ignored.'</body>
-
-<body package="Xft-DesktopIntegration">xft_20_OverrideFontFamily	&lt;setting: #(#xft #overrideFontFamily)&gt;	^ (BooleanSetting on: Xft.XDesktop aspect: #overrideFontFamily)		default: false;		label: 'Ignore desktop font family';		helpText: 'Always use the specified font family instead of the font family of default desktop font.'</body>
-
-<body package="Xft-DesktopIntegration">xft_21_FontFamily	&lt;setting: #(#xft #fontFamily)&gt;	^ (StringSetting on: Xft.XDesktop aspect: #defaultFontFamilyString)		label: 'Font family';		helpText: 'Comma-separated list of font family names. Used when either the desktop font could not be detected, or when the desktop font family is ignored.'</body>
-
-<body package="Xft-DesktopIntegration">xft_30_OverrideDesktop	&lt;setting: #(#xft #overrideDesktop)&gt;	^ (BooleanSetting on: Xft.XDesktop aspect: #overrideDesktop)		default: false;		label: 'Do not detect desktop environment';		helpText: 'Always use the specified desktop instead of trying to detect it on startup'</body>
-
-<body package="Xft-DesktopIntegration">xft_31_Desktop	&lt;setting: #(#xft #desktop)&gt;	| desktops keys labels |	desktops := Xft.XDesktop knownDesktops asSortedCollection: [ : c1 : c2 | c1 name &lt;= c2 name ].	keys := desktops collect: [ : c | c name ].	labels := desktops collect: [ : c | c label ].	^((EnumerationSetting 		keys: keys		choices: desktops		labels: labels)		on: Xft.XDesktop aspect: #currentDesktop)		label: 'Desktop environment';		default: Xft.UnknownDesktop;		helpText: 'The current desktop environment. Xft-related settings and preferences are fetched from the configuration of the desktop, if possible';		yourself</body>
-
-<body package="Xft-DesktopIntegration">xft_40_ShowFonts	&lt;setting: #(#xft #showFonts)&gt;	^ExternalSetting new		buttonLabel: 'Show';		label: 'Actual fonts';		editorBlock: [ self xftShowFonts];		yourself</body>
-</methods>
-
-<methods>
-<class-id>Tools.VisualWorksSettings class</class-id> <category>settings-look and feel</category>
-
-<body package="Xft-DesktopIntegration">xftPage	&lt;settingsPage: #(lookAndFeel codingFeel)&gt;	^Xft.FontSettingsPage new		label: 'Xft';		icon: (ListIconLibrary visualFor: #window);		settings: (self settingsWithPrefix: #(xft))</body>
-</methods>
-
-<methods>
-<class-id>Xft.XSettingInterface</class-id> <category>procedures</category>
-
-<body package="Xft-DesktopIntegration">XGetSelectionOwner: display with: selection	&lt;C: Window XGetSelectionOwner(Display *display,   Atom selection)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft-DesktopIntegration">XGrabServer: display	&lt;C: int XGrabServer(Display *display)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft-DesktopIntegration">XUngrabServer: display	&lt;C: int XUngrabServer(Display *display)&gt;	^self externalAccessFailedWith: _errorCode</body>
 </methods>
 
 <initialize>
@@ -804,66 +731,6 @@ Date: 11:31:27 PM September 25, 2017
 <super></super>
 <private>false</private>
 <indexed-type>none</indexed-type>
-<inst-vars></inst-vars>
-<class-inst-vars></class-inst-vars>
-<imports></imports>
-<category>Kernel-Objects</category>
-<attributes>
-<package>Kernel-Objects</package>
-</attributes>
-</class>
-
-<class>
-<name>DefaultSkin</name>
-<environment>UI.Skins.Default</environment>
-<super>Core.Object</super>
-<private>false</private>
-<indexed-type>none</indexed-type>
-<inst-vars>debug artistPrototypes coloredImages textStyles textAttributesForMenubar textAttributesForWidgets textAttributesForLists colorPreferences </inst-vars>
-<class-inst-vars>current </class-inst-vars>
-<imports></imports>
-<category></category>
-<attributes>
-<package>UISkinning-Skins-Default</package>
-</attributes>
-</class>
-
-<class>
-<name>ModularSettingsPage</name>
-<environment>Tools</environment>
-<super>Tools.SettingsManagerPage</super>
-<private>false</private>
-<indexed-type>none</indexed-type>
-<inst-vars>settings modules spec preferredModuleClasses enablementTrackers </inst-vars>
-<class-inst-vars></class-inst-vars>
-<imports></imports>
-<category>Tools-Settings-UI</category>
-<attributes>
-<package>Tools-Settings</package>
-</attributes>
-</class>
-
-<class>
-<name>NativeGUIPolicyForX11</name>
-<environment>Graphics</environment>
-<super>Graphics.NativeGUIPolicy</super>
-<private>false</private>
-<indexed-type>none</indexed-type>
-<inst-vars>unfocusedBackground focusedElementBackground focusedTextBackground </inst-vars>
-<class-inst-vars></class-inst-vars>
-<imports></imports>
-<category></category>
-<attributes>
-<package>OS-Window System</package>
-</attributes>
-</class>
-
-<class>
-<name>UninterpretedBytes</name>
-<environment>Core</environment>
-<super>Core.Object</super>
-<private>false</private>
-<indexed-type>bytes</indexed-type>
 <inst-vars></inst-vars>
 <class-inst-vars></class-inst-vars>
 <imports></imports>
@@ -915,6 +782,51 @@ Date: 11:31:27 PM September 25, 2017
 <category>OS-Window System</category>
 <attributes>
 <package>OS-Window System</package>
+</attributes>
+</class>
+
+<class>
+<name>NativeGUIPolicyForX11</name>
+<environment>Graphics</environment>
+<super>Graphics.NativeGUIPolicy</super>
+<private>false</private>
+<indexed-type>none</indexed-type>
+<inst-vars>unfocusedBackground focusedElementBackground focusedTextBackground </inst-vars>
+<class-inst-vars></class-inst-vars>
+<imports></imports>
+<category></category>
+<attributes>
+<package>OS-Window System</package>
+</attributes>
+</class>
+
+<class>
+<name>UninterpretedBytes</name>
+<environment>Core</environment>
+<super>Core.Object</super>
+<private>false</private>
+<indexed-type>bytes</indexed-type>
+<inst-vars></inst-vars>
+<class-inst-vars></class-inst-vars>
+<imports></imports>
+<category>Kernel-Objects</category>
+<attributes>
+<package>Kernel-Objects</package>
+</attributes>
+</class>
+
+<class>
+<name>DefaultSkin</name>
+<environment>UI.Skins.Default</environment>
+<super>Core.Object</super>
+<private>false</private>
+<indexed-type>none</indexed-type>
+<inst-vars>debug artistPrototypes coloredImages textStyles textAttributesForMenubar textAttributesForWidgets textAttributesForLists colorPreferences </inst-vars>
+<class-inst-vars>current </class-inst-vars>
+<imports></imports>
+<category></category>
+<attributes>
+<package>UISkinning-Skins-Default</package>
 </attributes>
 </class>
 

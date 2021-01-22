@@ -44,22 +44,17 @@ Github repo: https://github.com/hkleinsorgen/Xft
 
 Licensed under the MIT license (see Copyright)
 
-DbIdentifier: psql_public_cst_2007
-DbTrace: 96234
-DbUsername: klnsrgn
-DbVersion: (8.3).3
 DevelopmentPrerequisites: #(#(#package 'Xft' ''))
 PackageName: Xft-Integration
 Parcel: #('Xft-Integration')
-ParcelDirectory: /mnt/e/develop/git/xft/8.3/parcels/Xft-Integration
+ParcelDirectory: Xft-Integration
 PrerequisiteDescriptions: #(#(#name 'Xft' #componentType #package #loadResolution #store))
 PrerequisiteParcels: #(#('Xft' ''))
-PrintStringCache: ((8.3).3,klnsrgn)
 SkipSignature: true
-Version: (8.3).3
-Date: 11:31:38 PM September 25, 2017
+Version: (8.3).1
+Date: 6:11:41 PM January 22, 2021
  -->
-<time-stamp>From VisualWorks®, 8.3 of July 28, 2017 on September 25, 2017 at 11:31:38 PM</time-stamp>
+<time-stamp>From VisualWorks®, 8.3.2 of 16. November 2018 on 22. Januar 2021 at 18:11:41</time-stamp>
 
 
 <do-it>(Dialog confirm: 'You are filing-in a Parcel source file!\\While this is possible it will not have\the same effect as loading the parcel.\None of the Parcel''s prerequisites will\be loaded and none of its load actions\will be performed.\\Are you sure you want to file-in?' withCRs) ifFalse: [self error: 'Parcel file-in abandoned.  Choose terminate or close.']</do-it>
@@ -149,29 +144,6 @@ Date: 11:31:38 PM September 25, 2017
 <do-it>self error: 'Attempting to file-in parcel imports.  Choose terminate or close'</do-it>
 
 <class>
-<name>X11InputManager</name>
-<environment>UI</environment>
-<super>UI.InputManager</super>
-<private>false</private>
-<indexed-type>none</indexed-type>
-<inst-vars>xim defaultFontSet windowMap style ximStyleWithStatusLine ximStyleWithoutStatusLine defaultStatusLineHeight lastView lastWindow </inst-vars>
-<class-inst-vars></class-inst-vars>
-<imports>
-			private UI.X11InputManagerDictionary.*
-			</imports>
-<category>Internationalization</category>
-<attributes>
-<includeFiles></includeFiles>
-<includeDirectories></includeDirectories>
-<libraryFiles></libraryFiles>
-<libraryDirectories></libraryDirectories>
-<beVirtual>false</beVirtual>
-<optimizationLevel>full</optimizationLevel>
-<package>Internationalization</package>
-</attributes>
-</class>
-
-<class>
 <name>Screen</name>
 <environment>Graphics</environment>
 <super>Graphics.HostGraphicsDevice</super>
@@ -213,6 +185,29 @@ Date: 11:31:38 PM September 25, 2017
 <category>Graphics-Support</category>
 <attributes>
 <package>Graphics-Support</package>
+</attributes>
+</class>
+
+<class>
+<name>X11InputManager</name>
+<environment>UI</environment>
+<super>UI.InputManager</super>
+<private>false</private>
+<indexed-type>none</indexed-type>
+<inst-vars>xim defaultFontSet windowMap style ximStyleWithStatusLine ximStyleWithoutStatusLine defaultStatusLineHeight lastView lastWindow </inst-vars>
+<class-inst-vars></class-inst-vars>
+<imports>
+			private UI.X11InputManagerDictionary.*
+			</imports>
+<category>Internationalization</category>
+<attributes>
+<includeFiles></includeFiles>
+<includeDirectories></includeDirectories>
+<libraryFiles></libraryFiles>
+<libraryDirectories></libraryDirectories>
+<beVirtual>false</beVirtual>
+<optimizationLevel>full</optimizationLevel>
+<package>Internationalization</package>
 </attributes>
 </class>
 
