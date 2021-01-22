@@ -52,9 +52,9 @@ PrerequisiteDescriptions: #(#(#name 'Xft' #componentType #package))
 PrerequisiteParcels: #(#('Xft' ''))
 SkipSignature: true
 Version: (8.3).1
-Date: 6:54:02 PM January 22, 2021
+Date: 7:17:01 PM January 22, 2021
  -->
-<time-stamp>From VisualWorks®, 8.3.2 of 16. November 2018 on 22. Januar 2021 at 18:54:02</time-stamp>
+<time-stamp>From VisualWorks®, 8.3.2 of 16. November 2018 on 22. Januar 2021 at 19:17:01</time-stamp>
 
 
 <do-it>(Dialog confirm: 'You are filing-in a Parcel source file!\\While this is possible it will not have\the same effect as loading the parcel.\None of the Parcel''s prerequisites will\be loaded and none of its load actions\will be performed.\\Are you sure you want to file-in?' withCRs) ifFalse: [self error: 'Parcel file-in abandoned.  Choose terminate or close.']</do-it>
@@ -62,81 +62,207 @@ Date: 6:54:02 PM January 22, 2021
 <methods>
 <class-id>Graphics.Screen</class-id> <category>private - allocating resources</category>
 
-<body package="Xft-Integration">fontNameListsDo: aBlock 	"List all the font names available on this device."		| lookupPattern |	" &gt;&gt; Patch for Xft "	self preferredFontClass listFontNamesAsOneChunk		ifTrue: [ ^ super fontNameListsDo: aBlock  ].	" &lt;&lt;"	lookupPattern := self preferredFontClass fontLookupPattern.	['abcdefghijklmnopqrstuvwxyz' do: 			[:each | 			| list lookupString |			lookupString := lookupPattern expandMacrosWith: (String with: each).			list := self primFontNamesMatching: lookupString.			list := list collect: [:eachName | self preferredFontClass decodeFontName: eachName].			aBlock value: list.			ObjectMemory currentMemoryPolicy lowSpaceAction]] 		on: Error		do: 			[:exception | 			exception parameter = #notImplemented ifTrue: 				[exception return: (super fontNameListsDo: aBlock)].			exception pass]</body>
+<body package="Xft-Integration">fontNameListsDo: aBlock 
+	"List all the font names available on this device."
+	
+	| lookupPattern |
+
+	" &gt;&gt; Patch for Xft "
+	self preferredFontClass listFontNamesAsOneChunk
+		ifTrue: [ ^ super fontNameListsDo: aBlock  ].
+	" &lt;&lt;"
+
+	lookupPattern := self preferredFontClass fontLookupPattern.
+	['abcdefghijklmnopqrstuvwxyz' do: 
+			[:each | 
+			| list lookupString |
+			lookupString := lookupPattern expandMacrosWith: (String with: each).
+			list := self primFontNamesMatching: lookupString.
+			list := list collect: [:eachName | self preferredFontClass decodeFontName: eachName].
+			aBlock value: list.
+			ObjectMemory currentMemoryPolicy lowSpaceAction]] 
+		on: Error
+		do: 
+			[:exception | 
+			exception parameter = #notImplemented ifTrue: 
+				[exception return: (super fontNameListsDo: aBlock)].
+			exception pass]</body>
 </methods>
 
 <methods>
 <class-id>Graphics.Screen</class-id> <category>accessing</category>
 
-<body package="Xft-Integration">listFontNames	"Screen default listFontNames"	^self preferredFontClass listFontNamesFor: self</body>
+<body package="Xft-Integration">listFontNames
+	"Screen default listFontNames"
 
-<body package="Xft-Integration">preferredFontClass	| preferredFontClass |	preferredFontClass := super preferredFontClass.	^ (preferredFontClass = XFont and: [ Xft.LibXft isAvailable ])		ifTrue: [ Xft.XftFont ]		ifFalse: [ preferredFontClass ]</body>
+	^self preferredFontClass listFontNamesFor: self</body>
+
+<body package="Xft-Integration">preferredFontClass
+
+	| preferredFontClass |
+	preferredFontClass := super preferredFontClass.
+	^ (preferredFontClass = XFont and: [ Xft.LibXft isAvailable ])
+		ifTrue: [ Xft.XftFont ]
+		ifFalse: [ preferredFontClass ]</body>
 </methods>
 
 <methods>
 <class-id>Graphics.CompositeFont class</class-id> <category>utility</category>
 
-<body package="Xft-Integration">createFont: bestMatch toResemble: aFontDescription for: fontPolicy	" Let the screen font implementation decide how to do that properly "	^ fontPolicy fontClass createCompositeFont: bestMatch toResemble: aFontDescription for: fontPolicy</body>
+<body package="Xft-Integration">createFont: bestMatch toResemble: aFontDescription for: fontPolicy
 
-<body package="Xft-Integration">createFontBasedOnEncodings: bestMatch toResemble: aFontDescription for: fontPolicy	"a copy of #createFont:toResemble:for: "	| fonts encodings actualEncodings actualEncoders |	fonts := OrderedCollection new.	encodings := aFontDescription encodings.	actualEncodings := OrderedCollection new.	actualEncoders := OrderedCollection new.	encodings do:		[ :encoding | | font best fontDesc |			fontDesc := aFontDescription copy.			fontDesc encodings: nil.			fontDesc encoding: encoding.			(Locale current ignoreSerifEncodings includes: encoding) ifTrue: [fontDesc serif: nil].			best := fontPolicy findBestFont: fontDesc.			font := (fontPolicy fontClass				createFont: best				toResemble: fontDesc				on: fontPolicy graphicsDevice).			actualEncodings add: font encodingType.			actualEncoders add: font encoder.			fonts add: font].	^CompositeFont new 		with: fonts asArray		priorityTable: (self				getPriorityTableFor: actualEncodings asArray				from: actualEncoders asArray)</body>
+	" Let the screen font implementation decide how to do that properly "
+	^ fontPolicy fontClass createCompositeFont: bestMatch toResemble: aFontDescription for: fontPolicy</body>
+
+<body package="Xft-Integration">createFontBasedOnEncodings: bestMatch toResemble: aFontDescription for: fontPolicy
+	"a copy of #createFont:toResemble:for: "
+
+	| fonts encodings actualEncodings actualEncoders |
+
+	fonts := OrderedCollection new.
+
+	encodings := aFontDescription encodings.
+	actualEncodings := OrderedCollection new.
+	actualEncoders := OrderedCollection new.
+
+	encodings do:
+		[ :encoding | | font best fontDesc |
+			fontDesc := aFontDescription copy.
+			fontDesc encodings: nil.
+			fontDesc encoding: encoding.
+			(Locale current ignoreSerifEncodings includes: encoding) ifTrue: [fontDesc serif: nil].
+			best := fontPolicy findBestFont: fontDesc.
+			font := (fontPolicy fontClass
+				createFont: best
+				toResemble: fontDesc
+				on: fontPolicy graphicsDevice).
+			actualEncodings add: font encodingType.
+			actualEncoders add: font encoder.
+			fonts add: font].
+
+	^CompositeFont new 
+		with: fonts asArray
+		priorityTable: (self
+				getPriorityTableFor: actualEncodings asArray
+				from: actualEncoders asArray)</body>
 </methods>
 
 <methods>
 <class-id>Graphics.GraphicsHandle</class-id> <category>Xft</category>
 
-<body package="Xft-Integration">primDisplayCharacterOfIndex: characterIndex at: aPoint on: aGraphicsContext	" a copy of the original implementation of GraphicsContext&gt;&gt;displayCharacterOfIndex:at: "	aGraphicsContext primDisplayCharacterOfIndex: characterIndex at: aPoint</body>
+<body package="Xft-Integration">primDisplayCharacterOfIndex: characterIndex at: aPoint on: aGraphicsContext
+	" a copy of the original implementation of GraphicsContext&gt;&gt;displayCharacterOfIndex:at: "
 
-<body package="Xft-Integration">primDisplayMappedString: aString from: startIndex to: endIndex at: aPoint withMap: map on: aGraphicsContext	" a copy of the original implementation of GraphicsContext&gt;&gt;displayMappedString:from:to:at:withMap:"	aGraphicsContext		primDisplayMappedString: aString		from: startIndex to: endIndex		at: aPoint		withMap: map</body>
+	aGraphicsContext primDisplayCharacterOfIndex: characterIndex at: aPoint</body>
 
-<body package="Xft-Integration">primDisplayTwoByteString: aString from: startIndex to: endIndex at: aPoint on: aGraphicsContext	" a copy of the original implementation of GraphicsContext&gt;&gt;displayTwoByteString:from:to:at: "	aGraphicsContext		primDisplayTwoByteString: aString		from: startIndex rounded		to: endIndex rounded		at: aPoint rounded</body>
+<body package="Xft-Integration">primDisplayMappedString: aString from: startIndex to: endIndex at: aPoint withMap: map on: aGraphicsContext
+	" a copy of the original implementation of GraphicsContext&gt;&gt;displayMappedString:from:to:at:withMap:"
+
+	aGraphicsContext
+		primDisplayMappedString: aString
+		from: startIndex to: endIndex
+		at: aPoint
+		withMap: map</body>
+
+<body package="Xft-Integration">primDisplayTwoByteString: aString from: startIndex to: endIndex at: aPoint on: aGraphicsContext
+	" a copy of the original implementation of GraphicsContext&gt;&gt;displayTwoByteString:from:to:at: "
+
+	aGraphicsContext
+		primDisplayTwoByteString: aString
+		from: startIndex rounded
+		to: endIndex rounded
+		at: aPoint rounded</body>
 </methods>
 
 <methods>
 <class-id>Graphics.ScreenFont class</class-id> <category>private</category>
 
-<body package="Xft-Integration">createCompositeFont: bestMatch toResemble: aFontDescription for: fontPolicy	" use the original method "	^  CompositeFont createFontBasedOnEncodings: bestMatch toResemble: aFontDescription for: fontPolicy</body>
+<body package="Xft-Integration">createCompositeFont: bestMatch toResemble: aFontDescription for: fontPolicy
+
+	" use the original method "
+	^  CompositeFont createFontBasedOnEncodings: bestMatch toResemble: aFontDescription for: fontPolicy</body>
 </methods>
 
 <methods>
 <class-id>Graphics.ScreenFont class</class-id> <category>accessing</category>
 
-<body package="Xft-Integration">listFontNamesAsOneChunk	^ false</body>
+<body package="Xft-Integration">listFontNamesAsOneChunk
 
-<body package="Xft-Integration">listFontNamesFor: aGraphicsDevice	" a copy of HostGraphicsDevice&gt;&gt;listFontNames "	^aGraphicsDevice primListFontNames collect:		[: fontName | self decodeFontName: fontName ]</body>
+	^ false</body>
+
+<body package="Xft-Integration">listFontNamesFor: aGraphicsDevice
+	" a copy of HostGraphicsDevice&gt;&gt;listFontNames "
+
+	^aGraphicsDevice primListFontNames collect:
+		[: fontName | self decodeFontName: fontName ]</body>
 </methods>
 
 <methods>
 <class-id>Graphics.FontDescription</class-id> <category>private</category>
 
-<body package="Xft-Integration">findBestMatchOn: fontPolicy allowance: allowance	^ fontPolicy fontClass = Xft.XftFont 		ifTrue: 		[	" let fontconfig do the matching "			self		]		ifFalse: [ fontPolicy bestFont: self allowance: allowance ]</body>
+<body package="Xft-Integration">findBestMatchOn: fontPolicy allowance: allowance
+
+	^ fontPolicy fontClass = Xft.XftFont 
+		ifTrue: 
+		[	" let fontconfig do the matching "
+			self
+		]
+		ifFalse: [ fontPolicy bestFont: self allowance: allowance ]</body>
 </methods>
 
 <methods>
 <class-id>Graphics.ScreenGraphicsContext</class-id> <category>displaying</category>
 
-<body package="Xft-Integration">displayCharacterOfIndex: characterIndex at: aPoint 	" hook to allow external screen fonts to draw the glyph "	deviceFont ~~ nil 		ifTrue: [ deviceFont primDisplayCharacterOfIndex: characterIndex at: aPoint on: self ].</body>
+<body package="Xft-Integration">displayCharacterOfIndex: characterIndex at: aPoint 
+	" hook to allow external screen fonts to draw the glyph "
 
-<body package="Xft-Integration">displayMappedString: aString from: startIndex to: endIndex at: aPoint withMap: map 	" hook to allow external screen fonts to draw the string "	deviceFont ~~ nil 		ifTrue: [ deviceFont primDisplayMappedString: aString from: startIndex to: endIndex at: aPoint withMap: map on: self ].</body>
+	deviceFont ~~ nil 
+		ifTrue: [ deviceFont primDisplayCharacterOfIndex: characterIndex at: aPoint on: self ].</body>
 
-<body package="Xft-Integration">displayTwoByteString: aString from: startIndex to: endIndex at: aPoint 	" hook to allow external screen fonts to draw the string "	deviceFont ~~ nil 		ifTrue: [ deviceFont primDisplayTwoByteString: aString from: startIndex to: endIndex at: aPoint on: self ].</body>
+<body package="Xft-Integration">displayMappedString: aString from: startIndex to: endIndex at: aPoint withMap: map 
+	" hook to allow external screen fonts to draw the string "
+
+	deviceFont ~~ nil 
+		ifTrue: [ deviceFont primDisplayMappedString: aString from: startIndex to: endIndex at: aPoint withMap: map on: self ].</body>
+
+<body package="Xft-Integration">displayTwoByteString: aString from: startIndex to: endIndex at: aPoint 
+	" hook to allow external screen fonts to draw the string "
+
+	deviceFont ~~ nil 
+		ifTrue: [ deviceFont primDisplayTwoByteString: aString from: startIndex to: endIndex at: aPoint on: self ].</body>
 </methods>
 
 <methods>
 <class-id>Graphics.ScreenGraphicsContext</class-id> <category>private-initialize-release</category>
 
-<body package="Xft-Integration">setXftFont: anXftFont	self setDeviceFont:  anXftFont</body>
+<body package="Xft-Integration">setXftFont: anXftFont
+
+	self setDeviceFont:  anXftFont</body>
 </methods>
 
 <methods>
 <class-id>UI.X11InputManager</class-id> <category>private-XFontSet</category>
 
-<body package="Xft-Integration">createFontSet: aCompositeFont	" createFontSet relies on XFonts, which are not available here "	^ 0</body>
+<body package="Xft-Integration">createFontSet: aCompositeFont
+	" createFontSet relies on XFonts, which are not available here "
+
+	^ 0</body>
 </methods>
 
 <methods>
 <class-id>UI.X11InputManager</class-id> <category>private-XIM</category>
 
-<body package="Xft-Integration">openXIM	"Return an stXIM for the current locale."	^ [ self openXIM: Screen default key ]		on: Object errorSignal		do: 		[: theException |			" &gt;&gt; Patch: opening a dialog during the image startup phase is not a good idea, VW will hang.			#openXIM: can fail when SCIM or DBus are enabled "			nil 		]</body>
+<body package="Xft-Integration">openXIM
+	"Return an stXIM for the current locale."
+
+	^ [ self openXIM: Screen default key ]
+		on: Object errorSignal
+		do: 
+		[: theException |
+			" &gt;&gt; Patch: opening a dialog during the image startup phase is not a good idea, VW will hang.
+			#openXIM: can fail when SCIM or DBus are enabled "
+			nil 
+		]</body>
 </methods>
 
 <do-it>"Imported Classes:"</do-it>
