@@ -24,10 +24,10 @@ Parcel: #('Xft-Development')
 ParcelDirectory: Xft-Development
 PrerequisiteDescriptions: #(#(#name 'Browser-SourceCodeUI' #componentType #package) #(#name 'Tools-Settings' #componentType #package) #(#name 'Tools-Settings-VW' #componentType #package) #(#name 'Xft' #componentType #package) #(#name 'Xft-DesktopIntegration' #componentType #package))
 PrerequisiteParcels: #(#('Browser-SourceCodeUI' '') #('Tools-Settings' '') #('Tools-Settings-VW' '') #('Xft' '') #('Xft-DesktopIntegration' ''))
-Version: (8.3).2
-Date: 6:11:37 PM January 22, 2021
+Version: (8.3).5
+Date: 6:14:54 PM January 22, 2021
  -->
-<time-stamp>From VisualWorks®, 8.3.2 of 16. November 2018 on 22. Januar 2021 at 18:11:37</time-stamp>
+<time-stamp>From VisualWorks®, 8.3.2 of 16. November 2018 on 22. Januar 2021 at 18:14:54</time-stamp>
 
 
 <do-it>(Dialog confirm: 'You are filing-in a Parcel source file!\\While this is possible it will not have\the same effect as loading the parcel.\None of the Parcel''s prerequisites will\be loaded and none of its load actions\will be performed.\\Are you sure you want to file-in?' withCRs) ifFalse: [self error: 'Parcel file-in abandoned.  Choose terminate or close.']</do-it>
@@ -91,7 +91,7 @@ Date: 6:11:37 PM January 22, 2021
 <methods>
 <class-id>Refactory.Browser.SourceCodeTheme class</class-id> <category>settings</category>
 
-<body package="Xft-Development">defaultFontDescription	"A default font description used by most themes and sized dynamically, using the Editor's font size setting,	 relative to the standard font description for source code editing.		 Until we get to virtual FontDescriptions we need to refresh all themes during image startup,	 applying a platform specific base pixel size."	" &gt;&gt;&gt; Xft patch "	| pixelSize |	pixelSize := 	 Screen default defaultFontPolicy fontClass = Xft.XftFont		ifTrue: [  ((Xft.XftSettings current preferredFontDescription pixelSize rounded + self fontSize ) max: 4)  * NativeGUIPolicy current globalDPIScaleFactor ]		ifFalse: [ ((UI.Skins.SkinRegistry current platformBasePixelSize + self fontSize) max: 4) min: 24 ].	" &lt;&lt;&lt; "	^FontDescription new		family: ((self fontName tokensBasedOn: $,) collect: #trimBlanks);		pixelSize: pixelSize;		boldness: 0.5;		italic: false;		setDefaultEncodings;		yourself</body>
+<body package="Xft-Development">defaultFontDescription	"A default font description used by most themes and sized dynamically, using the Editor's font size setting,	 relative to the standard font description for source code editing.		 Until we get to virtual FontDescriptions we need to refresh all themes during image startup,	 applying a platform specific base pixel size."	| monoDescription |	" &gt;&gt;&gt; Xft patch "	^ Screen default defaultFontPolicy fontClass = Xft.XftFont 		ifTrue: 		[	" Base font description on the default mono font, resulting in more suitable sizes "			monoDescription := ( UI.Skins.SkinRegistry current styleNamed: #fixed ) characterAttributes 					defaultQueryFor: Screen default defaultFontPolicy.			monoDescription copy				family: (( self fontName tokensBasedOn: $, ) collect: #trimBlanks );				pixelSize: monoDescription pixelSize + (self fontSize  * NativeGUIPolicy current globalDPIScaleFactor);				yourself		]		ifFalse: 		[	FontDescription new				family: (( self fontName tokensBasedOn: $, ) collect: #trimBlanks );				pixelSize: (( UI.Skins.SkinRegistry current platformBasePixelSize + self fontSize max: 4 ) min: 24 );				boldness: 0.5;				italic: false;				setDefaultEncodings;				yourself		]	" &lt;&lt;&lt; "</body>
 </methods>
 
 <methods>
