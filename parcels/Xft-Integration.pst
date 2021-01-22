@@ -44,17 +44,17 @@ Github repo: https://github.com/hkleinsorgen/Xft
 
 Licensed under the MIT license (see Copyright)
 
-DevelopmentPrerequisites: #(#(#package 'Xft' ''))
+DevelopmentPrerequisites: #(#(#any 'Xft' ''))
 PackageName: Xft-Integration
 Parcel: #('Xft-Integration')
 ParcelDirectory: Xft-Integration
-PrerequisiteDescriptions: #(#(#name 'Xft' #componentType #package #loadResolution #store))
+PrerequisiteDescriptions: #(#(#name 'Xft' #componentType #package))
 PrerequisiteParcels: #(#('Xft' ''))
 SkipSignature: true
 Version: (8.3).1
-Date: 6:11:41 PM January 22, 2021
+Date: 6:19:26 PM January 22, 2021
  -->
-<time-stamp>From VisualWorks®, 8.3.2 of 16. November 2018 on 22. Januar 2021 at 18:11:41</time-stamp>
+<time-stamp>From VisualWorks®, 8.3.2 of 16. November 2018 on 22. Januar 2021 at 18:19:26</time-stamp>
 
 
 <do-it>(Dialog confirm: 'You are filing-in a Parcel source file!\\While this is possible it will not have\the same effect as loading the parcel.\None of the Parcel''s prerequisites will\be loaded and none of its load actions\will be performed.\\Are you sure you want to file-in?' withCRs) ifFalse: [self error: 'Parcel file-in abandoned.  Choose terminate or close.']</do-it>
