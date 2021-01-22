@@ -51,14 +51,14 @@ Licensed under the MIT license (see Copyright)
 DevelopmentPrerequisites: #(#(#any 'DLLCC' ''))
 PackageName: Xft
 Parcel: #('Xft')
-ParcelDirectory: /mnt/e/develop/git/xft/8.3/Xft
+ParcelDirectory: Xft
 PrerequisiteDescriptions: #(#(#name 'DLLCC' #componentType #package))
 PrerequisiteParcels: #(#('DLLCC' ''))
 SkipSignature: true
-Version: (7.7).80
-Date: 1:41:25 PM September 16, 2017
+Version: (7.7).78
+Date: 6:45:18 PM January 22, 2021
  -->
-<time-stamp>From VisualWorks®, 8.3 of July 28, 2017 on September 16, 2017 at 1:41:25 PM</time-stamp>
+<time-stamp>From VisualWorks®, 8.3.2 of 16. November 2018 on 22. Januar 2021 at 18:45:18</time-stamp>
 
 
 <do-it>(Dialog confirm: 'You are filing-in a Parcel source file!\\While this is possible it will not have\the same effect as loading the parcel.\None of the Parcel''s prerequisites will\be loaded and none of its load actions\will be performed.\\Are you sure you want to file-in?' withCRs) ifFalse: [self error: 'Parcel file-in abandoned.  Choose terminate or close.']</do-it>
@@ -75,66 +75,6 @@ Date: 1:41:25 PM September 16, 2017
 <package>Xft</package>
 </attributes>
 </name-space>
-
-<class>
-<name>XftError</name>
-<environment>Xft</environment>
-<super>Core.Error</super>
-<private>false</private>
-<indexed-type>none</indexed-type>
-<inst-vars></inst-vars>
-<class-inst-vars></class-inst-vars>
-<imports></imports>
-<category></category>
-<attributes>
-<package>Xft</package>
-</attributes>
-</class>
-
-<comment>
-<class-id>Xft.XftError</class-id>
-<body>Raised by Xft-related classes</body>
-</comment>
-
-<class>
-<name>UnicodeCompositeFont</name>
-<environment>Xft</environment>
-<super>Graphics.CompositeFont</super>
-<private>false</private>
-<indexed-type>none</indexed-type>
-<inst-vars>lastPriorityTableFontIndex requestedFontDescription device availableFonts </inst-vars>
-<class-inst-vars></class-inst-vars>
-<imports></imports>
-<category></category>
-<attributes>
-<package>Xft</package>
-</attributes>
-</class>
-
-<comment>
-<class-id>Xft.UnicodeCompositeFont</class-id>
-<body>The font selection for a character is based on the glyphs supported by the fonts, not by the encodings.</body>
-</comment>
-
-<class>
-<name>XftFont</name>
-<environment>Xft</environment>
-<super>Graphics.ScreenFont</super>
-<private>false</private>
-<indexed-type>none</indexed-type>
-<inst-vars>xftFont screen colors </inst-vars>
-<class-inst-vars></class-inst-vars>
-<imports></imports>
-<category></category>
-<attributes>
-<package>Xft</package>
-</attributes>
-</class>
-
-<comment>
-<class-id>Xft.XftFont</class-id>
-<body>XftFont uses Xft, the X FreeType interface library</body>
-</comment>
 
 <class>
 <name>XftSystem</name>
@@ -244,20 +184,81 @@ Date: 1:41:25 PM September 16, 2017
 <body>Interface for LibXft and fontconfig</body>
 </comment>
 
-<shared-variable>
-<name>LibXftDictionary</name>
+<class>
+<name>XftError</name>
 <environment>Xft</environment>
+<super>Core.Error</super>
+<private>false</private>
+<indexed-type>none</indexed-type>
+<inst-vars></inst-vars>
+<class-inst-vars></class-inst-vars>
+<imports></imports>
+<category></category>
+<attributes>
+<package>Xft</package>
+</attributes>
+</class>
+
+<comment>
+<class-id>Xft.XftError</class-id>
+<body>Raised by Xft-related classes</body>
+</comment>
+
+<class>
+<name>UnicodeCompositeFont</name>
+<environment>Xft</environment>
+<super>Graphics.CompositeFont</super>
+<private>false</private>
+<indexed-type>none</indexed-type>
+<inst-vars>lastPriorityTableFontIndex requestedFontDescription device availableFonts </inst-vars>
+<class-inst-vars></class-inst-vars>
+<imports></imports>
+<category></category>
+<attributes>
+<package>Xft</package>
+</attributes>
+</class>
+
+<comment>
+<class-id>Xft.UnicodeCompositeFont</class-id>
+<body>The font selection for a character is based on the glyphs supported by the fonts, not by the encodings.</body>
+</comment>
+
+<class>
+<name>XftFont</name>
+<environment>Xft</environment>
+<super>Graphics.ScreenFont</super>
+<private>false</private>
+<indexed-type>none</indexed-type>
+<inst-vars>xftFont screen colors </inst-vars>
+<class-inst-vars></class-inst-vars>
+<imports></imports>
+<category></category>
+<attributes>
+<package>Xft</package>
+</attributes>
+</class>
+
+<comment>
+<class-id>Xft.XftFont</class-id>
+<body>XftFont uses Xft, the X FreeType interface library</body>
+</comment>
+
+<shared-variable>
+<name>ExtendedFontPatternDescriptionClass</name>
+<environment>Xft.FontPatternDescription</environment>
 <private>false</private>
 <constant>false</constant>
-<category>external dictionaries</category>
+<category>accessing</category>
+<initializer>nil</initializer>
 <attributes>
 <package>Xft</package>
 </attributes>
 </shared-variable>
 
 <shared-variable>
-<name>ExtendedFontPatternDescriptionClass</name>
-<environment>Xft.FontPatternDescription</environment>
+<name>GlyphRanges</name>
+<environment>Xft.XftFont</environment>
 <private>false</private>
 <constant>false</constant>
 <category>accessing</category>
@@ -280,242 +281,15 @@ Date: 1:41:25 PM September 16, 2017
 </shared-variable>
 
 <shared-variable>
-<name>GlyphRanges</name>
-<environment>Xft.XftFont</environment>
+<name>LibXftDictionary</name>
+<environment>Xft</environment>
 <private>false</private>
 <constant>false</constant>
-<category>accessing</category>
-<initializer>nil</initializer>
+<category>external dictionaries</category>
 <attributes>
 <package>Xft</package>
 </attributes>
 </shared-variable>
-
-<methods>
-<class-id>Xft.LibXft</class-id> <category>procedures - fontconfig</category>
-
-<body package="Xft">FcCharSetFirstPage: a with: map with: next	&lt;C: FcChar32 FcCharSetFirstPage(FcCharSet const * a, FcChar32 map[8], FcChar32 * next)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">FcCharSetNextPage: a with: map with: next	&lt;C: FcChar32 FcCharSetNextPage(FcCharSet const * a, FcChar32 map[8], FcChar32 * next)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">FcFontList: config with: p with: os	&lt;C: FcFontSet *  FcFontList(FcConfig * config, FcPattern * p, FcObjectSet * os)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">FcFontMatch: config with: p with: result	&lt;C: FcPattern *  FcFontMatch(FcConfig * config, FcPattern * p, FcResult * result)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">FcFontRenderPrepare: config with: pat with: font	&lt;C: FcPattern *  FcFontRenderPrepare(FcConfig * config, FcPattern * pat, FcPattern * font)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">FcFontSetCreate	&lt;C: FcFontSet *  FcFontSetCreate(void)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">FcFontSetDestroy: s	&lt;C: void FcFontSetDestroy(FcFontSet * s)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">FcFontSetList: config with: sets with: nsets with: p with: os	&lt;C: FcFontSet *  FcFontSetList(FcConfig * config, FcFontSet * * sets, int nsets, FcPattern * p, FcObjectSet * os)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">FcFontSetMatch: config with: sets with: nsets with: p with: result	&lt;C: FcPattern *  FcFontSetMatch(FcConfig * config, FcFontSet * * sets, int nsets, FcPattern * p, FcResult * result)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">FcFontSetSort: config with: sets with: nsets with: p with: trim with: csp with: result	&lt;C: FcFontSet *  FcFontSetSort(FcConfig * config, FcFontSet * * sets, int nsets, FcPattern * p, FcBool trim, FcCharSet * * csp, FcResult * result)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">FcFontSetSortDestroy: fs	&lt;C: void FcFontSetSortDestroy(FcFontSet * fs)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">FcFontSort: config with: p with: trim with: csp with: result	&lt;C: FcFontSet *  FcFontSort(FcConfig * config, FcPattern * p, FcBool trim, FcCharSet * * csp, FcResult * result)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">FcGetVersion	&lt;C: int FcGetVersion(void)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">FcNameParse: name	&lt;C: FcPattern *  FcNameParse(FcChar8 const * name)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">FcNameUnparse: pat	&lt;C: FcChar8 *  FcNameUnparse(FcPattern * pat)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">FcObjectSetBuild: arguments	&lt;C: FcObjectSet*  FcObjectSetBuild( ...)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">FcObjectSetDestroy: os	&lt;C: void FcObjectSetDestroy(FcObjectSet *os)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">FcPatternAdd: p with: object with: value with: append	&lt;C: FcBool FcPatternAdd(FcPattern * p, const char * object, FcValue value, FcBool append)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">FcPatternAddBool: p with: object with: b	&lt;C: FcBool FcPatternAddBool(FcPattern * p, const char * object, FcBool b)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">FcPatternAddCharSet: p with: object with: c	&lt;C: FcBool FcPatternAddCharSet(FcPattern * p, const char * object, FcCharSet const * c)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">FcPatternAddDouble: p with: object with: d	&lt;C: FcBool FcPatternAddDouble(FcPattern * p, const char * object, double d)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">FcPatternAddInteger: p with: object with: i	&lt;C: FcBool FcPatternAddInteger(FcPattern * p, const char * object, int i)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">FcPatternAddLangSet: p with: object with: ls	&lt;C: FcBool FcPatternAddLangSet(FcPattern * p, const char * object, const FcLangSet * ls)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">FcPatternAddMatrix: p with: object with: s	&lt;C: FcBool FcPatternAddMatrix(FcPattern * p, const char * object, FcMatrix const * s)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">FcPatternAddString: p with: object with: s	&lt;C: FcBool FcPatternAddString(FcPattern * p, const char * object, FcChar8 const * s)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">FcPatternAddWeak: p with: object with: value with: append	&lt;C: FcBool FcPatternAddWeak(FcPattern * p, const char * object, FcValue value, FcBool append)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">FcPatternBuild: argArray	&lt;C: FcPattern *  FcPatternBuild(FcPattern *, ...)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">FcPatternCreate	&lt;C: FcPattern *  FcPatternCreate(void)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">FcPatternDel: p with: object	&lt;C: FcBool FcPatternDel(FcPattern * p, const char * object)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">FcPatternDestroy: p	&lt;C: void FcPatternDestroy(FcPattern * p)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">FcPatternDuplicate: p	&lt;C: FcPattern *  FcPatternDuplicate(FcPattern const * p)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">FcPatternEqual: pa with: pb	&lt;C: FcBool FcPatternEqual(FcPattern const * pa, FcPattern const * pb)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">FcPatternEqualSubset: pa with: pb with: os	&lt;C: FcBool FcPatternEqualSubset(FcPattern const * pa, FcPattern const * pb, FcObjectSet const * os)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">FcPatternFilter: p with: os	&lt;C: FcPattern *  FcPatternFilter(FcPattern * p, FcObjectSet const * os)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">FcPatternFormat: pat with: format	&lt;C: FcChar8 *  FcPatternFormat(FcPattern * pat, FcChar8 const * format)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">FcPatternGet: p with: object with: id with: v	&lt;C: FcResult FcPatternGet(FcPattern const * p, const char * object, int id, FcValue * v)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">FcPatternGetBool: p with: object with: n with: b	&lt;C: FcResult FcPatternGetBool(FcPattern const * p, const char * object, int n, FcBool * b)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">FcPatternGetCharSet: p with: object with: n with: c	&lt;C: FcResult FcPatternGetCharSet(FcPattern const * p, const char * object, int n, FcCharSet * * c)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">FcPatternGetDouble: p with: object with: n with: d	&lt;C: FcResult FcPatternGetDouble(FcPattern const * p, const char * object, int n, double * d)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">FcPatternGetInteger: p with: object with: n with: i	&lt;C: FcResult FcPatternGetInteger(FcPattern const * p, const char * object, int n, int * i)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">FcPatternGetLangSet: p with: object with: n with: ls	&lt;C: FcResult FcPatternGetLangSet(FcPattern const * p, const char * object, int n, FcLangSet * * ls)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">FcPatternGetMatrix: p with: object with: n with: s	&lt;C: FcResult FcPatternGetMatrix(FcPattern const * p, const char * object, int n, FcMatrix * * s)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">FcPatternGetString: p with: object with: n with: s	&lt;C: FcResult FcPatternGetString(FcPattern const * p, const char * object, int n, FcChar8 * * s)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">FcPatternHash: p	&lt;C: FcChar32 FcPatternHash(FcPattern const * p)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">FcPatternPrint: p	&lt;C: void FcPatternPrint(FcPattern const * p)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">FcPatternReference: p	&lt;C: void FcPatternReference(FcPattern * p)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">FcPatternRemove: p with: object with: id	&lt;C: FcBool FcPatternRemove(FcPattern * p, const char * object, int id)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">FcStrFree: s	&lt;C: void FcStrFree(FcChar8 * s)&gt;	^self externalAccessFailedWith: _errorCode</body>
-</methods>
-
-<methods>
-<class-id>Xft.LibXft</class-id> <category>procedures - Xft</category>
-
-<body package="Xft">XftCharExists: dpy with: pub with: ucs4	&lt;C: FcBool XftCharExists(Display * dpy, XftFont * pub, FcChar32 ucs4)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">XftCharSpecRender: dpy with: op with: src with: pub with: dst with: srcx with: srcy with: chars with: len	&lt;C: void XftCharSpecRender(Display * dpy, int op, Picture src, XftFont * pub, Picture dst, int srcx, int srcy, const XftCharSpec * chars, int len)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">XftColorAllocName: dpy with: visual with: cmap with: name with: result	&lt;C: Bool XftColorAllocName(Display * dpy, Visual const * visual, Colormap cmap, const char * name, XftColor * result)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">XftColorAllocValue: dpy with: visual with: cmap with: color with: result	&lt;C: Bool XftColorAllocValue(Display * dpy, Visual * visual, Colormap cmap, XRenderColor const * color, XftColor * result)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">XftColorFree: dpy with: visual with: cmap with: color	&lt;C: void XftColorFree(Display * dpy, Visual * visual, Colormap cmap, XftColor * color)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">XftDefaultHasRender: dpy	&lt;C: Bool XftDefaultHasRender(Display * dpy)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">XftDefaultSet: dpy with: defaults	&lt;C: Bool XftDefaultSet(Display * dpy, FcPattern * defaults)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">XftDefaultSubstitute: dpy with: screen with: pattern	&lt;C: void XftDefaultSubstitute(Display * dpy, int screen, FcPattern * pattern)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">XftDrawChange: draw with: drawable	&lt;C: void XftDrawChange(XftDraw * draw, Drawable drawable)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">XftDrawCharSpec: draw with: color with: pub with: chars with: len	&lt;C: void XftDrawCharSpec(XftDraw * draw, const XftColor * color, XftFont * pub, const XftCharSpec * chars, int len)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">XftDrawColormap: draw	&lt;C: Colormap XftDrawColormap(XftDraw * draw)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">XftDrawCreate: dpy with: drawable with: visual with: colormap	&lt;C: XftDraw *  XftDrawCreate(Display * dpy, Drawable drawable, Visual * visual, Colormap colormap)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">XftDrawCreateAlpha: dpy with: pixmap with: depth	&lt;C: XftDraw *  XftDrawCreateAlpha(Display * dpy, Pixmap pixmap, int depth)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">XftDrawCreateBitmap: dpy with: bitmap	&lt;C: XftDraw *  XftDrawCreateBitmap(Display * dpy, Pixmap bitmap)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">XftDrawDestroy: draw	&lt;C: void XftDrawDestroy(XftDraw * draw)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">XftDrawDisplay: draw	&lt;C: Display *  XftDrawDisplay(XftDraw * draw)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">XftDrawDrawable: draw	&lt;C: Drawable XftDrawDrawable(XftDraw * draw)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">XftDrawGlyphFontSpec: draw with: color with: glyphs with: len	&lt;C: void XftDrawGlyphFontSpec(XftDraw * draw, const XftColor * color, const XftGlyphFontSpec * glyphs, int len)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">XftDrawGlyphSpec: draw with: color with: pub with: glyphs with: len	&lt;C: void XftDrawGlyphSpec(XftDraw * draw, const XftColor * color, XftFont * pub, const XftGlyphSpec * glyphs, int len)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">XftDrawGlyphs: draw with: color with: pub with: x with: y with: glyphs with: nglyphs	&lt;C: void XftDrawGlyphs(XftDraw * draw, const XftColor * color, XftFont * pub, int x, int y, FT_UInt const * glyphs, int nglyphs)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">XftDrawSetClip: draw with: r	&lt;C: Bool XftDrawSetClip(XftDraw * draw, Region r)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">XftDrawSetClipRectangles: draw with: xOrigin with: yOrigin with: rects with: n	&lt;C: Bool XftDrawSetClipRectangles(XftDraw * draw, int xOrigin, int yOrigin, XRectangle const * rects, int n)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">XftDrawSetSubwindowMode: draw with: mode	&lt;C: void XftDrawSetSubwindowMode(XftDraw * draw, int mode)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">XftDrawString16: draw with: color with: pub with: x with: y with: string with: len	&lt;C: void XftDrawString16(XftDraw * draw, const XftColor * color, XftFont * pub, int x, int y, FcChar16 const * string, int len)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">XftDrawString32: draw with: color with: pub with: x with: y with: string with: len	&lt;C: void XftDrawString32(XftDraw * draw, const XftColor * color, XftFont * pub, int x, int y, FcChar32 const * string, int len)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">XftDrawString8: draw with: color with: pub with: x with: y with: string with: len	&lt;C: void XftDrawString8(XftDraw * draw, const XftColor * color, XftFont * pub, int x, int y, FcChar8 const * string, int len)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">XftDrawStringUtf16: draw with: color with: pub with: x with: y with: string with: endian with: len	&lt;C: void XftDrawStringUtf16(XftDraw * draw, const XftColor * color, XftFont * pub, int x, int y, FcChar8 const * string, FcEndian endian, int len)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">XftDrawStringUtf8: draw with: color with: pub with: x with: y with: string with: len	&lt;C: void XftDrawStringUtf8(XftDraw * draw, const XftColor * color, XftFont * pub, int x, int y, FcChar8 const * string, int len)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">XftDrawVisual: draw	&lt;C: Visual *  XftDrawVisual(XftDraw * draw)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">XftFontClose: dpy with: pub	&lt;C: void XftFontClose(Display * dpy, XftFont * pub)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">XftFontCopy: dpy with: pub	&lt;C: XftFont *  XftFontCopy(Display * dpy, XftFont * pub)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">XftFontMatch: dpy with: screen with: pattern with: result	&lt;C: FcPattern *  XftFontMatch(Display * dpy, int screen, FcPattern const * pattern, FcResult * result)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">XftFontOpen: argArray	&lt;C: XftFont *  XftFontOpen(Display *, int, ...)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">XftFontOpenInfo: dpy with: pattern with: fi	&lt;C: XftFont *  XftFontOpenInfo(Display * dpy, FcPattern * pattern, XftFontInfo * fi)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">XftFontOpenName: dpy with: screen with: name	&lt;C: XftFont *  XftFontOpenName(Display * dpy, int screen, const char * name)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">XftFontOpenPattern: dpy with: pattern	&lt;C: XftFont *  XftFontOpenPattern(Display * dpy, FcPattern * pattern)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">XftFontOpenXlfd: dpy with: screen with: xlfd	&lt;C: XftFont *  XftFontOpenXlfd(Display * dpy, int screen, const char * xlfd)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">XftFontUnloadGlyphs: dpy with: pub with: glyphs with: nglyph	&lt;C: void XftFontUnloadGlyphs(Display * dpy, XftFont * pub, FT_UInt const * glyphs, int nglyph)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">XftGetVersion	&lt;C: int XftGetVersion(void)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">XftGlyphExtents: dpy with: pub with: glyphs with: nglyphs with: extents	&lt;C: void XftGlyphExtents(Display * dpy, XftFont * pub, FT_UInt const * glyphs, int nglyphs, XGlyphInfo * extents)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">XftGlyphFontSpecRender: dpy with: op with: src with: dst with: srcx with: srcy with: glyphs with: nglyphs	&lt;C: void XftGlyphFontSpecRender(Display * dpy, int op, Picture src, Picture dst, int srcx, int srcy, const XftGlyphFontSpec * glyphs, int nglyphs)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">XftGlyphRender: dpy with: op with: src with: pub with: dst with: srcx with: srcy with: x with: y with: glyphs with: nglyphs	&lt;C: void XftGlyphRender(Display * dpy, int op, Picture src, XftFont * pub, Picture dst, int srcx, int srcy, int x, int y, FT_UInt const * glyphs, int nglyphs)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">XftGlyphSpecRender: dpy with: op with: src with: pub with: dst with: srcx with: srcy with: glyphs with: nglyphs	&lt;C: void XftGlyphSpecRender(Display * dpy, int op, Picture src, XftFont * pub, Picture dst, int srcx, int srcy, const XftGlyphSpec * glyphs, int nglyphs)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">XftInit: config	&lt;C: FcBool XftInit(const char * config)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">XftInitFtLibrary	&lt;C: FcBool XftInitFtLibrary(void)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">XftListFonts: argArray	&lt;C: FcFontSet *  XftListFonts(Display * , int, ...)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">XftNameParse: name	&lt;C: FcPattern *  XftNameParse(const char * name)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">XftNameUnparse: pat with: dest with: len	&lt;C: FcBool XftNameUnparse(XftPattern * pat, char * dest, int len)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">XftTextExtents16: dpy with: pub with: string with: len with: extents	&lt;C: void XftTextExtents16(Display * dpy, XftFont * pub, FcChar16 const * string, int len, XGlyphInfo * extents)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">XftTextExtents32: dpy with: pub with: string with: len with: extents	&lt;C: void XftTextExtents32(Display * dpy, XftFont * pub, FcChar32 const * string, int len, XGlyphInfo * extents)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">XftTextExtents8: dpy with: pub with: string with: len with: extents	&lt;C: void XftTextExtents8(Display * dpy, XftFont * pub, FcChar8 const * string, int len, XGlyphInfo * extents)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">XftTextExtentsUtf16: dpy with: pub with: string with: endian with: len with: extents	&lt;C: void XftTextExtentsUtf16(Display * dpy, XftFont * pub, FcChar8 const * string, FcEndian endian, int len, XGlyphInfo * extents)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">XftTextExtentsUtf8: dpy with: pub with: string with: len with: extents	&lt;C: void XftTextExtentsUtf8(Display * dpy, XftFont * pub, FcChar8 const * string, int len, XGlyphInfo * extents)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">XftXlfdParse: xlfd_orig with: ignore_scalable with: complete	&lt;C: FcPattern *  XftXlfdParse(const char * xlfd_orig, Bool ignore_scalable, Bool complete)&gt;	^self externalAccessFailedWith: _errorCode</body>
-</methods>
-
-<methods>
-<class-id>Xft.LibXft</class-id> <category>procedures - Xlib</category>
-
-<body package="Xft">XCreateRegion	&lt;C: Region XCreateRegion()&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">XDefaultColormap: display with: screen	&lt;C: Colormap XDefaultColormap(Display *display, int screen)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">XDefaultVisual: display with: screen	&lt;C: Visual* XDefaultVisual(Display *display, int screen)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">XDestroyRegion: region	&lt;C: void XDestroyRegion(Region region)&gt;	^self externalAccessFailedWith: _errorCode</body>
-
-<body package="Xft">XPolygonRegion: points with: numberOfPoints with: fillRule	&lt;C: Region XPolygonRegion(XPoint points[], int numberOfPoints, int fillRule)&gt;	^self externalAccessFailedWith: _errorCode</body>
-</methods>
 
 <methods>
 <class-id>Xft.FontPattern</class-id> <category>properties</category>
@@ -1078,241 +852,229 @@ Date: 1:41:25 PM September 16, 2017
 </methods>
 
 <methods>
-<class-id>Xft.UnicodeCompositeFont</class-id> <category>initialization</category>
+<class-id>Xft.LibXft</class-id> <category>procedures - fontconfig</category>
 
-<body package="Xft">font: aFont requestedFontDescription: aFontDescription device: aDevice	" Examine the glyphs of the first font only, the other ones will be computed on demand "	device := aDevice.	requestedFontDescription := aFontDescription.	self with: (OrderedCollection with: aFont)  priorityTable: aFont glyphTable.</body>
+<body package="Xft">FcCharSetFirstPage: a with: map with: next	&lt;C: FcChar32 FcCharSetFirstPage(FcCharSet const * a, FcChar32 map[8], FcChar32 * next)&gt;	^self externalAccessFailedWith: _errorCode</body>
 
-<body package="Xft">fonts: aFontList 	" there are no further fonts, only the specified ones "	availableFonts := OrderedCollection new.	" Examine the glyphs of the first font only, the other ones will be computed on demand "	self with: aFontList priorityTable: aFontList first glyphTable</body>
+<body package="Xft">FcCharSetNextPage: a with: map with: next	&lt;C: FcChar32 FcCharSetNextPage(FcCharSet const * a, FcChar32 map[8], FcChar32 * next)&gt;	^self externalAccessFailedWith: _errorCode</body>
 
-<body package="Xft">with: aFontList priorityTable: priorityArray	currentFont := aFontList at: 1.	fonts := aFontList.	" the fallbacks might contain some wacky fonts, so only consider the first one for ascent/descent "	ascent := currentFont ascent.	descent := currentFont descent.	lastPriorityTableFontIndex := 1.	priorityTable := priorityArray.	^ self</body>
+<body package="Xft">FcFontList: config with: p with: os	&lt;C: FcFontSet *  FcFontList(FcConfig * config, FcPattern * p, FcObjectSet * os)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">FcFontMatch: config with: p with: result	&lt;C: FcPattern *  FcFontMatch(FcConfig * config, FcPattern * p, FcResult * result)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">FcFontRenderPrepare: config with: pat with: font	&lt;C: FcPattern *  FcFontRenderPrepare(FcConfig * config, FcPattern * pat, FcPattern * font)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">FcFontSetCreate	&lt;C: FcFontSet *  FcFontSetCreate(void)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">FcFontSetDestroy: s	&lt;C: void FcFontSetDestroy(FcFontSet * s)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">FcFontSetList: config with: sets with: nsets with: p with: os	&lt;C: FcFontSet *  FcFontSetList(FcConfig * config, FcFontSet * * sets, int nsets, FcPattern * p, FcObjectSet * os)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">FcFontSetMatch: config with: sets with: nsets with: p with: result	&lt;C: FcPattern *  FcFontSetMatch(FcConfig * config, FcFontSet * * sets, int nsets, FcPattern * p, FcResult * result)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">FcFontSetSort: config with: sets with: nsets with: p with: trim with: csp with: result	&lt;C: FcFontSet *  FcFontSetSort(FcConfig * config, FcFontSet * * sets, int nsets, FcPattern * p, FcBool trim, FcCharSet * * csp, FcResult * result)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">FcFontSetSortDestroy: fs	&lt;C: void FcFontSetSortDestroy(FcFontSet * fs)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">FcFontSort: config with: p with: trim with: csp with: result	&lt;C: FcFontSet *  FcFontSort(FcConfig * config, FcPattern * p, FcBool trim, FcCharSet * * csp, FcResult * result)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">FcGetVersion	&lt;C: int FcGetVersion(void)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">FcNameParse: name	&lt;C: FcPattern *  FcNameParse(FcChar8 const * name)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">FcNameUnparse: pat	&lt;C: FcChar8 *  FcNameUnparse(FcPattern * pat)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">FcObjectSetBuild: arguments	&lt;C: FcObjectSet*  FcObjectSetBuild( ...)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">FcObjectSetDestroy: os	&lt;C: void FcObjectSetDestroy(FcObjectSet *os)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">FcPatternAdd: p with: object with: value with: append	&lt;C: FcBool FcPatternAdd(FcPattern * p, const char * object, FcValue value, FcBool append)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">FcPatternAddBool: p with: object with: b	&lt;C: FcBool FcPatternAddBool(FcPattern * p, const char * object, FcBool b)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">FcPatternAddCharSet: p with: object with: c	&lt;C: FcBool FcPatternAddCharSet(FcPattern * p, const char * object, FcCharSet const * c)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">FcPatternAddDouble: p with: object with: d	&lt;C: FcBool FcPatternAddDouble(FcPattern * p, const char * object, double d)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">FcPatternAddInteger: p with: object with: i	&lt;C: FcBool FcPatternAddInteger(FcPattern * p, const char * object, int i)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">FcPatternAddLangSet: p with: object with: ls	&lt;C: FcBool FcPatternAddLangSet(FcPattern * p, const char * object, const FcLangSet * ls)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">FcPatternAddMatrix: p with: object with: s	&lt;C: FcBool FcPatternAddMatrix(FcPattern * p, const char * object, FcMatrix const * s)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">FcPatternAddString: p with: object with: s	&lt;C: FcBool FcPatternAddString(FcPattern * p, const char * object, FcChar8 const * s)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">FcPatternAddWeak: p with: object with: value with: append	&lt;C: FcBool FcPatternAddWeak(FcPattern * p, const char * object, FcValue value, FcBool append)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">FcPatternBuild: argArray	&lt;C: FcPattern *  FcPatternBuild(FcPattern *, ...)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">FcPatternCreate	&lt;C: FcPattern *  FcPatternCreate(void)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">FcPatternDel: p with: object	&lt;C: FcBool FcPatternDel(FcPattern * p, const char * object)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">FcPatternDestroy: p	&lt;C: void FcPatternDestroy(FcPattern * p)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">FcPatternDuplicate: p	&lt;C: FcPattern *  FcPatternDuplicate(FcPattern const * p)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">FcPatternEqual: pa with: pb	&lt;C: FcBool FcPatternEqual(FcPattern const * pa, FcPattern const * pb)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">FcPatternEqualSubset: pa with: pb with: os	&lt;C: FcBool FcPatternEqualSubset(FcPattern const * pa, FcPattern const * pb, FcObjectSet const * os)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">FcPatternFilter: p with: os	&lt;C: FcPattern *  FcPatternFilter(FcPattern * p, FcObjectSet const * os)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">FcPatternFormat: pat with: format	&lt;C: FcChar8 *  FcPatternFormat(FcPattern * pat, FcChar8 const * format)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">FcPatternGet: p with: object with: id with: v	&lt;C: FcResult FcPatternGet(FcPattern const * p, const char * object, int id, FcValue * v)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">FcPatternGetBool: p with: object with: n with: b	&lt;C: FcResult FcPatternGetBool(FcPattern const * p, const char * object, int n, FcBool * b)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">FcPatternGetCharSet: p with: object with: n with: c	&lt;C: FcResult FcPatternGetCharSet(FcPattern const * p, const char * object, int n, FcCharSet * * c)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">FcPatternGetDouble: p with: object with: n with: d	&lt;C: FcResult FcPatternGetDouble(FcPattern const * p, const char * object, int n, double * d)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">FcPatternGetInteger: p with: object with: n with: i	&lt;C: FcResult FcPatternGetInteger(FcPattern const * p, const char * object, int n, int * i)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">FcPatternGetLangSet: p with: object with: n with: ls	&lt;C: FcResult FcPatternGetLangSet(FcPattern const * p, const char * object, int n, FcLangSet * * ls)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">FcPatternGetMatrix: p with: object with: n with: s	&lt;C: FcResult FcPatternGetMatrix(FcPattern const * p, const char * object, int n, FcMatrix * * s)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">FcPatternGetString: p with: object with: n with: s	&lt;C: FcResult FcPatternGetString(FcPattern const * p, const char * object, int n, FcChar8 * * s)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">FcPatternHash: p	&lt;C: FcChar32 FcPatternHash(FcPattern const * p)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">FcPatternPrint: p	&lt;C: void FcPatternPrint(FcPattern const * p)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">FcPatternReference: p	&lt;C: void FcPatternReference(FcPattern * p)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">FcPatternRemove: p with: object with: id	&lt;C: FcBool FcPatternRemove(FcPattern * p, const char * object, int id)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">FcStrFree: s	&lt;C: void FcStrFree(FcChar8 * s)&gt;	^self externalAccessFailedWith: _errorCode</body>
 </methods>
 
 <methods>
-<class-id>Xft.UnicodeCompositeFont</class-id> <category>displaying</category>
+<class-id>Xft.LibXft</class-id> <category>procedures - Xft</category>
 
-<body package="Xft">displayByteIndexedString: string from: start to: stop at: aPoint on: aGraphicsContext 	self displayString: string from: start to: stop at: aPoint on: aGraphicsContext</body>
+<body package="Xft">XftCharExists: dpy with: pub with: ucs4	&lt;C: FcBool XftCharExists(Display * dpy, XftFont * pub, FcChar32 ucs4)&gt;	^self externalAccessFailedWith: _errorCode</body>
 
-<body package="Xft">displayTwoByteString: string from: start to: stop at: aPoint on: aGraphicsContext	self displayString: string from: start to: stop at: aPoint on: aGraphicsContext</body>
+<body package="Xft">XftCharSpecRender: dpy with: op with: src with: pub with: dst with: srcx with: srcy with: chars with: len	&lt;C: void XftCharSpecRender(Display * dpy, int op, Picture src, XftFont * pub, Picture dst, int srcx, int srcy, const XftCharSpec * chars, int len)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">XftColorAllocName: dpy with: visual with: cmap with: name with: result	&lt;C: Bool XftColorAllocName(Display * dpy, Visual const * visual, Colormap cmap, const char * name, XftColor * result)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">XftColorAllocValue: dpy with: visual with: cmap with: color with: result	&lt;C: Bool XftColorAllocValue(Display * dpy, Visual * visual, Colormap cmap, XRenderColor const * color, XftColor * result)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">XftColorFree: dpy with: visual with: cmap with: color	&lt;C: void XftColorFree(Display * dpy, Visual * visual, Colormap cmap, XftColor * color)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">XftDefaultHasRender: dpy	&lt;C: Bool XftDefaultHasRender(Display * dpy)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">XftDefaultSet: dpy with: defaults	&lt;C: Bool XftDefaultSet(Display * dpy, FcPattern * defaults)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">XftDefaultSubstitute: dpy with: screen with: pattern	&lt;C: void XftDefaultSubstitute(Display * dpy, int screen, FcPattern * pattern)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">XftDrawChange: draw with: drawable	&lt;C: void XftDrawChange(XftDraw * draw, Drawable drawable)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">XftDrawCharSpec: draw with: color with: pub with: chars with: len	&lt;C: void XftDrawCharSpec(XftDraw * draw, const XftColor * color, XftFont * pub, const XftCharSpec * chars, int len)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">XftDrawColormap: draw	&lt;C: Colormap XftDrawColormap(XftDraw * draw)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">XftDrawCreate: dpy with: drawable with: visual with: colormap	&lt;C: XftDraw *  XftDrawCreate(Display * dpy, Drawable drawable, Visual * visual, Colormap colormap)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">XftDrawCreateAlpha: dpy with: pixmap with: depth	&lt;C: XftDraw *  XftDrawCreateAlpha(Display * dpy, Pixmap pixmap, int depth)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">XftDrawCreateBitmap: dpy with: bitmap	&lt;C: XftDraw *  XftDrawCreateBitmap(Display * dpy, Pixmap bitmap)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">XftDrawDestroy: draw	&lt;C: void XftDrawDestroy(XftDraw * draw)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">XftDrawDisplay: draw	&lt;C: Display *  XftDrawDisplay(XftDraw * draw)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">XftDrawDrawable: draw	&lt;C: Drawable XftDrawDrawable(XftDraw * draw)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">XftDrawGlyphFontSpec: draw with: color with: glyphs with: len	&lt;C: void XftDrawGlyphFontSpec(XftDraw * draw, const XftColor * color, const XftGlyphFontSpec * glyphs, int len)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">XftDrawGlyphSpec: draw with: color with: pub with: glyphs with: len	&lt;C: void XftDrawGlyphSpec(XftDraw * draw, const XftColor * color, XftFont * pub, const XftGlyphSpec * glyphs, int len)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">XftDrawGlyphs: draw with: color with: pub with: x with: y with: glyphs with: nglyphs	&lt;C: void XftDrawGlyphs(XftDraw * draw, const XftColor * color, XftFont * pub, int x, int y, FT_UInt const * glyphs, int nglyphs)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">XftDrawSetClip: draw with: r	&lt;C: Bool XftDrawSetClip(XftDraw * draw, Region r)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">XftDrawSetClipRectangles: draw with: xOrigin with: yOrigin with: rects with: n	&lt;C: Bool XftDrawSetClipRectangles(XftDraw * draw, int xOrigin, int yOrigin, XRectangle const * rects, int n)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">XftDrawSetSubwindowMode: draw with: mode	&lt;C: void XftDrawSetSubwindowMode(XftDraw * draw, int mode)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">XftDrawString16: draw with: color with: pub with: x with: y with: string with: len	&lt;C: void XftDrawString16(XftDraw * draw, const XftColor * color, XftFont * pub, int x, int y, FcChar16 const * string, int len)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">XftDrawString32: draw with: color with: pub with: x with: y with: string with: len	&lt;C: void XftDrawString32(XftDraw * draw, const XftColor * color, XftFont * pub, int x, int y, FcChar32 const * string, int len)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">XftDrawString8: draw with: color with: pub with: x with: y with: string with: len	&lt;C: void XftDrawString8(XftDraw * draw, const XftColor * color, XftFont * pub, int x, int y, FcChar8 const * string, int len)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">XftDrawStringUtf16: draw with: color with: pub with: x with: y with: string with: endian with: len	&lt;C: void XftDrawStringUtf16(XftDraw * draw, const XftColor * color, XftFont * pub, int x, int y, FcChar8 const * string, FcEndian endian, int len)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">XftDrawStringUtf8: draw with: color with: pub with: x with: y with: string with: len	&lt;C: void XftDrawStringUtf8(XftDraw * draw, const XftColor * color, XftFont * pub, int x, int y, FcChar8 const * string, int len)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">XftDrawVisual: draw	&lt;C: Visual *  XftDrawVisual(XftDraw * draw)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">XftFontClose: dpy with: pub	&lt;C: void XftFontClose(Display * dpy, XftFont * pub)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">XftFontCopy: dpy with: pub	&lt;C: XftFont *  XftFontCopy(Display * dpy, XftFont * pub)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">XftFontMatch: dpy with: screen with: pattern with: result	&lt;C: FcPattern *  XftFontMatch(Display * dpy, int screen, FcPattern const * pattern, FcResult * result)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">XftFontOpen: argArray	&lt;C: XftFont *  XftFontOpen(Display *, int, ...)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">XftFontOpenInfo: dpy with: pattern with: fi	&lt;C: XftFont *  XftFontOpenInfo(Display * dpy, FcPattern * pattern, XftFontInfo * fi)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">XftFontOpenName: dpy with: screen with: name	&lt;C: XftFont *  XftFontOpenName(Display * dpy, int screen, const char * name)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">XftFontOpenPattern: dpy with: pattern	&lt;C: XftFont *  XftFontOpenPattern(Display * dpy, FcPattern * pattern)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">XftFontOpenXlfd: dpy with: screen with: xlfd	&lt;C: XftFont *  XftFontOpenXlfd(Display * dpy, int screen, const char * xlfd)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">XftFontUnloadGlyphs: dpy with: pub with: glyphs with: nglyph	&lt;C: void XftFontUnloadGlyphs(Display * dpy, XftFont * pub, FT_UInt const * glyphs, int nglyph)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">XftGetVersion	&lt;C: int XftGetVersion(void)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">XftGlyphExtents: dpy with: pub with: glyphs with: nglyphs with: extents	&lt;C: void XftGlyphExtents(Display * dpy, XftFont * pub, FT_UInt const * glyphs, int nglyphs, XGlyphInfo * extents)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">XftGlyphFontSpecRender: dpy with: op with: src with: dst with: srcx with: srcy with: glyphs with: nglyphs	&lt;C: void XftGlyphFontSpecRender(Display * dpy, int op, Picture src, Picture dst, int srcx, int srcy, const XftGlyphFontSpec * glyphs, int nglyphs)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">XftGlyphRender: dpy with: op with: src with: pub with: dst with: srcx with: srcy with: x with: y with: glyphs with: nglyphs	&lt;C: void XftGlyphRender(Display * dpy, int op, Picture src, XftFont * pub, Picture dst, int srcx, int srcy, int x, int y, FT_UInt const * glyphs, int nglyphs)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">XftGlyphSpecRender: dpy with: op with: src with: pub with: dst with: srcx with: srcy with: glyphs with: nglyphs	&lt;C: void XftGlyphSpecRender(Display * dpy, int op, Picture src, XftFont * pub, Picture dst, int srcx, int srcy, const XftGlyphSpec * glyphs, int nglyphs)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">XftInit: config	&lt;C: FcBool XftInit(const char * config)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">XftInitFtLibrary	&lt;C: FcBool XftInitFtLibrary(void)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">XftListFonts: argArray	&lt;C: FcFontSet *  XftListFonts(Display * , int, ...)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">XftNameParse: name	&lt;C: FcPattern *  XftNameParse(const char * name)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">XftNameUnparse: pat with: dest with: len	&lt;C: FcBool XftNameUnparse(XftPattern * pat, char * dest, int len)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">XftTextExtents16: dpy with: pub with: string with: len with: extents	&lt;C: void XftTextExtents16(Display * dpy, XftFont * pub, FcChar16 const * string, int len, XGlyphInfo * extents)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">XftTextExtents32: dpy with: pub with: string with: len with: extents	&lt;C: void XftTextExtents32(Display * dpy, XftFont * pub, FcChar32 const * string, int len, XGlyphInfo * extents)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">XftTextExtents8: dpy with: pub with: string with: len with: extents	&lt;C: void XftTextExtents8(Display * dpy, XftFont * pub, FcChar8 const * string, int len, XGlyphInfo * extents)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">XftTextExtentsUtf16: dpy with: pub with: string with: endian with: len with: extents	&lt;C: void XftTextExtentsUtf16(Display * dpy, XftFont * pub, FcChar8 const * string, FcEndian endian, int len, XGlyphInfo * extents)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">XftTextExtentsUtf8: dpy with: pub with: string with: len with: extents	&lt;C: void XftTextExtentsUtf8(Display * dpy, XftFont * pub, FcChar8 const * string, int len, XGlyphInfo * extents)&gt;	^self externalAccessFailedWith: _errorCode</body>
+
+<body package="Xft">XftXlfdParse: xlfd_orig with: ignore_scalable with: complete	&lt;C: FcPattern *  XftXlfdParse(const char * xlfd_orig, Bool ignore_scalable, Bool complete)&gt;	^self externalAccessFailedWith: _errorCode</body>
 </methods>
 
 <methods>
-<class-id>Xft.UnicodeCompositeFont</class-id> <category>private</category>
+<class-id>Xft.LibXft</class-id> <category>procedures - Xlib</category>
 
-<body package="Xft">addNextAvailableFont	" Add the next available font , if possible.	The font will be opened, which takes some time &amp; resources "	| fontDescription |	( requestedFontDescription notNil and: [ device notNil and: [ self availableFonts notEmpty ]]) 		ifTrue: 		[	fontDescription := self availableFonts removeFirst.			[ | font |				font := XftFont createDeviceFont: fontDescription toResemble: requestedFontDescription on: device.				fonts add: font			] on: NoMatchingFontError do: [: ex | ]		].</body>
+<body package="Xft">XCreateRegion	&lt;C: Region XCreateRegion()&gt;	^self externalAccessFailedWith: _errorCode</body>
 
-<body package="Xft">availableFonts	availableFonts isNil		ifTrue: [ availableFonts := fonts first compositeFontDescriptions ].	^ availableFonts</body>
+<body package="Xft">XDefaultColormap: display with: screen	&lt;C: Colormap XDefaultColormap(Display *display, int screen)&gt;	^self externalAccessFailedWith: _errorCode</body>
 
-<body package="Xft">canExtendPriorityTable	^ lastPriorityTableFontIndex &lt; fonts size or: [ self availableFonts notEmpty ]</body>
+<body package="Xft">XDefaultVisual: display with: screen	&lt;C: Visual* XDefaultVisual(Display *display, int screen)&gt;	^self externalAccessFailedWith: _errorCode</body>
 
-<body package="Xft">extendPriorityTable	" extend the priority table with the next font "	| font |	lastPriorityTableFontIndex = 1		ifTrue: 		[	" need a private copy "			priorityTable := priorityTable copy 		].	" extend the font  list, if we've reached the end of the current list of fonts "	[ lastPriorityTableFontIndex &gt;= fonts size and: [ self availableFonts notEmpty ] ] whileTrue: 		[			self addNextAvailableFont 		].	lastPriorityTableFontIndex &lt; fonts size		ifTrue: 		[	lastPriorityTableFontIndex := lastPriorityTableFontIndex + 1.			font := fonts at: lastPriorityTableFontIndex.			font glyphRanges do: 				[: range |					range first to: range last						do: 						[: i | | k |							k := i + 1.							(priorityTable at: k) = 0								ifTrue: [ priorityTable at: k put: lastPriorityTableFontIndex ] 						] 				] 		]</body>
+<body package="Xft">XDestroyRegion: region	&lt;C: void XDestroyRegion(Region region)&gt;	^self externalAccessFailedWith: _errorCode</body>
 
-<body package="Xft">getFontFor: aCharacter	"Set my currentFont to be appropriate for aCharacter"	| fontCollectionIndex index priorityIndex |	index := aCharacter asInteger + 1.	fontCollectionIndex := index &gt; priorityTable size				ifTrue: [ 0 ]				ifFalse: 				[	priorityIndex := priorityTable at: index.					" Extend the priority table if no glyph is available.					Do not try to find fonts for control characters "					[ priorityIndex = 0 and: [ index &gt;= 33 and: [ self canExtendPriorityTable ] ] ] whileTrue: 						[	self extendPriorityTable.							priorityIndex := priorityTable at: index 						].					priorityIndex 				].	^ fontCollectionIndex == 0		ifTrue: [ fonts at: 1 ]		ifFalse: [ fonts at: fontCollectionIndex ]</body>
-</methods>
-
-<methods>
-<class-id>Xft.UnicodeCompositeFont</class-id> <category>compatibility</category>
-
-<body package="Xft">asDeviceFont	" sent by ExtraEmphases "	^ self</body>
-</methods>
-
-<methods>
-<class-id>Xft.UnicodeCompositeFont class</class-id> <category>instance creation</category>
-
-<body package="Xft">font: aFont requestedFontDescription: aFontDescription device: aDevice	^ self new font: aFont requestedFontDescription: aFontDescription device: aDevice;		yourself</body>
-
-<body package="Xft">fonts: aFontList 	^ self new fonts: aFontList;		yourself</body>
-</methods>
-
-<methods>
-<class-id>Xft.XftFont</class-id> <category>accessing</category>
-
-<body package="Xft">screen	^ screen</body>
-
-<body package="Xft">screen: aScreen	screen := aScreen</body>
-</methods>
-
-<methods>
-<class-id>Xft.XftFont</class-id> <category>displaying</category>
-
-<body package="Xft">displayByteIndexedString: string from: start to: stop at: aPoint on: aGraphicsContext 	self displayString: string from: start to: stop at: aPoint on: aGraphicsContext</body>
-
-<body package="Xft">displayCharacter: aCharacter at: aPoint on: aGraphicsContext	" Draw a single character. This should be avoided, library calls have a significant overhead "	self		displayString: (String with: aCharacter)		from: 1		to: 1		at: aPoint		on: aGraphicsContext</body>
-
-<body package="Xft">displayString: aString from: startIndex to: endIndex at: aPoint on: aGraphicsContext 	" The core display method. Creates a 'Draw' object (similar to a graphics context) and display the string "	| drawStructure substring position xftColor clippingRectangle |	clippingRectangle := aGraphicsContext clippingRectangleOrNil.	" check cases where everything is clipped "	( clippingRectangle notNil and: [ clippingRectangle width &lt;= 0 or: [ clippingRectangle height &lt;= 0 ]]) 		ifTrue: [ ^ self ].	self reopenIfNecessary.	drawStructure := aGraphicsContext 			xftCreateDrawStructureForDisplay: self xftDisplay			visual: self xftVisual			colormap: self xftColormap			library: self library.	drawStructure isNull 		ifTrue: [ self error: 'Could not create drawable' ].	[	xftColor := self xftColorForGraphicsContext: aGraphicsContext.		position := ( aPoint + aGraphicsContext translation ) rounded.		substring := ( startIndex = 1 and: [ endIndex = aString size ]) 				ifTrue: [ aString ]				ifFalse: [ aString copyFrom: startIndex to: endIndex ].		self 			setClipRectangle: clippingRectangle			ofDrawable: drawStructure			graphicsContext: aGraphicsContext			while: [ self displayString: substring at: position drawable: drawStructure xftColor: xftColor ]	] ensure: [ self library XftDrawDestroy: drawStructure ].</body>
-
-<body package="Xft">displayTwoByteString: string from: start to: stop at: aPoint on: aGraphicsContext	self displayString: string from: start to: stop at: aPoint on: aGraphicsContext</body>
-
-<body package="Xft">measureByteIndexedString: string from: start to: stop	"Measure a byte-indexed string from start..stop with the receiver"	| width |	width := 0.	start to: stop do: [:i | width := width + (self widthOf: (string at: i))].	^width @ self height</body>
-
-<body package="Xft">measureTwoByteString: string from: start to: stop	"Measure a two-byte string from start..stop with the receiver"	| width |	width := 0.	start to: stop do: [:i | width := width + (self widthOf: (string at: i))].	^width @ self height</body>
-
-<body package="Xft">primDisplayCharacterOfIndex: characterIndex at: aPoint on: aGraphicsContext	self displayCharacter: (Character value: characterIndex) at: aPoint on: aGraphicsContext</body>
-
-<body package="Xft">primDisplayMappedString: aString from: startIndex to: endIndex at: aPoint withMap: map on: aGraphicsContext	self displayString: aString from: startIndex to: endIndex at: aPoint on: aGraphicsContext</body>
-
-<body package="Xft">primDisplayTwoByteString: aString from: startIndex to: endIndex at: aPoint on: aGraphicsContext	self displayString: aString from: startIndex to: endIndex at: aPoint on: aGraphicsContext</body>
-</methods>
-
-<methods>
-<class-id>Xft.XftFont</class-id> <category>private</category>
-
-<body package="Xft">actualFontPattern	| patternString |	patternString := self library printFcFontPattern: self xftPattern.	^ FontPattern createFromString: patternString.</body>
-
-<body package="Xft">getWidths: index into: widthArray	" Uses XftTextExtents to measure the glyphs "	| glyphInfo width display string |	self reopenIfNecessary.	display := self xftDisplay.	glyphInfo := self library XGlyphInfo gcMalloc.	string := self library FcChar16 malloc: 1.	[	1 to: widthArray size			do: 			[: i |				glyphInfo zeroFill.				string contents: i + index - 1.				self library					XftTextExtents16: display					with: xftFont					with: string					with: 1					with: glyphInfo.				width := glyphInfo memberAt: #xOff.				widthArray at: i put: width 			] 	] ensure: [ string free ]</body>
-
-<body package="Xft">initializeFromFont	" Get information about the font "	| pattern |	ascent := xftFont memberAt: #ascent.	descent := xftFont memberAt: #descent.	widths := LargeArray new: 65536.	" slightly cheesy: VW expects a single string as the family name of the font description "	pattern :=  self actualFontPattern.	pattern preferredFamily ifNotNil: [ : family | self fontDescription xftSetFamily:  family ].</body>
-
-<body package="Xft">library	^ LibXft current</body>
-
-<body package="Xft">openFont	" Open the XftFont "	| result display pattern matchPattern |	result := self library XftResult gcMalloc.	display := self xftDisplay.	pattern := self library				XftNameParse: (self fontDescription xftFontPatternString copyToHeapEncoding: #utf8).	pattern isNull		ifTrue: [ self error: ('Could not create Xft font pattern &lt;1s&gt;' expandMacrosWith: pattern) ].	matchPattern := self library				XftFontMatch: display				with: self xftScreen				with: pattern				with: result.	matchPattern isNull		ifTrue: [ self error: ('Could not match Xft font &lt;1s&gt;' expandMacrosWith: pattern) ].	[	" apply appearance settings (antialias, subpixel rendering etc.) "		self class settings ifNotNil: [: settings | settings appyToPattern: matchPattern ].		xftFont := self library XftFontOpenPattern: display with: matchPattern.		xftFont isNull			ifTrue: [ self error: ('Could not open Xft font &lt;1s&gt;' expandMacrosWith: pattern) ] 	] ensure: [ self library FcPatternDestroy: pattern ].	self initializeFromFont</body>
-
-<body package="Xft">primUnLoadFont	self library XftFontClose: self xftDisplay with: xftFont</body>
-
-<body package="Xft">reopenIfNecessary	" Ensure that the xftFont is active.	Aragon renderers cache composition scanners and thus refer to invalid XftFonts after snapshots "	self isAccessible 		ifFalse: 		[	screen := Screen default.			colors := nil.			self openFont		].</body>
-
-<body package="Xft">unloadFont	| display visual colormap |	xftFont == nil 		ifFalse: 		[	self primUnLoadFont.			xftFont := nil		].	colors notNil 		ifTrue: 		[	display := self xftDisplay.			visual := self xftVisual.			colormap := self xftColormap.			colors do: [: xftColor | self library XftColorFree: display with: visual with: colormap with: xftColor ].			colors := nil		].</body>
-</methods>
-
-<methods>
-<class-id>Xft.XftFont</class-id> <category>testing</category>
-
-<body package="Xft">hasGlyphForCharacter: aCharacter	" true if the font contains a glyph for the character "	^ self hasGlyphForCodepoint: aCharacter codePoint</body>
-
-<body package="Xft">hasGlyphForCodepoint: anInteger	" true if the font contains a glyph for the character "	^ (self glyphTable at: anInteger + 1) == 1</body>
-
-<body package="Xft">isAccessible	^ xftFont notNil and: [ xftFont isValid ]</body>
-</methods>
-
-<methods>
-<class-id>Xft.XftFont</class-id> <category>displaying - private</category>
-
-<body package="Xft">createClipRegionFor: aGraphicsContext rectangle: untranslatedRectangle 	" create a XRegion for clipping "	| point rectangle points numberOfPoints xpoints xpoint |	numberOfPoints := 4.	rectangle := untranslatedRectangle translatedBy: aGraphicsContext translation.	xpoints := self library XPoint gcMalloc: numberOfPoints.	points := Array with: rectangle topLeft with: rectangle topRight with: rectangle bottomRight with: rectangle bottomLeft.	1 to: numberOfPoints		do: 		[: i |			xpoint := xpoints + ( i - 1 ).			point := points at: i.			xpoint memberAt: #x put: point x.			xpoint memberAt: #y put: point y		].	^ self library XPolygonRegion: xpoints with: numberOfPoints with: self library EvenOddRule</body>
-
-<body package="Xft">displayString: aString at: position drawable: drawable xftColor: xftColor 	" Draw the string "	| drawUnicode |	drawUnicode := true.	aString isCompatibleWithXftDrawString8 		ifTrue: 		[	" Try to avoid a unicode conversion. 			The library call might fail with a badArgumentsSignal if the string contains a character with codepoint 0 "			[	self library XftDrawString8: drawable with: xftColor with: xftFont with: position x with: position y with: aString with: aString size.				drawUnicode := false			] on: self library externalAccessFailedSignal do: [: ex | ]		].	drawUnicode 		ifTrue: 		[	aString isCompatibleWithXftDrawString16 				ifTrue: 				[	aString asFcChar16Do: 						[: fc16String |							self library XftDrawString16: drawable with: xftColor with: xftFont with: position x with: position y with: fc16String with: aString size						]				]				ifFalse: 				[	aString asFcChar32Do: 						[: fc32String |							self library XftDrawString32: drawable with: xftColor with: xftFont with: position x with: position y with: fc32String with: aString size						]				]		].</body>
-
-<body package="Xft">setClipRectangle: aRecangleOrNil ofDrawable: aDrawable graphicsContext: aGraphicsContext while: aBlock 	" create &amp; enable a clip region for the drawable according to the graphics conext "	| clipRegion |	aRecangleOrNil notNil 		ifTrue: 		[	clipRegion := self createClipRegionFor: aGraphicsContext rectangle: aRecangleOrNil.			self library XftDrawSetClip: aDrawable with: clipRegion.			aBlock ensure: [ self library XDestroyRegion: clipRegion ]		]		ifFalse: [ aBlock value ].</body>
-
-<body package="Xft">xftColorForGraphicsContext: aGraphicsContext 	" Returns a XftColor for the current paint of the graphics context "	| xftColor color visual colormap renderColor paint |	colors isNil 		ifTrue: [ colors := Dictionary new ].	" The RGB values of the paint are needed, so convert the paint to a ColorValue.	The conversion might be expensive, so cache the converted value "	paint := aGraphicsContext xftStaticPaint.	xftColor := colors at: paint ifAbsent: [ nil ].	xftColor isNil 		ifTrue: 		[	color := paint xftAsColorValueFor: aGraphicsContext.			visual := self xftVisual.			colormap := self xftColormap.			renderColor := self library XRenderColor gcMalloc.			renderColor memberAt: #red put: ( color red * 65535 ) rounded.			renderColor memberAt: #green put: ( color green * 65535 ) rounded.			renderColor memberAt: #blue put: ( color blue * 65535 ) rounded.			renderColor memberAt: #alpha put: 65535.			xftColor := self library XftColor gcMalloc.			self library XftColorAllocValue: self xftDisplay with: visual with: colormap with: renderColor with: xftColor.			colors at: paint put: xftColor		].	^ xftColor</body>
-</methods>
-
-<methods>
-<class-id>Xft.XftFont</class-id> <category>installing</category>
-
-<body package="Xft">installOn: aGraphicsContext	aGraphicsContext setXftFont:  self</body>
-</methods>
-
-<methods>
-<class-id>Xft.XftFont</class-id> <category>composite fonts - private</category>
-
-<body package="Xft">compositeFontDescriptions	" Returns a list of font descriptions to cover the Unicode charset range "	| result fontSet fontNames reducedFontDescriptions |	result := self library FcResult gcMalloc.	" Get all matching fonts. The first is the best match and should be the same font as this one "	fontSet := self library				FcFontSort: nil				with: self xftPattern				with: 1				with: nil				with: result.	^ [ | fontDescriptions |		fontNames := OrderedCollection new.		self class addFontNamesFromFontSet: fontSet to: fontNames.		fontDescriptions := fontNames collect: [: fontName | self class parse: fontName ].		reducedFontDescriptions := self reduceCompositeFontDescriptions: fontDescriptions.		" apply the style of this font to all fallbacks "		self fontDescription applyStyleToFontDescriptions: reducedFontDescriptions.		reducedFontDescriptions 	] ensure: [ self library FcFontSetDestroy: fontSet ]</body>
-
-<body package="Xft">computeGlyphRanges	" build a collection of glyph ranges "	| charsetPointer result charset map nextPointer base mapSize bitSize ranges start end |	ranges := OrderedCollection new.	charsetPointer := self library PFcCharSet gcMalloc.	result := self library FcPatternGetCharSet: self xftPattern with: self library FC_CHARSET with: 0 with: charsetPointer.	result = 0 		ifFalse: [ ^ nil ].	charset := charsetPointer contents.	mapSize := self library FC_CHARSET_MAP_SIZE.	map := self library FcChar32 gcMalloc: mapSize.	nextPointer := self library FcChar32 gcMalloc.	base := self library FcCharSetFirstPage: charset with: map with: nextPointer.	bitSize := self library FcChar32 sizeof * 8.	start := nil.	end := nil.	[ base &lt; 65536 ] whileTrue: 		[	0 to: mapSize - 1				do: 				[: mapIndex | | bits glyphOffset |					bits := map at: mapIndex.					glyphOffset := base + ( mapIndex * bitSize ).					( start ~~ nil and: [ end + 1 ~= glyphOffset ]) 						ifTrue: 						[	ranges add: ( start to: ( end min: 65535 )).							start := nil						].					0 to: bitSize - 1						do: 						[: bitIndex | ( bits bitAt: bitIndex + 1 ) &gt; 0 								ifTrue: 								[	start == nil 										ifTrue: [ start := glyphOffset + bitIndex ].									end := glyphOffset + bitIndex								]								ifFalse: 								[	start ~~ nil 										ifTrue: 										[	ranges add: ( start to: ( end min: 65535 )).											start := nil										]								]						]				].			base := self library FcCharSetNextPage: charset with: map with: nextPointer		].	^ ranges</body>
-
-<body package="Xft">computeGlyphTable	" build a table with 0 = no glyph, 1 = glyph "	| glyphs |	glyphs := ByteArray new: 65536.	self glyphRanges do: [: range | range first to: (range last min: 65535) do: [: i | glyphs at: i + 1 put: 1 ]].	^ glyphs</body>
-
-<body package="Xft">glyphCacheKey	" All fonts with the same key should contain the same glyphs "	^ self fontDescription glyphCacheKey</body>
-
-<body package="Xft">glyphRanges	GlyphRanges isNil		ifTrue: [ GlyphRanges := Dictionary new ].	^ GlyphRanges at: self glyphCacheKey ifAbsentPut: [ self computeGlyphRanges ]</body>
-
-<body package="Xft">glyphTable	GlyphTables isNil		ifTrue: [ GlyphTables := Dictionary new ].	^ GlyphTables at: self glyphCacheKey ifAbsentPut: [ self computeGlyphTable ]</body>
-
-<body package="Xft">reduceCompositeFontDescriptions: fontDescriptions	" Choose the best font per family "	| seenFamilies reducedFontDescriptions |	seenFamilies := Set new.	reducedFontDescriptions := OrderedCollection new: fontDescriptions size.	fontDescriptions do: 		[: each |			(seenFamilies includes: each family)				ifFalse: 				[	seenFamilies add: each family.					reducedFontDescriptions add: each  				] 		].	^ reducedFontDescriptions</body>
-</methods>
-
-<methods>
-<class-id>Xft.XftFont</class-id> <category>printing</category>
-
-<body package="Xft">printOn: aStream	super printOn: aStream.	self name notNil		ifTrue: 		[	aStream				nextPutAll: '(';				nextPutAll: self name;				nextPutAll: ')' 		]</body>
-</methods>
-
-<methods>
-<class-id>Xft.XftFont</class-id> <category>handles - private</category>
-
-<body package="Xft">xftColormap	^ self library XDefaultColormap: self xftDisplay with: self xftScreen.</body>
-
-<body package="Xft">xftDisplay	^ self screen xftDisplay</body>
-
-<body package="Xft">xftPattern	self reopenIfNecessary.	^ xftFont memberAt: #pattern</body>
-
-<body package="Xft">xftScreen	^ self screen xftScreen</body>
-
-<body package="Xft">xftVisual	^ self library XDefaultVisual: self xftDisplay with: self xftScreen</body>
-</methods>
-
-<methods>
-<class-id>Xft.XftFont</class-id> <category>initialize-release</category>
-
-<body package="Xft">releaseHandle	super releaseHandle.	xftFont := nil.	colors := nil.</body>
-</methods>
-
-<methods>
-<class-id>Xft.XftFont class</class-id> <category>private</category>
-
-<body package="Xft">addCommonFontPatternsFor: aGraphicsDevice to: fontNames	" Add common font patterns. Let Xft find a suitable match "	self commonFamilyNames do: 		[: family |			fontNames add: family , ':style=Bold Italic:slant=100:weight=200:scalable=True'.			fontNames add: family , ':style=Bold:slant=0:weight=200:scalable=True'.			fontNames add: family , ':style=Italic:slant=100:weight=80:scalable=True'.			fontNames add: family , ':style=Regular:slant=0:weight=80:scalable=True' 		]</body>
-
-<body package="Xft">commonFamilyNames	^ #('Sans' 'Serif' 'Sans Serif' 'Helv' 'Monospace')</body>
-
-<body package="Xft">createCompositeFont: bestMatch toResemble: aFontDescription for: fontPolicy	" Let fontconfig find suitable fonts "	| bestFont device |	device := fontPolicy graphicsDevice.	bestFont := self				createDeviceFont: bestMatch				toResemble: aFontDescription				on: device.	^  UnicodeCompositeFont font: bestFont requestedFontDescription: aFontDescription device: device</body>
-
-<body package="Xft">defaultFontDescriptionIn: fontPolicy	^ (FontDescription new)		family: #('FreeSans' 'Sans' 'Serif' '*');		encodings: Locale current preferredEncodings;		italic: false;		fixedWidth: false</body>
-
-<body package="Xft">flushCaches		GlyphTables := nil.	GlyphRanges := nil.</body>
-
-<body package="Xft">parse: aName	" create a FontDescription from the pattern string "	| pattern |	pattern := FontPattern createFromString: aName.	^ pattern createFontDescription</body>
-
-<body package="Xft">platformName	^'X11'</body>
-
-<body package="Xft">queryAndAddFontNamesFor: aGraphicsDevice to: fontNames	" Get all known Xft fonts "	| fontSet |	fontSet := self listFontPatternsFor: aGraphicsDevice.	[ self addFontNamesFromFontSet: fontSet to: fontNames ] ensure: [ Xft.LibXft current FcFontSetDestroy: fontSet ]</body>
-</methods>
-
-<methods>
-<class-id>Xft.XftFont class</class-id> <category>accessing</category>
-
-<body package="Xft">listFontNamesAsOneChunk	^ true</body>
-
-<body package="Xft">listFontNamesFor: aGraphicsDevice	" self listFontNamesFor: Screen default "	| fontNames |	fontNames := OrderedCollection new.	self queryAndAddFontNamesFor: aGraphicsDevice to: fontNames.	self addCommonFontPatternsFor: aGraphicsDevice to: fontNames.	^ fontNames</body>
-
-<body package="Xft">pointToPixelSizeFactor	| dpi |	" 'Screen default resolution' currently returns 75@75, which is hardly useful "	dpi := self settings dpi.	^ dpi / 72</body>
-</methods>
-
-<methods>
-<class-id>Xft.XftFont class</class-id> <category>utilities</category>
-
-<body package="Xft">boldnessForWeight: weight	| regular bold |	regular := LibXft current FC_WEIGHT_REGULAR.	bold := LibXft current FC_WEIGHT_BOLD.	^ (((weight max: regular) min: bold) - regular)  * 0.2 / (bold - regular) + 0.5</body>
-
-<body package="Xft">createDeviceFont: matchedFontDescription toResemble: requestedFontDescription on: aScreen	"Based on a requested font, and the concrete font that best matches it, 	create an instance of the receiver, which can be used in rendering 	operations on the given GraphicsDevice"	| fontDescription encoding |	" create a copy so we can modify it "	fontDescription := matchedFontDescription copy.	requestedFontDescription specifiesPixelSize		ifTrue: 		[	fontDescription				pixelSize: requestedFontDescription pixelSize				pointSize: requestedFontDescription pointSize 		].	encoding := self encoderNamed: self defaultEncodingName.	^ aScreen		externalFontNamed: fontDescription xftFontPatternString		fromClass: self		encoding: encoding		description: fontDescription</body>
-
-<body package="Xft">createFont: matchedFontDescription toResemble: requestedFontDescription on: aGraphicsDevice	" create a composite font for better glyph support "	^ self createCompositeFont: matchedFontDescription toResemble: requestedFontDescription for: aGraphicsDevice defaultFontPolicy</body>
-
-<body package="Xft">defaultEncodingName	^ UnicodeCharacterEncoder new name</body>
-
-<body package="Xft">preferredFontSizeReferringTo: aFontPolicy	^ self preferredFontPixelSize</body>
-
-<body package="Xft">weightForBoldness: boldness	| regular bold |	regular := LibXft current FC_WEIGHT_REGULAR.	bold := LibXft current FC_WEIGHT_BOLD.	^ ((((boldness - 0.5) max: 0) min: 0.2) * 5 * (bold  - regular)) rounded + regular</body>
-</methods>
-
-<methods>
-<class-id>Xft.XftFont class</class-id> <category>settings</category>
-
-<body package="Xft">defaultFontPointSize	^ 10</body>
-
-<body package="Xft">preferredFontPixelSize	| pointSize |	pointSize := (self settings ifNotNil: [: settings | settings preferredFontPointSize  ]) ifNil: [ self defaultFontPointSize ].	^ pointSize * self pointToPixelSizeFactor</body>
-
-<body package="Xft">settings	" optional XftSettings "	^ XftSettings current</body>
-</methods>
-
-<methods>
-<class-id>Xft.XftFont class</class-id> <category>signal constants</category>
-
-<body package="Xft">errorSignal	^ XftError</body>
-</methods>
-
-<methods>
-<class-id>Xft.XftFont class</class-id> <category>parsing - private</category>
-
-<body package="Xft">addFontNamesFromFontSet: aXftFontSet to: fontNames	" Get all known Xft fonts "	| lib |	lib := Xft.LibXft current.	0 to: (aXftFontSet memberAt: #nfont) - 1		do: 		[: i | | fontPattern fontName fcName |			fontPattern := (aXftFontSet memberAt: #fonts) at: i.			fcName := lib FcNameUnparse: fontPattern.			fontName := fcName copyCStringFromHeap: #utf8.			lib FcStrFree: fcName.			fontName notEmpty ifTrue: [ fontNames add: fontName ].		].</body>
-
-<body package="Xft">listFontPatternsFor: aGraphicsDevice 	" Query all relevant properties of all available fonts "	| arguments lib pattern objectSet |	lib := LibXft current.	pattern := lib FcPatternCreate.	^ [	arguments := OrderedCollection new.		arguments add: lib XFT_FAMILY.		arguments add: lib FC_FAMILYLANG.		arguments add: lib XFT_SLANT.		arguments add: lib XFT_SPACING.		arguments add: lib XFT_WEIGHT.		arguments add: lib XFT_FOUNDRY.		arguments add: lib FC_FULLNAMELANG.		arguments add: lib FC_FULLNAME.		arguments add: 0.		objectSet := lib FcObjectSetBuild: arguments asArray.		[ lib FcFontList: nil with: pattern with: objectSet ] ensure: [ lib FcObjectSetDestroy: objectSet ]	] ensure: [ lib FcPatternDestroy: pattern ]</body>
+<body package="Xft">XPolygonRegion: points with: numberOfPoints with: fillRule	&lt;C: Region XPolygonRegion(XPoint points[], int numberOfPoints, int fillRule)&gt;	^self externalAccessFailedWith: _errorCode</body>
 </methods>
 
 <methods>
@@ -1636,6 +1398,244 @@ Date: 1:41:25 PM September 16, 2017
 </methods>
 
 <methods>
+<class-id>Xft.UnicodeCompositeFont</class-id> <category>initialization</category>
+
+<body package="Xft">font: aFont requestedFontDescription: aFontDescription device: aDevice	" Examine the glyphs of the first font only, the other ones will be computed on demand "	device := aDevice.	requestedFontDescription := aFontDescription.	self with: (OrderedCollection with: aFont)  priorityTable: aFont glyphTable.</body>
+
+<body package="Xft">fonts: aFontList 	" there are no further fonts, only the specified ones "	availableFonts := OrderedCollection new.	" Examine the glyphs of the first font only, the other ones will be computed on demand "	self with: aFontList priorityTable: aFontList first glyphTable</body>
+
+<body package="Xft">with: aFontList priorityTable: priorityArray	currentFont := aFontList at: 1.	fonts := aFontList.	" the fallbacks might contain some wacky fonts, so only consider the first one for ascent/descent "	ascent := currentFont ascent.	descent := currentFont descent.	lastPriorityTableFontIndex := 1.	priorityTable := priorityArray.	^ self</body>
+</methods>
+
+<methods>
+<class-id>Xft.UnicodeCompositeFont</class-id> <category>displaying</category>
+
+<body package="Xft">displayByteIndexedString: string from: start to: stop at: aPoint on: aGraphicsContext 	self displayString: string from: start to: stop at: aPoint on: aGraphicsContext</body>
+
+<body package="Xft">displayTwoByteString: string from: start to: stop at: aPoint on: aGraphicsContext	self displayString: string from: start to: stop at: aPoint on: aGraphicsContext</body>
+</methods>
+
+<methods>
+<class-id>Xft.UnicodeCompositeFont</class-id> <category>private</category>
+
+<body package="Xft">addNextAvailableFont	" Add the next available font , if possible.	The font will be opened, which takes some time &amp; resources "	| fontDescription |	( requestedFontDescription notNil and: [ device notNil and: [ self availableFonts notEmpty ]]) 		ifTrue: 		[	fontDescription := self availableFonts removeFirst.			[ | font |				font := XftFont createDeviceFont: fontDescription toResemble: requestedFontDescription on: device.				fonts add: font			] on: NoMatchingFontError do: [: ex | ]		].</body>
+
+<body package="Xft">availableFonts	availableFonts isNil		ifTrue: [ availableFonts := fonts first compositeFontDescriptions ].	^ availableFonts</body>
+
+<body package="Xft">canExtendPriorityTable	^ lastPriorityTableFontIndex &lt; fonts size or: [ self availableFonts notEmpty ]</body>
+
+<body package="Xft">extendPriorityTable	" extend the priority table with the next font "	| font |	lastPriorityTableFontIndex = 1		ifTrue: 		[	" need a private copy "			priorityTable := priorityTable copy 		].	" extend the font  list, if we've reached the end of the current list of fonts "	[ lastPriorityTableFontIndex &gt;= fonts size and: [ self availableFonts notEmpty ] ] whileTrue: 		[			self addNextAvailableFont 		].	lastPriorityTableFontIndex &lt; fonts size		ifTrue: 		[	lastPriorityTableFontIndex := lastPriorityTableFontIndex + 1.			font := fonts at: lastPriorityTableFontIndex.			font glyphRanges do: 				[: range |					range first to: range last						do: 						[: i | | k |							k := i + 1.							(priorityTable at: k) = 0								ifTrue: [ priorityTable at: k put: lastPriorityTableFontIndex ] 						] 				] 		]</body>
+
+<body package="Xft">getFontFor: aCharacter	"Set my currentFont to be appropriate for aCharacter"	| fontCollectionIndex index priorityIndex |	index := aCharacter asInteger + 1.	fontCollectionIndex := index &gt; priorityTable size				ifTrue: [ 0 ]				ifFalse: 				[	priorityIndex := priorityTable at: index.					" Extend the priority table if no glyph is available.					Do not try to find fonts for control characters "					[ priorityIndex = 0 and: [ index &gt;= 33 and: [ self canExtendPriorityTable ] ] ] whileTrue: 						[	self extendPriorityTable.							priorityIndex := priorityTable at: index 						].					priorityIndex 				].	^ fontCollectionIndex == 0		ifTrue: [ fonts at: 1 ]		ifFalse: [ fonts at: fontCollectionIndex ]</body>
+</methods>
+
+<methods>
+<class-id>Xft.UnicodeCompositeFont</class-id> <category>compatibility</category>
+
+<body package="Xft">asDeviceFont	" sent by ExtraEmphases "	^ self</body>
+</methods>
+
+<methods>
+<class-id>Xft.UnicodeCompositeFont class</class-id> <category>instance creation</category>
+
+<body package="Xft">font: aFont requestedFontDescription: aFontDescription device: aDevice	^ self new font: aFont requestedFontDescription: aFontDescription device: aDevice;		yourself</body>
+
+<body package="Xft">fonts: aFontList 	^ self new fonts: aFontList;		yourself</body>
+</methods>
+
+<methods>
+<class-id>Xft.XftFont</class-id> <category>accessing</category>
+
+<body package="Xft">screen	^ screen</body>
+
+<body package="Xft">screen: aScreen	screen := aScreen</body>
+</methods>
+
+<methods>
+<class-id>Xft.XftFont</class-id> <category>displaying</category>
+
+<body package="Xft">displayByteIndexedString: string from: start to: stop at: aPoint on: aGraphicsContext 	self displayString: string from: start to: stop at: aPoint on: aGraphicsContext</body>
+
+<body package="Xft">displayCharacter: aCharacter at: aPoint on: aGraphicsContext	" Draw a single character. This should be avoided, library calls have a significant overhead "	self		displayString: (String with: aCharacter)		from: 1		to: 1		at: aPoint		on: aGraphicsContext</body>
+
+<body package="Xft">displayString: aString from: startIndex to: endIndex at: aPoint on: aGraphicsContext 	" The core display method. Creates a 'Draw' object (similar to a graphics context) and display the string "	| drawStructure substring position xftColor clippingRectangle |	clippingRectangle := aGraphicsContext clippingRectangleOrNil.	" check cases where everything is clipped "	( clippingRectangle notNil and: [ clippingRectangle width &lt;= 0 or: [ clippingRectangle height &lt;= 0 ]]) 		ifTrue: [ ^ self ].	self reopenIfNecessary.	drawStructure := aGraphicsContext 			xftCreateDrawStructureForDisplay: self xftDisplay			visual: self xftVisual			colormap: self xftColormap			library: self library.	drawStructure isNull 		ifTrue: [ self error: 'Could not create drawable' ].	[	xftColor := self xftColorForGraphicsContext: aGraphicsContext.		position := ( aPoint + aGraphicsContext translation ) rounded.		substring := ( startIndex = 1 and: [ endIndex = aString size ]) 				ifTrue: [ aString ]				ifFalse: [ aString copyFrom: startIndex to: endIndex ].		self 			setClipRectangle: clippingRectangle			ofDrawable: drawStructure			graphicsContext: aGraphicsContext			while: [ self displayString: substring at: position drawable: drawStructure xftColor: xftColor ]	] ensure: [ self library XftDrawDestroy: drawStructure ].</body>
+
+<body package="Xft">displayTwoByteString: string from: start to: stop at: aPoint on: aGraphicsContext	self displayString: string from: start to: stop at: aPoint on: aGraphicsContext</body>
+
+<body package="Xft">measureByteIndexedString: string from: start to: stop	"Measure a byte-indexed string from start..stop with the receiver"	| width |	width := 0.	start to: stop do: [:i | width := width + (self widthOf: (string at: i))].	^width @ self height</body>
+
+<body package="Xft">measureTwoByteString: string from: start to: stop	"Measure a two-byte string from start..stop with the receiver"	| width |	width := 0.	start to: stop do: [:i | width := width + (self widthOf: (string at: i))].	^width @ self height</body>
+
+<body package="Xft">primDisplayCharacterOfIndex: characterIndex at: aPoint on: aGraphicsContext	self displayCharacter: (Character value: characterIndex) at: aPoint on: aGraphicsContext</body>
+
+<body package="Xft">primDisplayMappedString: aString from: startIndex to: endIndex at: aPoint withMap: map on: aGraphicsContext	self displayString: aString from: startIndex to: endIndex at: aPoint on: aGraphicsContext</body>
+
+<body package="Xft">primDisplayTwoByteString: aString from: startIndex to: endIndex at: aPoint on: aGraphicsContext	self displayString: aString from: startIndex to: endIndex at: aPoint on: aGraphicsContext</body>
+</methods>
+
+<methods>
+<class-id>Xft.XftFont</class-id> <category>private</category>
+
+<body package="Xft">actualFontPattern	| patternString |	patternString := self library printFcFontPattern: self xftPattern.	^ FontPattern createFromString: patternString.</body>
+
+<body package="Xft">getWidths: index into: widthArray	" Uses XftTextExtents to measure the glyphs "	| glyphInfo width display string |	self reopenIfNecessary.	display := self xftDisplay.	glyphInfo := self library XGlyphInfo gcMalloc.	string := self library FcChar16 malloc: 1.	[	1 to: widthArray size			do: 			[: i |				glyphInfo zeroFill.				string contents: i + index - 1.				self library					XftTextExtents16: display					with: xftFont					with: string					with: 1					with: glyphInfo.				width := glyphInfo memberAt: #xOff.				widthArray at: i put: width 			] 	] ensure: [ string free ]</body>
+
+<body package="Xft">initializeFromFont	" Get information about the font "	| pattern |	ascent := xftFont memberAt: #ascent.	descent := xftFont memberAt: #descent.	widths := LargeArray new: 65536.	" slightly cheesy: VW expects a single string as the family name of the font description "	pattern :=  self actualFontPattern.	pattern preferredFamily ifNotNil: [ : family | self fontDescription xftSetFamily:  family ].</body>
+
+<body package="Xft">library	^ LibXft current</body>
+
+<body package="Xft">openFont	" Open the XftFont "	| result display pattern matchPattern patternString |	result := self library XftResult gcMalloc.	display := self xftDisplay.	patternString := self fontDescription xftFontPatternString.	pattern := self library XftNameParse: ( patternString copyToHeapEncoding: #utf8 ).	pattern isNull 		ifTrue: 		[	self error: ( 'Could not create Xft font pattern &lt;1s&gt;' expandMacrosWith: patternString )		].	matchPattern := self library XftFontMatch: display with: self xftScreen with: pattern with: result.	matchPattern isNull 		ifTrue: [ self error: ( 'Could not match Xft font &lt;1s&gt;' expandMacrosWith: patternString )].	[	" apply appearance settings (antialias, subpixel rendering etc.) "		self class settings ifNotNil: [: settings | settings appyToPattern: matchPattern ].		xftFont := self library XftFontOpenPattern: display with: matchPattern.		xftFont isNull 			ifTrue: [ self error: ( 'Could not open Xft font &lt;1s&gt;' expandMacrosWith: patternString )]	] ensure: [ self library FcPatternDestroy: pattern ].	self initializeFromFont.</body>
+
+<body package="Xft">primUnLoadFont	self library XftFontClose: self xftDisplay with: xftFont</body>
+
+<body package="Xft">reopenIfNecessary	" Ensure that the xftFont is active.	Aragon renderers cache composition scanners and thus refer to invalid XftFonts after snapshots "	self isAccessible 		ifFalse: 		[	screen := Screen default.			colors := nil.			self openFont		].</body>
+
+<body package="Xft">unloadFont	| display visual colormap |	xftFont == nil 		ifFalse: 		[	self primUnLoadFont.			xftFont := nil		].	colors notNil 		ifTrue: 		[	display := self xftDisplay.			visual := self xftVisual.			colormap := self xftColormap.			colors do: [: xftColor | self library XftColorFree: display with: visual with: colormap with: xftColor ].			colors := nil		].</body>
+</methods>
+
+<methods>
+<class-id>Xft.XftFont</class-id> <category>testing</category>
+
+<body package="Xft">hasGlyphForCharacter: aCharacter	" true if the font contains a glyph for the character "	^ self hasGlyphForCodepoint: aCharacter codePoint</body>
+
+<body package="Xft">hasGlyphForCodepoint: anInteger	" true if the font contains a glyph for the character "	^ (self glyphTable at: anInteger + 1) == 1</body>
+
+<body package="Xft">isAccessible	^ xftFont notNil and: [ xftFont isValid ]</body>
+</methods>
+
+<methods>
+<class-id>Xft.XftFont</class-id> <category>displaying - private</category>
+
+<body package="Xft">createClipRegionFor: aGraphicsContext rectangle: untranslatedRectangle 	" create a XRegion for clipping "	| point rectangle points numberOfPoints xpoints xpoint |	numberOfPoints := 4.	rectangle := untranslatedRectangle translatedBy: aGraphicsContext translation.	xpoints := self library XPoint gcMalloc: numberOfPoints.	points := Array with: rectangle topLeft with: rectangle topRight with: rectangle bottomRight with: rectangle bottomLeft.	1 to: numberOfPoints		do: 		[: i |			xpoint := xpoints + ( i - 1 ).			point := points at: i.			xpoint memberAt: #x put: point x.			xpoint memberAt: #y put: point y		].	^ self library XPolygonRegion: xpoints with: numberOfPoints with: self library EvenOddRule</body>
+
+<body package="Xft">displayString: aString at: position drawable: drawable xftColor: xftColor 	" Draw the string "	| drawUnicode |	drawUnicode := true.	aString isCompatibleWithXftDrawString8 		ifTrue: 		[	" Try to avoid a unicode conversion. 			The library call might fail with a badArgumentsSignal if the string contains a character with codepoint 0 "			[	self library XftDrawString8: drawable with: xftColor with: xftFont with: position x with: position y with: aString with: aString size.				drawUnicode := false			] on: self library externalAccessFailedSignal do: [: ex | ]		].	drawUnicode 		ifTrue: 		[	aString isCompatibleWithXftDrawString16 				ifTrue: 				[	aString asFcChar16Do: 						[: fc16String |							self library XftDrawString16: drawable with: xftColor with: xftFont with: position x with: position y with: fc16String with: aString size						]				]				ifFalse: 				[	aString asFcChar32Do: 						[: fc32String |							self library XftDrawString32: drawable with: xftColor with: xftFont with: position x with: position y with: fc32String with: aString size						]				]		].</body>
+
+<body package="Xft">setClipRectangle: aRecangleOrNil ofDrawable: aDrawable graphicsContext: aGraphicsContext while: aBlock 	" create &amp; enable a clip region for the drawable according to the graphics conext "	| clipRegion |	aRecangleOrNil notNil 		ifTrue: 		[	clipRegion := self createClipRegionFor: aGraphicsContext rectangle: aRecangleOrNil.			self library XftDrawSetClip: aDrawable with: clipRegion.			aBlock ensure: [ self library XDestroyRegion: clipRegion ]		]		ifFalse: [ aBlock value ].</body>
+
+<body package="Xft">xftColorForGraphicsContext: aGraphicsContext 	" Returns a XftColor for the current paint of the graphics context "	| xftColor color visual colormap renderColor paint |	colors isNil 		ifTrue: [ colors := Dictionary new ].	" The RGB values of the paint are needed, so convert the paint to a ColorValue.	The conversion might be expensive, so cache the converted value "	paint := aGraphicsContext xftStaticPaint.	xftColor := colors at: paint ifAbsent: [ nil ].	xftColor isNil 		ifTrue: 		[	color := paint xftAsColorValueFor: aGraphicsContext.			visual := self xftVisual.			colormap := self xftColormap.			renderColor := self library XRenderColor gcMalloc.			renderColor memberAt: #red put: ( color red * 65535 ) rounded.			renderColor memberAt: #green put: ( color green * 65535 ) rounded.			renderColor memberAt: #blue put: ( color blue * 65535 ) rounded.			renderColor memberAt: #alpha put: 65535.			xftColor := self library XftColor gcMalloc.			self library XftColorAllocValue: self xftDisplay with: visual with: colormap with: renderColor with: xftColor.			colors at: paint put: xftColor		].	^ xftColor</body>
+</methods>
+
+<methods>
+<class-id>Xft.XftFont</class-id> <category>installing</category>
+
+<body package="Xft">installOn: aGraphicsContext	aGraphicsContext setXftFont:  self</body>
+</methods>
+
+<methods>
+<class-id>Xft.XftFont</class-id> <category>composite fonts - private</category>
+
+<body package="Xft">compositeFontDescriptions	" Returns a list of font descriptions to cover the Unicode charset range "	| result fontSet fontNames reducedFontDescriptions |	result := self library FcResult gcMalloc.	" Get all matching fonts. The first is the best match and should be the same font as this one "	fontSet := self library				FcFontSort: nil				with: self xftPattern				with: 1				with: nil				with: result.	^ [ | fontDescriptions |		fontNames := OrderedCollection new.		self class addFontNamesFromFontSet: fontSet to: fontNames.		fontDescriptions := fontNames collect: [: fontName | self class parse: fontName ].		reducedFontDescriptions := self reduceCompositeFontDescriptions: fontDescriptions.		" apply the style of this font to all fallbacks "		self fontDescription applyStyleToFontDescriptions: reducedFontDescriptions.		reducedFontDescriptions 	] ensure: [ self library FcFontSetDestroy: fontSet ]</body>
+
+<body package="Xft">computeGlyphRanges	" build a collection of glyph ranges "	| charsetPointer result charset map nextPointer base mapSize bitSize ranges start end |	ranges := OrderedCollection new.	charsetPointer := self library PFcCharSet gcMalloc.	result := self library FcPatternGetCharSet: self xftPattern with: self library FC_CHARSET with: 0 with: charsetPointer.	result = 0 		ifFalse: [ ^ nil ].	charset := charsetPointer contents.	mapSize := self library FC_CHARSET_MAP_SIZE.	map := self library FcChar32 gcMalloc: mapSize.	nextPointer := self library FcChar32 gcMalloc.	base := self library FcCharSetFirstPage: charset with: map with: nextPointer.	bitSize := self library FcChar32 sizeof * 8.	start := nil.	end := nil.	[ base &lt; 65536 ] whileTrue: 		[	0 to: mapSize - 1				do: 				[: mapIndex | | bits glyphOffset |					bits := map at: mapIndex.					glyphOffset := base + ( mapIndex * bitSize ).					( start ~~ nil and: [ end + 1 ~= glyphOffset ]) 						ifTrue: 						[	ranges add: ( start to: ( end min: 65535 )).							start := nil						].					0 to: bitSize - 1						do: 						[: bitIndex | ( bits bitAt: bitIndex + 1 ) &gt; 0 								ifTrue: 								[	start == nil 										ifTrue: [ start := glyphOffset + bitIndex ].									end := glyphOffset + bitIndex								]								ifFalse: 								[	start ~~ nil 										ifTrue: 										[	ranges add: ( start to: ( end min: 65535 )).											start := nil										]								]						]				].			base := self library FcCharSetNextPage: charset with: map with: nextPointer		].	^ ranges</body>
+
+<body package="Xft">computeGlyphTable	" build a table with 0 = no glyph, 1 = glyph "	| glyphs |	glyphs := ByteArray new: 65536.	self glyphRanges do: [: range | range first to: (range last min: 65535) do: [: i | glyphs at: i + 1 put: 1 ]].	^ glyphs</body>
+
+<body package="Xft">glyphCacheKey	" All fonts with the same key should contain the same glyphs "	^ self fontDescription glyphCacheKey</body>
+
+<body package="Xft">glyphRanges	GlyphRanges isNil		ifTrue: [ GlyphRanges := Dictionary new ].	^ GlyphRanges at: self glyphCacheKey ifAbsentPut: [ self computeGlyphRanges ]</body>
+
+<body package="Xft">glyphTable	GlyphTables isNil		ifTrue: [ GlyphTables := Dictionary new ].	^ GlyphTables at: self glyphCacheKey ifAbsentPut: [ self computeGlyphTable ]</body>
+
+<body package="Xft">reduceCompositeFontDescriptions: fontDescriptions	" Choose the best font per family "	| seenFamilies reducedFontDescriptions |	seenFamilies := Set new.	reducedFontDescriptions := OrderedCollection new: fontDescriptions size.	fontDescriptions do: 		[: each |			(seenFamilies includes: each family)				ifFalse: 				[	seenFamilies add: each family.					reducedFontDescriptions add: each  				] 		].	^ reducedFontDescriptions</body>
+</methods>
+
+<methods>
+<class-id>Xft.XftFont</class-id> <category>printing</category>
+
+<body package="Xft">printOn: aStream	super printOn: aStream.	self name notNil		ifTrue: 		[	aStream				nextPutAll: '(';				nextPutAll: self name;				nextPutAll: ')' 		]</body>
+</methods>
+
+<methods>
+<class-id>Xft.XftFont</class-id> <category>handles - private</category>
+
+<body package="Xft">xftColormap	^ self library XDefaultColormap: self xftDisplay with: self xftScreen.</body>
+
+<body package="Xft">xftDisplay	^ self screen xftDisplay</body>
+
+<body package="Xft">xftPattern	self reopenIfNecessary.	^ xftFont memberAt: #pattern</body>
+
+<body package="Xft">xftScreen	^ self screen xftScreen</body>
+
+<body package="Xft">xftVisual	^ self library XDefaultVisual: self xftDisplay with: self xftScreen</body>
+</methods>
+
+<methods>
+<class-id>Xft.XftFont</class-id> <category>initialize-release</category>
+
+<body package="Xft">releaseHandle	super releaseHandle.	xftFont := nil.	colors := nil.</body>
+</methods>
+
+<methods>
+<class-id>Xft.XftFont class</class-id> <category>private</category>
+
+<body package="Xft">addCommonFontPatternsFor: aGraphicsDevice to: fontNames	" Add common font patterns. Let Xft find a suitable match "	self commonFamilyNames do: 		[: family |			fontNames add: family , ':style=Bold Italic:slant=100:weight=200:scalable=True'.			fontNames add: family , ':style=Bold:slant=0:weight=200:scalable=True'.			fontNames add: family , ':style=Italic:slant=100:weight=80:scalable=True'.			fontNames add: family , ':style=Regular:slant=0:weight=80:scalable=True' 		]</body>
+
+<body package="Xft">commonFamilyNames	^ #('Sans' 'Serif' 'Sans Serif' 'Helv' 'Monospace')</body>
+
+<body package="Xft">createCompositeFont: bestMatch toResemble: aFontDescription for: fontPolicy	" Let fontconfig find suitable fonts "	| bestFont device |	device := fontPolicy graphicsDevice.	bestFont := self				createDeviceFont: bestMatch				toResemble: aFontDescription				on: device.	^  UnicodeCompositeFont font: bestFont requestedFontDescription: aFontDescription device: device</body>
+
+<body package="Xft">defaultFontDescriptionIn: fontPolicy	^ (FontDescription new)		family: #('FreeSans' 'Sans' 'Serif' '*');		encodings: Locale current preferredEncodings;		italic: false;		fixedWidth: false</body>
+
+<body package="Xft">flushCaches		GlyphTables := nil.	GlyphRanges := nil.</body>
+
+<body package="Xft">parse: aName	" create a FontDescription from the pattern string "	| pattern |	pattern := FontPattern createFromString: aName.	^ pattern createFontDescription</body>
+
+<body package="Xft">platformName	^'X11'</body>
+
+<body package="Xft">queryAndAddFontNamesFor: aGraphicsDevice to: fontNames	" Get all known Xft fonts "	| fontSet |	fontSet := self listFontPatternsFor: aGraphicsDevice.	[ self addFontNamesFromFontSet: fontSet to: fontNames ] ensure: [ Xft.LibXft current FcFontSetDestroy: fontSet ]</body>
+</methods>
+
+<methods>
+<class-id>Xft.XftFont class</class-id> <category>accessing</category>
+
+<body package="Xft">listFontNamesAsOneChunk	^ true</body>
+
+<body package="Xft">listFontNamesFor: aGraphicsDevice	" self listFontNamesFor: Screen default "	| fontNames |	fontNames := OrderedCollection new.	self queryAndAddFontNamesFor: aGraphicsDevice to: fontNames.	self addCommonFontPatternsFor: aGraphicsDevice to: fontNames.	^ fontNames</body>
+
+<body package="Xft">pointToPixelSizeFactor	| dpi |	" 'Screen default resolution' currently returns 75@75, which is hardly useful "	dpi := self settings dpi.	^ dpi / 72</body>
+</methods>
+
+<methods>
+<class-id>Xft.XftFont class</class-id> <category>utilities</category>
+
+<body package="Xft">boldnessForWeight: weight	| regular bold |	regular := LibXft current FC_WEIGHT_REGULAR.	bold := LibXft current FC_WEIGHT_BOLD.	^ (((weight max: regular) min: bold) - regular)  * 0.2 / (bold - regular) + 0.5</body>
+
+<body package="Xft">createDeviceFont: matchedFontDescription toResemble: requestedFontDescription on: aScreen	"Based on a requested font, and the concrete font that best matches it, 	create an instance of the receiver, which can be used in rendering 	operations on the given GraphicsDevice"	| fontDescription encoding |	" create a copy so we can modify it "	fontDescription := matchedFontDescription copy.	requestedFontDescription specifiesPixelSize		ifTrue: 		[	fontDescription				pixelSize: requestedFontDescription pixelSize				pointSize: requestedFontDescription pointSize 		].	encoding := self encoderNamed: self defaultEncodingName.	^ aScreen		externalFontNamed: fontDescription xftFontPatternString		fromClass: self		encoding: encoding		description: fontDescription</body>
+
+<body package="Xft">createFont: matchedFontDescription toResemble: requestedFontDescription on: aGraphicsDevice	" create a composite font for better glyph support "	^ self createCompositeFont: matchedFontDescription toResemble: requestedFontDescription for: aGraphicsDevice defaultFontPolicy</body>
+
+<body package="Xft">defaultEncodingName	^ UnicodeCharacterEncoder new name</body>
+
+<body package="Xft">preferredFontSizeReferringTo: aFontPolicy	^ self preferredFontPixelSize</body>
+
+<body package="Xft">weightForBoldness: boldness	| regular bold |	regular := LibXft current FC_WEIGHT_REGULAR.	bold := LibXft current FC_WEIGHT_BOLD.	^ ((((boldness - 0.5) max: 0) min: 0.2) * 5 * (bold  - regular)) rounded + regular</body>
+</methods>
+
+<methods>
+<class-id>Xft.XftFont class</class-id> <category>settings</category>
+
+<body package="Xft">defaultFontPointSize	^ 10</body>
+
+<body package="Xft">preferredFontPixelSize	| pointSize |	pointSize := (self settings ifNotNil: [: settings | settings preferredFontPointSize  ]) ifNil: [ self defaultFontPointSize ].	^ pointSize * self pointToPixelSizeFactor</body>
+
+<body package="Xft">settings	" optional XftSettings "	^ XftSettings current</body>
+</methods>
+
+<methods>
+<class-id>Xft.XftFont class</class-id> <category>signal constants</category>
+
+<body package="Xft">errorSignal	^ XftError</body>
+</methods>
+
+<methods>
+<class-id>Xft.XftFont class</class-id> <category>parsing - private</category>
+
+<body package="Xft">addFontNamesFromFontSet: aXftFontSet to: fontNames	" Get all known Xft fonts "	| lib |	lib := Xft.LibXft current.	0 to: (aXftFontSet memberAt: #nfont) - 1		do: 		[: i | | fontPattern fontName fcName |			fontPattern := (aXftFontSet memberAt: #fonts) at: i.			fcName := lib FcNameUnparse: fontPattern.			fontName := fcName copyCStringFromHeap: #utf8.			lib FcStrFree: fcName.			fontName notEmpty ifTrue: [ fontNames add: fontName ].		].</body>
+
+<body package="Xft">listFontPatternsFor: aGraphicsDevice 	" Query all relevant properties of all available fonts "	| arguments lib pattern objectSet |	lib := LibXft current.	pattern := lib FcPatternCreate.	^ [	arguments := OrderedCollection new.		arguments add: lib XFT_FAMILY.		arguments add: lib FC_FAMILYLANG.		arguments add: lib XFT_SLANT.		arguments add: lib XFT_SPACING.		arguments add: lib XFT_WEIGHT.		arguments add: lib XFT_FOUNDRY.		arguments add: lib FC_FULLNAMELANG.		arguments add: lib FC_FULLNAME.		arguments add: 0.		objectSet := lib FcObjectSetBuild: arguments asArray.		[ lib FcFontList: nil with: pattern with: objectSet ] ensure: [ lib FcObjectSetDestroy: objectSet ]	] ensure: [ lib FcPatternDestroy: pattern ]</body>
+</methods>
+
+<methods>
 <class-id>Core.WordArray</class-id> <category>converting</category>
 
 <body package="Xft">asFcChar16Do: aBlock	aBlock value: self</body>
@@ -1829,96 +1829,6 @@ Date: 1:41:25 PM September 16, 2017
 </class>
 
 <class>
-<name>Subsystem</name>
-<environment>Core</environment>
-<super>Core.Object</super>
-<private>false</private>
-<indexed-type>none</indexed-type>
-<inst-vars>state canActivate prerequisites </inst-vars>
-<class-inst-vars>current </class-inst-vars>
-<imports></imports>
-<category>System-Subsystems</category>
-<attributes>
-<package>System-Subsystems</package>
-</attributes>
-</class>
-
-<class>
-<name>WindowingSystem</name>
-<environment>Graphics</environment>
-<super>Core.Subsystem</super>
-<private>false</private>
-<indexed-type>none</indexed-type>
-<inst-vars></inst-vars>
-<class-inst-vars></class-inst-vars>
-<imports></imports>
-<category>OS-Window System</category>
-<attributes>
-<package>OS-Window System</package>
-</attributes>
-</class>
-
-<class>
-<name>HostGraphicsDevice</name>
-<environment>Graphics</environment>
-<super>Graphics.GraphicsDevice</super>
-<private>false</private>
-<indexed-type>none</indexed-type>
-<inst-vars>colorDepth colorBitsPerPixel coverageDepth coverageBitsPerPixel openFonts platName </inst-vars>
-<class-inst-vars></class-inst-vars>
-<imports></imports>
-<category>Graphics-Support</category>
-<attributes>
-<package>Graphics-Support</package>
-</attributes>
-</class>
-
-<class>
-<name>Screen</name>
-<environment>Graphics</environment>
-<super>Graphics.HostGraphicsDevice</super>
-<private>false</private>
-<indexed-type>none</indexed-type>
-<inst-vars>boundingBox subRegions resolution rendererName </inst-vars>
-<class-inst-vars></class-inst-vars>
-<imports></imports>
-<category>OS-Window System</category>
-<attributes>
-<package>OS-Window System</package>
-</attributes>
-</class>
-
-<class>
-<name>ScreenFont</name>
-<environment>Graphics</environment>
-<super>Graphics.DeviceFont</super>
-<private>false</private>
-<indexed-type>none</indexed-type>
-<inst-vars>handle ascent descent widths name encoder defaultScanner fontDescription </inst-vars>
-<class-inst-vars></class-inst-vars>
-<imports></imports>
-<category>Graphics-Fonts</category>
-<attributes>
-<package>Graphics-Fonts</package>
-</attributes>
-</class>
-
-<class>
-<name>CompositeFont</name>
-<environment>Graphics</environment>
-<super>Graphics.ImplementationFont</super>
-<private>false</private>
-<indexed-type>none</indexed-type>
-<inst-vars>ascent descent currentFont fonts priorityTable defaultScanner </inst-vars>
-<class-inst-vars></class-inst-vars>
-<imports></imports>
-<category>Internationalization</category>
-<attributes>
-<package>Internationalization</package>
-</attributes>
-</class>
-
-<class>
 <name>ExternalInterface</name>
 <environment>External</environment>
 <super>Core.Object</super>
@@ -1932,81 +1842,6 @@ Date: 1:41:25 PM September 16, 2017
 <category>External-Interface</category>
 <attributes>
 <package>External-Interface</package>
-</attributes>
-</class>
-
-<class>
-<name>FontDescription</name>
-<environment>Graphics</environment>
-<super>Core.Object</super>
-<private>false</private>
-<indexed-type>none</indexed-type>
-<inst-vars>name family manufacturer pixelSize flags masks color encoding encodings </inst-vars>
-<class-inst-vars></class-inst-vars>
-<imports></imports>
-<category>Graphics-Fonts</category>
-<attributes>
-<package>Graphics-Fonts</package>
-</attributes>
-</class>
-
-<class>
-<name>Paint</name>
-<environment>Graphics</environment>
-<super>Core.Object</super>
-<private>false</private>
-<indexed-type>none</indexed-type>
-<inst-vars></inst-vars>
-<class-inst-vars></class-inst-vars>
-<imports></imports>
-<category>Graphics-Support</category>
-<attributes>
-<package>Graphics-Support</package>
-</attributes>
-</class>
-
-<class>
-<name>CoverageValue</name>
-<environment>Graphics</environment>
-<super>Graphics.SimplePaint</super>
-<private>false</private>
-<indexed-type>none</indexed-type>
-<inst-vars>coverage </inst-vars>
-<class-inst-vars></class-inst-vars>
-<imports></imports>
-<category>Graphics-Support</category>
-<attributes>
-<package>Graphics-Support</package>
-</attributes>
-</class>
-
-<class>
-<name>ColorValue</name>
-<environment>Graphics</environment>
-<super>Graphics.SimplePaint</super>
-<private>false</private>
-<indexed-type>none</indexed-type>
-<inst-vars>red green blue </inst-vars>
-<class-inst-vars></class-inst-vars>
-<imports></imports>
-<category>Graphics-Support</category>
-<attributes>
-<package>Graphics-Support</package>
-</attributes>
-</class>
-
-<class>
-<name>Error</name>
-<environment>Core</environment>
-<super>Core.Exception</super>
-<private>false</private>
-<indexed-type>none</indexed-type>
-<inst-vars></inst-vars>
-<class-inst-vars></class-inst-vars>
-<imports></imports>
-<category>Kernel-Exception Handling</category>
-<attributes>
-<package>Kernel-Exception Handling</package>
 </attributes>
 </class>
 
@@ -2041,38 +1876,6 @@ Date: 1:41:25 PM September 16, 2017
 </class>
 
 <class>
-<name>SymbolicPaint</name>
-<environment>Graphics</environment>
-<super>Graphics.Paint</super>
-<private>false</private>
-<indexed-type>none</indexed-type>
-<inst-vars>key constantCode </inst-vars>
-<class-inst-vars></class-inst-vars>
-<imports>
-			private Graphics.SymbolicPaintConstants.*
-			</imports>
-<category>Graphics-Support</category>
-<attributes>
-<package>Graphics-Support</package>
-</attributes>
-</class>
-
-<class>
-<name>FourByteString</name>
-<environment>Core</environment>
-<super>Core.String</super>
-<private>false</private>
-<indexed-type>bytes</indexed-type>
-<inst-vars></inst-vars>
-<class-inst-vars></class-inst-vars>
-<imports></imports>
-<category>Collections-String Support</category>
-<attributes>
-<package>Collections-String Support</package>
-</attributes>
-</class>
-
-<class>
 <name>WordArray</name>
 <environment>Core</environment>
 <super>Core.IntegerArray</super>
@@ -2088,12 +1891,87 @@ Date: 1:41:25 PM September 16, 2017
 </class>
 
 <class>
+<name>ScreenFont</name>
+<environment>Graphics</environment>
+<super>Graphics.DeviceFont</super>
+<private>false</private>
+<indexed-type>none</indexed-type>
+<inst-vars>handle ascent descent widths name encoder defaultScanner fontDescription </inst-vars>
+<class-inst-vars></class-inst-vars>
+<imports></imports>
+<category>Graphics-Fonts</category>
+<attributes>
+<package>Graphics-Fonts</package>
+</attributes>
+</class>
+
+<class>
 <name>GraphicsMedium</name>
 <environment>Graphics</environment>
 <super>Core.Object</super>
 <private>false</private>
 <indexed-type>none</indexed-type>
 <inst-vars></inst-vars>
+<class-inst-vars></class-inst-vars>
+<imports></imports>
+<category>Graphics-Support</category>
+<attributes>
+<package>Graphics-Support</package>
+</attributes>
+</class>
+
+<class>
+<name>Window</name>
+<environment>Graphics</environment>
+<super>Graphics.DisplaySurface</super>
+<private>false</private>
+<indexed-type>none</indexed-type>
+<inst-vars>inputOrigin creationOrigin sensor iconic windowType effectiveWindowType statusLineHeight allowsStatusLine mapped eventHandlers windowManager </inst-vars>
+<class-inst-vars></class-inst-vars>
+<imports></imports>
+<category>OS-Window System</category>
+<attributes>
+<package>OS-Window System</package>
+</attributes>
+</class>
+
+<class>
+<name>Error</name>
+<environment>Core</environment>
+<super>Core.Exception</super>
+<private>false</private>
+<indexed-type>none</indexed-type>
+<inst-vars></inst-vars>
+<class-inst-vars></class-inst-vars>
+<imports></imports>
+<category>Kernel-Exception Handling</category>
+<attributes>
+<package>Kernel-Exception Handling</package>
+</attributes>
+</class>
+
+<class>
+<name>Paint</name>
+<environment>Graphics</environment>
+<super>Core.Object</super>
+<private>false</private>
+<indexed-type>none</indexed-type>
+<inst-vars></inst-vars>
+<class-inst-vars></class-inst-vars>
+<imports></imports>
+<category>Graphics-Support</category>
+<attributes>
+<package>Graphics-Support</package>
+</attributes>
+</class>
+
+<class>
+<name>CoverageValue</name>
+<environment>Graphics</environment>
+<super>Graphics.SimplePaint</super>
+<private>false</private>
+<indexed-type>none</indexed-type>
+<inst-vars>coverage </inst-vars>
 <class-inst-vars></class-inst-vars>
 <imports></imports>
 <category>Graphics-Support</category>
@@ -2133,12 +2011,89 @@ Date: 1:41:25 PM September 16, 2017
 </class>
 
 <class>
-<name>Window</name>
+<name>FontDescription</name>
 <environment>Graphics</environment>
-<super>Graphics.DisplaySurface</super>
+<super>Core.Object</super>
 <private>false</private>
 <indexed-type>none</indexed-type>
-<inst-vars>inputOrigin creationOrigin sensor iconic windowType effectiveWindowType statusLineHeight allowsStatusLine mapped eventHandlers windowManager </inst-vars>
+<inst-vars>name family manufacturer pixelSize flags masks color encoding encodings </inst-vars>
+<class-inst-vars></class-inst-vars>
+<imports></imports>
+<category>Graphics-Fonts</category>
+<attributes>
+<package>Graphics-Fonts</package>
+</attributes>
+</class>
+
+<class>
+<name>Subsystem</name>
+<environment>Core</environment>
+<super>Core.Object</super>
+<private>false</private>
+<indexed-type>none</indexed-type>
+<inst-vars>state canActivate prerequisites </inst-vars>
+<class-inst-vars>current </class-inst-vars>
+<imports></imports>
+<category>System-Subsystems</category>
+<attributes>
+<package>System-Subsystems</package>
+</attributes>
+</class>
+
+<class>
+<name>CompositeFont</name>
+<environment>Graphics</environment>
+<super>Graphics.ImplementationFont</super>
+<private>false</private>
+<indexed-type>none</indexed-type>
+<inst-vars>ascent descent currentFont fonts priorityTable defaultScanner </inst-vars>
+<class-inst-vars></class-inst-vars>
+<imports></imports>
+<category>Internationalization</category>
+<attributes>
+<package>Internationalization</package>
+</attributes>
+</class>
+
+<class>
+<name>HostGraphicsDevice</name>
+<environment>Graphics</environment>
+<super>Graphics.GraphicsDevice</super>
+<private>false</private>
+<indexed-type>none</indexed-type>
+<inst-vars>colorDepth colorBitsPerPixel coverageDepth coverageBitsPerPixel openFonts platName </inst-vars>
+<class-inst-vars></class-inst-vars>
+<imports></imports>
+<category>Graphics-Support</category>
+<attributes>
+<package>Graphics-Support</package>
+</attributes>
+</class>
+
+<class>
+<name>SymbolicPaint</name>
+<environment>Graphics</environment>
+<super>Graphics.Paint</super>
+<private>false</private>
+<indexed-type>none</indexed-type>
+<inst-vars>key constantCode </inst-vars>
+<class-inst-vars></class-inst-vars>
+<imports>
+			private Graphics.SymbolicPaintConstants.*
+			</imports>
+<category>Graphics-Support</category>
+<attributes>
+<package>Graphics-Support</package>
+</attributes>
+</class>
+
+<class>
+<name>WindowingSystem</name>
+<environment>Graphics</environment>
+<super>Core.Subsystem</super>
+<private>false</private>
+<indexed-type>none</indexed-type>
+<inst-vars></inst-vars>
 <class-inst-vars></class-inst-vars>
 <imports></imports>
 <category>OS-Window System</category>
@@ -2159,6 +2114,51 @@ Date: 1:41:25 PM September 16, 2017
 <category>Graphics-Support</category>
 <attributes>
 <package>Graphics-Support</package>
+</attributes>
+</class>
+
+<class>
+<name>Screen</name>
+<environment>Graphics</environment>
+<super>Graphics.HostGraphicsDevice</super>
+<private>false</private>
+<indexed-type>none</indexed-type>
+<inst-vars>boundingBox subRegions resolution rendererName </inst-vars>
+<class-inst-vars></class-inst-vars>
+<imports></imports>
+<category>OS-Window System</category>
+<attributes>
+<package>OS-Window System</package>
+</attributes>
+</class>
+
+<class>
+<name>ColorValue</name>
+<environment>Graphics</environment>
+<super>Graphics.SimplePaint</super>
+<private>false</private>
+<indexed-type>none</indexed-type>
+<inst-vars>red green blue </inst-vars>
+<class-inst-vars></class-inst-vars>
+<imports></imports>
+<category>Graphics-Support</category>
+<attributes>
+<package>Graphics-Support</package>
+</attributes>
+</class>
+
+<class>
+<name>FourByteString</name>
+<environment>Core</environment>
+<super>Core.String</super>
+<private>false</private>
+<indexed-type>bytes</indexed-type>
+<inst-vars></inst-vars>
+<class-inst-vars></class-inst-vars>
+<imports></imports>
+<category>Collections-String Support</category>
+<attributes>
+<package>Collections-String Support</package>
 </attributes>
 </class>
 

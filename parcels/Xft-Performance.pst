@@ -20,12 +20,12 @@ Github repo: https://github.com/hkleinsorgen/Xft
 Licensed under the MIT license (see Copyright)
 PackageName: Xft-Performance
 Parcel: #('Xft-Performance')
-ParcelDirectory: /mnt/e/develop/git/xft/8.3/Xft-Performance
+ParcelDirectory: Xft-Performance
 SkipSignature: true
-Version: (7.7).6
-Date: 1:41:46 PM September 16, 2017
+Version: (7.7).3
+Date: 6:45:30 PM January 22, 2021
  -->
-<time-stamp>From VisualWorks®, 8.3 of July 28, 2017 on September 16, 2017 at 1:41:46 PM</time-stamp>
+<time-stamp>From VisualWorks®, 8.3.2 of 16. November 2018 on 22. Januar 2021 at 18:45:30</time-stamp>
 
 
 <do-it>(Dialog confirm: 'You are filing-in a Parcel source file!\\While this is possible it will not have\the same effect as loading the parcel.\None of the Parcel''s prerequisites will\be loaded and none of its load actions\will be performed.\\Are you sure you want to file-in?' withCRs) ifFalse: [self error: 'Parcel file-in abandoned.  Choose terminate or close.']</do-it>

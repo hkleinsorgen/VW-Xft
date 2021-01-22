@@ -25,9 +25,9 @@ ParcelDirectory: Xft-Development
 PrerequisiteDescriptions: #(#(#name 'Browser-SourceCodeUI' #componentType #package) #(#name 'Tools-Settings' #componentType #package) #(#name 'Tools-Settings-VW' #componentType #package) #(#name 'Xft' #componentType #package) #(#name 'Xft-DesktopIntegration' #componentType #package))
 PrerequisiteParcels: #(#('Browser-SourceCodeUI' '') #('Tools-Settings' '') #('Tools-Settings-VW' '') #('Xft' '') #('Xft-DesktopIntegration' ''))
 Version: (8.3).5
-Date: 6:19:35 PM January 22, 2021
+Date: 6:45:24 PM January 22, 2021
  -->
-<time-stamp>From VisualWorks®, 8.3.2 of 16. November 2018 on 22. Januar 2021 at 18:19:35</time-stamp>
+<time-stamp>From VisualWorks®, 8.3.2 of 16. November 2018 on 22. Januar 2021 at 18:45:24</time-stamp>
 
 
 <do-it>(Dialog confirm: 'You are filing-in a Parcel source file!\\While this is possible it will not have\the same effect as loading the parcel.\None of the Parcel''s prerequisites will\be loaded and none of its load actions\will be performed.\\Are you sure you want to file-in?' withCRs) ifFalse: [self error: 'Parcel file-in abandoned.  Choose terminate or close.']</do-it>
@@ -77,15 +77,15 @@ Date: 6:19:35 PM January 22, 2021
 </methods>
 
 <methods>
-<class-id>Xft.FontSettingsPage</class-id> <category>notifications</category>
-
-<body package="Xft-Development">triggered	DeferrableAction new block: 			[	XDesktop settingsChanged 					ifTrue: [ XDesktop detectAndUpdateCurrentDesktop ].				XDesktop settingsChanged: false			];		window: self mainWindow;		activate.</body>
-</methods>
-
-<methods>
 <class-id>Xft.FontSettingsPage</class-id> <category>initialize-release</category>
 
 <body package="Xft-Development">manager: aSettingsManager	super manager: aSettingsManager.	manager triggerChannel		onChangeSend: #triggered		to: self</body>
+</methods>
+
+<methods>
+<class-id>Xft.FontSettingsPage</class-id> <category>notifications</category>
+
+<body package="Xft-Development">triggered	DeferrableAction new block: 			[	XDesktop settingsChanged 					ifTrue: [ XDesktop detectAndUpdateCurrentDesktop ].				XDesktop settingsChanged: false			];		window: self mainWindow;		activate.</body>
 </methods>
 
 <methods>
