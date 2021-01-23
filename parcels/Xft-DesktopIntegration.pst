@@ -21,17 +21,17 @@ Github repo: https://github.com/hkleinsorgen/Xft
 
 Licensed under the MIT license (see Copyright)
 
-DevelopmentPrerequisites: #(#(#any 'Xft' '') #(#any 'Xft-Integration' ''))
+DevelopmentPrerequisites: #(#(#package 'Xft' '') #(#package 'Xft-Integration' ''))
 PackageName: Xft-DesktopIntegration
 Parcel: #('Xft-DesktopIntegration')
 ParcelDirectory: Xft-DesktopIntegration
-PrerequisiteDescriptions: #(#(#name 'Xft' #componentType #package) #(#name 'Xft-Integration' #componentType #package))
+PrerequisiteDescriptions: #(#(#name 'Xft' #componentType #package #loadResolution #store) #(#name 'Xft-Integration' #componentType #package #loadResolution #store))
 PrerequisiteParcels: #(#('Xft' '') #('Xft-Integration' ''))
 SkipSignature: true
-Version: (8.3).6
-Date: 7:16:56 PM January 22, 2021
+Version: (8.3).7
+Date: 6:21:21 PM January 23, 2021
  -->
-<time-stamp>From VisualWorks®, 8.3.2 of 16. November 2018 on 22. Januar 2021 at 19:16:56</time-stamp>
+<time-stamp>From VisualWorks®, 8.3.2 of November 16, 2018 on January 23, 2021 at 6:21:21 PM</time-stamp>
 
 
 <do-it>(Dialog confirm: 'You are filing-in a Parcel source file!\\While this is possible it will not have\the same effect as loading the parcel.\None of the Parcel''s prerequisites will\be loaded and none of its load actions\will be performed.\\Are you sure you want to file-in?' withCRs) ifFalse: [self error: 'Parcel file-in abandoned.  Choose terminate or close.']</do-it>
@@ -55,27 +55,6 @@ Date: 7:16:56 PM January 22, 2021
 <class-id>Xft.XDesktop</class-id>
 <body>Provides font information about the desktop
 </body>
-</comment>
-
-<class>
-<name>XSettingsCompatibleDesktop</name>
-<environment>Xft</environment>
-<super>Xft.XDesktop</super>
-<private>false</private>
-<indexed-type>none</indexed-type>
-<inst-vars></inst-vars>
-<class-inst-vars>xSettings </class-inst-vars>
-<imports></imports>
-<category></category>
-<attributes>
-<package>Xft-DesktopIntegration</package>
-</attributes>
-</class>
-
-<comment>
-<class-id>Xft.XSettingsCompatibleDesktop</class-id>
-<body>Accesses the XSettings for font configuratione.
-See http://www.freedesktop.org/wiki/Specifications/xsettings-spec</body>
 </comment>
 
 <class>
@@ -208,6 +187,27 @@ See http://www.freedesktop.org/wiki/Specifications/xsettings-spec</body>
 <body>Represents an unknown desktop environment</body>
 </comment>
 
+<class>
+<name>XSettingsCompatibleDesktop</name>
+<environment>Xft</environment>
+<super>Xft.XDesktop</super>
+<private>false</private>
+<indexed-type>none</indexed-type>
+<inst-vars></inst-vars>
+<class-inst-vars>xSettings </class-inst-vars>
+<imports></imports>
+<category></category>
+<attributes>
+<package>Xft-DesktopIntegration</package>
+</attributes>
+</class>
+
+<comment>
+<class-id>Xft.XSettingsCompatibleDesktop</class-id>
+<body>Accesses the XSettings for font configuratione.
+See http://www.freedesktop.org/wiki/Specifications/xsettings-spec</body>
+</comment>
+
 <shared-variable>
 <name>XSettingInterfaceDictionary</name>
 <environment>Xft</environment>
@@ -222,18 +222,6 @@ See http://www.freedesktop.org/wiki/Specifications/xsettings-spec</body>
 <shared-variable>
 <name>FontSettingsInstalled</name>
 <environment>Xft.XDesktopSystem</environment>
-<private>false</private>
-<constant>false</constant>
-<category>accessing</category>
-<initializer>nil</initializer>
-<attributes>
-<package>Xft-DesktopIntegration</package>
-</attributes>
-</shared-variable>
-
-<shared-variable>
-<name>FontFamilyString</name>
-<environment>Xft.XDesktop</environment>
 <private>false</private>
 <constant>false</constant>
 <category>accessing</category>
@@ -317,6 +305,18 @@ See http://www.freedesktop.org/wiki/Specifications/xsettings-spec</body>
 
 <shared-variable>
 <name>FontPointSize</name>
+<environment>Xft.XDesktop</environment>
+<private>false</private>
+<constant>false</constant>
+<category>accessing</category>
+<initializer>nil</initializer>
+<attributes>
+<package>Xft-DesktopIntegration</package>
+</attributes>
+</shared-variable>
+
+<shared-variable>
+<name>FontFamilyString</name>
 <environment>Xft.XDesktop</environment>
 <private>false</private>
 <constant>false</constant>
@@ -600,7 +600,8 @@ See http://www.freedesktop.org/wiki/Specifications/xsettings-spec</body>
 	fontDescription notNil
 		ifTrue: 
 		[	settings preferredFontDescription: fontDescription.
-			settings preferredFontPointSize: fontDescription pointSize 
+			settings preferredFontPointSize: fontDescription pointSize.
+			settings defaultWeight: fontDescription fontPattern weight.
 		]
 		ifFalse: [ settings preferredFontPointSize: self defaultFontPointSize ]</body>
 
@@ -647,15 +648,15 @@ See http://www.freedesktop.org/wiki/Specifications/xsettings-spec</body>
 	
 	self subclassResponsibility</body>
 
-<body package="Xft-DesktopIntegration">createFontPatternFromFamilies: families pointSize: pointSize
+<body package="Xft-DesktopIntegration">createFontPatternFromFamilies: families pointSize: pointSize 
 	" Create a suitable font pattern "
-			
-	^ (FontPattern new)
-		" add common family names for extra safety "
-		family: families,  XftFont commonFamilyNames;
-		weight: LibXft current XFT_WEIGHT_MEDIUM;
+
+	^ FontPattern new
+		family: families , XftFont commonFamilyNames; " add common family names for extra safety "
+		weight: self defaultWeight;
 		pointSize: pointSize;
-		yourself</body>
+		yourself
+	</body>
 
 <body package="Xft-DesktopIntegration">createFontPatternFromPangoFontName: fontName
 	" Font name: '&lt;Family&gt; &lt;Styles&gt; &lt;Size&gt;' "
@@ -678,7 +679,8 @@ See http://www.freedesktop.org/wiki/Specifications/xsettings-spec</body>
 	fontPattern := FontPattern new.
 	lib := LibXft current.
 	fontPattern
-		pointSize: pointSize.
+		pointSize: pointSize;
+		weight: self defaultWeight.
 	" apply styles "
 	[ familyTokens size &gt; 1 and: [ self styleBlocks includesKey: familyTokens last asLowercase ]] whileTrue: [
 		| style |
@@ -705,6 +707,10 @@ See http://www.freedesktop.org/wiki/Specifications/xsettings-spec</body>
 	" Returns the font description of the default font of the desktop "
 
 	self subclassResponsibility</body>
+
+<body package="Xft-DesktopIntegration">defaultWeight
+
+	^ LibXft current FC_WEIGHT_REGULAR</body>
 
 <body package="Xft-DesktopIntegration">getFontDescription: aFontPropertyName
 
@@ -798,102 +804,6 @@ See http://www.freedesktop.org/wiki/Specifications/xsettings-spec</body>
 <body package="Xft-DesktopIntegration">updateFonts
 
 	UI.Skins.SkinRegistry reinitializeTextStyles.</body>
-</methods>
-
-<methods>
-<class-id>Xft.XSettingsCompatibleDesktop class</class-id> <category>desktop accessing</category>
-
-<body package="Xft-DesktopIntegration">initializeForCurrentDesktop
-
-	super initializeForCurrentDesktop.
-	self initializeXSettings</body>
-
-<body package="Xft-DesktopIntegration">initializeXSettings
-
-	xSettings := [
-		XSettingClient new readSettings
-	] on: Error do: [ : ex |
-		Dictionary new
-	].</body>
-
-<body package="Xft-DesktopIntegration">label
-
-	^ 'XSettings compatible'</body>
-</methods>
-
-<methods>
-<class-id>Xft.XSettingsCompatibleDesktop class</class-id> <category>private</category>
-
-<body package="Xft-DesktopIntegration">priority
-
-	^ self superclass priority -1</body>
-</methods>
-
-<methods>
-<class-id>Xft.XSettingsCompatibleDesktop class</class-id> <category>private - settings</category>
-
-<body package="Xft-DesktopIntegration">booleanValueOfSetting: settingsName
-
-	| number |
-	number := (self valueOfSetting: settingsName).
-	number = 1 ifTrue: [ ^ true ].
-	number = 0 ifTrue: [ ^ false ].
-	"  default "
-	^ nil</body>
-
-<body package="Xft-DesktopIntegration">fontSettingsName
-
-	^ 'Gtk/FontName'</body>
-
-<body package="Xft-DesktopIntegration">initializeAppearanceSettings: settings
-
-	| dpi |
-	super initializeAppearanceSettings: settings.
-	dpi := (self valueOfSetting: 'Xft/DPI').
-	(dpi notNil and: [ dpi &gt; 0 ])
-		ifTrue: [ settings dpi: (dpi / 1024) rounded ].
-	settings antialias: (self booleanValueOfSetting: 'Xft/Antialias').
-	settings hintStyle: (self convertHintStyleString: (self valueOfSetting: 'Xft/HintStyle')).
-	settings subPixelRendering: (self convertSubPixelString: (self valueOfSetting: 'Xft/RGBA')).
-	settings lcdFilter: (self convertLcdFilterString: (self valueOfSetting: 'Xft/Lcdfilter')).</body>
-
-<body package="Xft-DesktopIntegration">numberValueOfSetting: settingsName
-
-	^ self valueOfSetting: settingsName</body>
-
-<body package="Xft-DesktopIntegration">stringValueOfSetting: settingsName
-
-	^ self valueOfSetting: settingsName</body>
-
-<body package="Xft-DesktopIntegration">valueOfSetting: settingsName
-	" Get the settings value "
-
-	^ xSettings notNil
-		ifTrue: [ xSettings at: settingsName ifAbsent: [ nil ] ]
-		ifFalse: [ nil ]</body>
-</methods>
-
-<methods>
-<class-id>Xft.XSettingsCompatibleDesktop class</class-id> <category>private - font description</category>
-
-<body package="Xft-DesktopIntegration">createFontPatternFromConfigurationValue: fontName
-	
-	^ self createFontPatternFromPangoFontName: fontName</body>
-
-<body package="Xft-DesktopIntegration">defaultFontDescription
-	" Get the default font "
-
-	^ self getFontDescription: self fontSettingsName</body>
-</methods>
-
-<methods>
-<class-id>Xft.XSettingsCompatibleDesktop class</class-id> <category>testing</category>
-
-<body package="Xft-DesktopIntegration">matchesCurrentDesktop
-
-	^ [	XSettingClient new readSettings.
-		true
-	] on: Error do: [: ex | false ]</body>
 </methods>
 
 <methods>
@@ -1278,6 +1188,102 @@ See http://www.freedesktop.org/wiki/Specifications/xsettings-spec</body>
 	| pattern |
 	pattern := self createFontPatternFromFamilies: self defaultFontFamilyNames pointSize: self defaultFontPointSize.
 	^  pattern createFontDescriptionForMatching</body>
+</methods>
+
+<methods>
+<class-id>Xft.XSettingsCompatibleDesktop class</class-id> <category>desktop accessing</category>
+
+<body package="Xft-DesktopIntegration">initializeForCurrentDesktop
+
+	super initializeForCurrentDesktop.
+	self initializeXSettings</body>
+
+<body package="Xft-DesktopIntegration">initializeXSettings
+
+	xSettings := [
+		XSettingClient new readSettings
+	] on: Error do: [ : ex |
+		Dictionary new
+	].</body>
+
+<body package="Xft-DesktopIntegration">label
+
+	^ 'XSettings compatible'</body>
+</methods>
+
+<methods>
+<class-id>Xft.XSettingsCompatibleDesktop class</class-id> <category>private</category>
+
+<body package="Xft-DesktopIntegration">priority
+
+	^ self superclass priority -1</body>
+</methods>
+
+<methods>
+<class-id>Xft.XSettingsCompatibleDesktop class</class-id> <category>private - settings</category>
+
+<body package="Xft-DesktopIntegration">booleanValueOfSetting: settingsName
+
+	| number |
+	number := (self valueOfSetting: settingsName).
+	number = 1 ifTrue: [ ^ true ].
+	number = 0 ifTrue: [ ^ false ].
+	"  default "
+	^ nil</body>
+
+<body package="Xft-DesktopIntegration">fontSettingsName
+
+	^ 'Gtk/FontName'</body>
+
+<body package="Xft-DesktopIntegration">initializeAppearanceSettings: settings
+
+	| dpi |
+	super initializeAppearanceSettings: settings.
+	dpi := (self valueOfSetting: 'Xft/DPI').
+	(dpi notNil and: [ dpi &gt; 0 ])
+		ifTrue: [ settings dpi: (dpi / 1024) rounded ].
+	settings antialias: (self booleanValueOfSetting: 'Xft/Antialias').
+	settings hintStyle: (self convertHintStyleString: (self valueOfSetting: 'Xft/HintStyle')).
+	settings subPixelRendering: (self convertSubPixelString: (self valueOfSetting: 'Xft/RGBA')).
+	settings lcdFilter: (self convertLcdFilterString: (self valueOfSetting: 'Xft/Lcdfilter')).</body>
+
+<body package="Xft-DesktopIntegration">numberValueOfSetting: settingsName
+
+	^ self valueOfSetting: settingsName</body>
+
+<body package="Xft-DesktopIntegration">stringValueOfSetting: settingsName
+
+	^ self valueOfSetting: settingsName</body>
+
+<body package="Xft-DesktopIntegration">valueOfSetting: settingsName
+	" Get the settings value "
+
+	^ xSettings notNil
+		ifTrue: [ xSettings at: settingsName ifAbsent: [ nil ] ]
+		ifFalse: [ nil ]</body>
+</methods>
+
+<methods>
+<class-id>Xft.XSettingsCompatibleDesktop class</class-id> <category>private - font description</category>
+
+<body package="Xft-DesktopIntegration">createFontPatternFromConfigurationValue: fontName
+	
+	^ self createFontPatternFromPangoFontName: fontName</body>
+
+<body package="Xft-DesktopIntegration">defaultFontDescription
+	" Get the default font "
+
+	^ self getFontDescription: self fontSettingsName</body>
+</methods>
+
+<methods>
+<class-id>Xft.XSettingsCompatibleDesktop class</class-id> <category>testing</category>
+
+<body package="Xft-DesktopIntegration">matchesCurrentDesktop
+
+	^ [	XSettingClient new readSettings.
+		true
+	] on: Error do: [: ex | false ]</body>
 </methods>
 
 <methods>

@@ -55,10 +55,10 @@ ParcelDirectory: Xft
 PrerequisiteDescriptions: #(#(#name 'DLLCC' #componentType #package))
 PrerequisiteParcels: #(#('DLLCC' ''))
 SkipSignature: true
-Version: (7.7).78
-Date: 7:16:33 PM January 22, 2021
+Version: (7.7).80
+Date: 6:21:18 PM January 23, 2021
  -->
-<time-stamp>From VisualWorks®, 8.3.2 of 16. November 2018 on 22. Januar 2021 at 19:16:33</time-stamp>
+<time-stamp>From VisualWorks®, 8.3.2 of November 16, 2018 on January 23, 2021 at 6:21:18 PM</time-stamp>
 
 
 <do-it>(Dialog confirm: 'You are filing-in a Parcel source file!\\While this is possible it will not have\the same effect as loading the parcel.\None of the Parcel''s prerequisites will\be loaded and none of its load actions\will be performed.\\Are you sure you want to file-in?' withCRs) ifFalse: [self error: 'Parcel file-in abandoned.  Choose terminate or close.']</do-it>
@@ -236,7 +236,7 @@ Date: 7:16:33 PM January 22, 2021
 <super>Core.Object</super>
 <private>false</private>
 <indexed-type>none</indexed-type>
-<inst-vars>preferredFontDescription preferredMonoFontDescription preferredFontPointSize antialias hintStyle lcdFilter dpi subPixelRendering </inst-vars>
+<inst-vars>preferredFontDescription preferredMonoFontDescription preferredFontPointSize antialias hintStyle lcdFilter dpi subPixelRendering defaultWeight </inst-vars>
 <class-inst-vars>current </class-inst-vars>
 <imports></imports>
 <category></category>
@@ -3157,9 +3157,8 @@ Date: 7:16:33 PM January 22, 2021
 <body package="Xft">boldnessForWeight: weight
 
 	| regular bold |
-	regular := LibXft current FC_WEIGHT_REGULAR.
+	regular := XftSettings current defaultWeight.
 	bold := LibXft current FC_WEIGHT_BOLD.
-
 	^ (((weight max: regular) min: bold) - regular)  * 0.2 / (bold - regular) + 0.5</body>
 
 <body package="Xft">createDeviceFont: matchedFontDescription toResemble: requestedFontDescription on: aScreen
@@ -3199,9 +3198,8 @@ Date: 7:16:33 PM January 22, 2021
 <body package="Xft">weightForBoldness: boldness
 
 	| regular bold |
-	regular := LibXft current FC_WEIGHT_REGULAR.
+	regular := XftSettings current defaultWeight.
 	bold := LibXft current FC_WEIGHT_BOLD.
-
 	^ ((((boldness - 0.5) max: 0) min: 0.2) * 5 * (bold  - regular)) rounded + regular</body>
 </methods>
 
@@ -3379,42 +3377,6 @@ Date: 7:16:33 PM January 22, 2021
 </methods>
 
 <methods>
-<class-id>Xft.XftSettings</class-id> <category>accessing - fonts</category>
-
-<body package="Xft">preferredFontDescription
-
-	^ preferredFontDescription</body>
-
-<body package="Xft">preferredFontDescription: aFontDescription
-
-	preferredFontDescription := aFontDescription</body>
-
-<body package="Xft">preferredFontPointSize
-	" Returns the preferred font size in points, or nil "
-
-	^ preferredFontPointSize</body>
-
-<body package="Xft">preferredFontPointSize: anIntegerOrNil 
-	" The preferred font size in points, or nil "
-
-	preferredFontPointSize := ( anIntegerOrNil notNil and: [ anIntegerOrNil &gt; 0 ]) 
-			ifTrue: [ anIntegerOrNil ]
-			ifFalse: [ nil ].</body>
-
-<body package="Xft">preferredMonoFontDescription
-
-	^ preferredMonoFontDescription ifNil: [ self preferredFontDescription ifNotNil: [ : description |
-		description copy 
-			family: #('monospace' '*');
-			yourself
-	]].</body>
-
-<body package="Xft">preferredMonoFontDescription: aFontDescription
-
-	preferredMonoFontDescription := aFontDescription</body>
-</methods>
-
-<methods>
 <class-id>Xft.XftSettings</class-id> <category>accessing - appearance</category>
 
 <body package="Xft">antialias
@@ -3502,6 +3464,50 @@ Date: 7:16:33 PM January 22, 2021
 			lib FcPatternDel: aFcPattern with: lib FC_LCD_FILTER .
 			lib FcPatternAddInteger: aFcPattern with: lib FC_LCD_FILTER  with:  (lib perform: self lcdFilter)
 		].</body>
+</methods>
+
+<methods>
+<class-id>Xft.XftSettings</class-id> <category>accessing - fonts</category>
+
+<body package="Xft">defaultWeight
+
+	^ defaultWeight ifNil: [ LibXft current FC_WEIGHT_REGULAR ]</body>
+
+<body package="Xft">defaultWeight: aDefaultWeight 
+
+	defaultWeight := aDefaultWeight.</body>
+
+<body package="Xft">preferredFontDescription
+
+	^ preferredFontDescription</body>
+
+<body package="Xft">preferredFontDescription: aFontDescription
+
+	preferredFontDescription := aFontDescription</body>
+
+<body package="Xft">preferredFontPointSize
+	" Returns the preferred font size in points, or nil "
+
+	^ preferredFontPointSize</body>
+
+<body package="Xft">preferredFontPointSize: anIntegerOrNil 
+	" The preferred font size in points, or nil "
+
+	preferredFontPointSize := ( anIntegerOrNil notNil and: [ anIntegerOrNil &gt; 0 ]) 
+			ifTrue: [ anIntegerOrNil ]
+			ifFalse: [ nil ].</body>
+
+<body package="Xft">preferredMonoFontDescription
+
+	^ preferredMonoFontDescription ifNil: [ self preferredFontDescription ifNotNil: [ : description |
+		description copy 
+			family: #('monospace' '*');
+			yourself
+	]].</body>
+
+<body package="Xft">preferredMonoFontDescription: aFontDescription
+
+	preferredMonoFontDescription := aFontDescription</body>
 </methods>
 
 <methods>
@@ -3775,14 +3781,8 @@ Date: 7:16:33 PM January 22, 2021
 
 <body package="Xft">xftPixelSize
 
-	| screenDPI xftDPI |
 	^ ( self specifiesPixelSize and: [ self pixelSize &gt; 0 ]) 
-		ifTrue: 
-		[	" fallback values might be required for early initialization of the default screen font "
-			screenDPI := Screen default resolution ifNotNil: [: resolution | resolution x ] ifNil: [ 75 ].
-			xftDPI := Xft.XftSettings current dpi .
-			( self pixelSize * screenDPI / xftDPI ) rounded
-		]
+		ifTrue: [( self pixelSize * Xft.XftSettings current globalDPIScaleFactor ) rounded ]
 		ifFalse: [ self pixelSize ]</body>
 
 <body package="Xft">xftSetFamily: aFamilyString
