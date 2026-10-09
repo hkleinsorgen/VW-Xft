@@ -21,7 +21,7 @@ Requires a restart once the package is loaded.
 ### Xft-DesktopIntegration
 
 Gathers font information from the desktop configuration. 
-The default text attributes will be reset according to the default font of the desktop.
+The default text attributes will be configured according to the default font of the desktop.
 
 ### Xft-Development
 
